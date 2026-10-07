@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Target Windows to satisfy packages that require Windows desktop APIs -->
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Add OpenTK for OpenGL bindings; version selected to be compatible with .NET 8 -->
+    <PackageReference Include="OpenTK" Version="4.8.7" />
+    <!-- Use available GLControl version on nuget.org -->
+    <PackageReference Include="OpenTK.GLControl" Version="4.0.2" />
+  </ItemGroup>
+
+</Project>

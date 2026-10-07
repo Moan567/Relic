@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "MapCompiler": {
+      "commandName": "Project",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "lightmapUnitSize": "2",
+        "fastVis": "true"
+      }
+    }
+  }
+}
