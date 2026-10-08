@@ -1,0 +1,281 @@
+// Rolonin entity definitions for TrenchBroom.
+// Property names match the engine's entity metadata exactly (including spaces) so
+// keyvalues pass through to the compiled map unchanged.
+
+@SolidClass = worldspawn : "World"
+[
+    "message" : string : "Map description"
+]
+
+// ---------------------------------------------------------------------------
+// Lights
+// ---------------------------------------------------------------------------
+
+@BaseClass = LightBase
+[
+    "Color" : color255 : "Color" : "255 255 255"
+    "Intensity" : string : "Intensity" : "1"
+]
+
+@PointClass base(LightBase) size(-4 -4 -4, 4 4 4) color(255 255 180) = PointLight : "Point Light"
+[
+    "Range" : string : "Range" : "16"
+]
+
+@PointClass base(LightBase) size(-4 -4 -4, 4 4 4) color(255 220 160) = SpotLight : "Spot Light"
+[
+    "Range" : string : "Range" : "16"
+    "Spot Angle" : string : "Spot Angle" : "45"
+    "Inner Angle" : string : "Inner Angle" : "30"
+]
+
+@PointClass base(LightBase) size(-8 -8 -8, 8 8 8) color(255 240 200) = DirectionalLight : "Directional Light (sun) + ambient"
+[
+    "Intensity" : string : "Intensity" : "2"
+    "Ambient Color" : color255 : "Ambient Color" : "255 255 255"
+    "Ambient Intensity" : string : "Ambient Intensity" : "0.25"
+    "Skybox" : string : "Skybox texture" : ""
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(180 200 255) = LightGroup : "Light Group (bakes a switchable lightmap layer)"
+[
+    "Target" : target_destination : "Target (lights to group)" : ""
+    "Style" : string : "Style" : ""
+    "Default Color" : color255 : "Default Color" : "255 255 255"
+    "Default Intensity" : string : "Default Intensity" : "1"
+    "Start Enabled" : choices : "Start Enabled" : 1 =
+    [
+        0 : "No"
+        1 : "Yes"
+    ]
+]
+
+// ---------------------------------------------------------------------------
+// Cameras / AI
+// ---------------------------------------------------------------------------
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 200 255) = SkyCamera : "Sky Camera"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 200 255) = CameraDirector : "Camera Director"
+[
+    "Start With Control" : choices : "Start With Control" : 1 =
+    [
+        0 : "No"
+        1 : "Yes"
+    ]
+    "Camera Priority" : string : "Camera Priority" : "1"
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(160 255 160) = GroundNode : "AI Ground Node"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(160 255 160) = InfoLandmark : "Info Landmark"
+[
+]
+
+// ---------------------------------------------------------------------------
+// Environment
+// ---------------------------------------------------------------------------
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 180 255) = FogController : "Fog Controller"
+[
+    "Fog Color" : color255 : "Fog Color" : "255 255 255"
+    "Fog Intensity" : string : "Fog Intensity" : "1"
+    "Fog Start" : string : "Fog Start" : "0"
+    "Fog End" : string : "Fog End" : "1024"
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) = EnvSprite : "Sprite"
+[
+    "Sprite Material" : string : "Sprite Material" : ""
+    "Sprite Size" : string : "Sprite Size" : "1"
+    "Alpha Multiplier" : string : "Alpha Multiplier" : "1"
+    "Color Multiplier" : color255 : "Color Multiplier" : "255 255 255"
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) = EnvCubemap : "Cubemap probe"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) = EnvGlobal : "Set global state on load"
+[
+    "State to Set" : string : "State to Set" : ""
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) = EnvDecal : "Decal"
+[
+    "Decal Material" : string : "Decal Material" : ""
+    "Decal Min Bounds" : string : "Decal Min Bounds" : "-1 -1 -1"
+    "Decal Max Bounds" : string : "Decal Max Bounds" : "1 1 1"
+    "Decal UV Scale X" : string : "Decal UV Scale X" : "1"
+    "Decal UV Scale Y" : string : "Decal UV Scale Y" : "1"
+    "Decal UV Offset X" : string : "Decal UV Offset X" : "0"
+    "Decal UV Offset Y" : string : "Decal UV Offset Y" : "0"
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) = DetailModel : "Prop model"
+[
+    "Model" : string : "Model path" : ""
+]
+
+// ---------------------------------------------------------------------------
+// Sound
+// ---------------------------------------------------------------------------
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 200 120) = SoundPlayer : "Sound Player"
+[
+    "Sound Name" : string : "Sound Name" : ""
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 200 120) = Soundscape : "Soundscape"
+[
+    "Soundscape" : string : "Soundscape" : ""
+    "Trigger By Distance" : choices : "Trigger By Distance" : 0 =
+    [
+        0 : "No"
+        1 : "Yes"
+    ]
+    "Trigger Distance" : string : "Trigger Distance" : "16"
+]
+
+// ---------------------------------------------------------------------------
+// Logic
+// ---------------------------------------------------------------------------
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicAuto : "Logic Auto (fires on map start)"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicRelay : "Logic Relay"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicBranch : "Logic Branch"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicCompare : "Logic Compare"
+[
+    "Initial Value" : string : "Initial Value" : "0"
+    "Initial Comparison Value" : string : "Initial Comparison Value" : "0"
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicPrint : "Logic Print"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicArithmetic : "Logic Arithmetic"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicTicker : "Logic Ticker"
+[
+    "Tick Interval" : string : "Tick Interval" : "1"
+    "Is Enabled" : choices : "Is Enabled" : 1 =
+    [
+        0 : "No"
+        1 : "Yes"
+    ]
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicChangeLevel : "Logic Change Level"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = LogicTransitionLevel : "Logic Transition Level"
+[
+    "Destination Anchor" : string : "Destination Anchor" : ""
+    "Clear Map Cache" : choices : "Clear Map Cache" : 0 =
+    [
+        0 : "No"
+        1 : "Yes"
+    ]
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(200 255 255) = EntityFactory : "Entity Factory"
+[
+    "Entity To Create" : string : "Entity To Create" : ""
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) = ChoreoPlayer : "Choreo Player"
+[
+    "Scene Path" : string : "Scene Path" : ""
+]
+
+// ---------------------------------------------------------------------------
+// Physics
+// ---------------------------------------------------------------------------
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 160 160) = PhysicsAnchorEntity : "Physics Anchor"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 160 160) = FixedConstraintEntity : "Fixed Constraint"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 160 160) = PointConstraintEntity : "Point Constraint"
+[
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 160 160) = SpringConstraintEntity : "Spring Constraint"
+[
+    "Auto Max Distance" : choices : "Auto Max Distance" : 1 =
+    [
+        0 : "No"
+        1 : "Yes"
+    ]
+    "Min Distance" : string : "Min Distance" : "0"
+    "Max Distance" : string : "Max Distance" : "0"
+    "Damping" : string : "Damping" : "0.5"
+    "Frequency" : string : "Frequency" : "1"
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 160 160) = RopeObject : "Rope"
+[
+    "Segment Count" : string : "Segment Count" : "8"
+]
+
+// ---------------------------------------------------------------------------
+// Brush entities
+// ---------------------------------------------------------------------------
+
+@SolidClass = FuncDetail : "Detail geometry (merged, doesn't cut visibility)"
+[
+]
+
+@SolidClass = FuncDoor : "Door"
+[
+    "Open on Use" : choices : "Open on Use" : 1 =
+    [
+        0 : "No"
+        1 : "Yes"
+    ]
+]
+
+@SolidClass = FuncButton : "Button"
+[
+]
+
+@SolidClass = FuncSliding : "Sliding brush"
+[
+]
+
+@SolidClass = FuncPhysics : "Physics brush"
+[
+]
+
+@SolidClass = FuncTrigger : "Trigger volume (fires repeatedly)"
+[
+]
+
+@SolidClass = FuncTriggerOnce : "Trigger volume (fires once)"
+[
+]
+
+@SolidClass = FuncTriggerAll : "Trigger volume (requires all activators)"
+[
+]

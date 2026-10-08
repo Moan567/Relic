@@ -825,7 +825,7 @@ namespace Engine.Rendering
             GraphicsDeviceManager.PreferredBackBufferHeight = Height;
             GraphicsDeviceManager.PreferredBackBufferWidth = Width;
 
-            GraphicsDeviceManager.HardwareModeSwitch = Instance.IsFullscreen;
+            GraphicsDeviceManager.HardwareModeSwitch = false;
             GraphicsDeviceManager.IsFullScreen = Instance.IsFullscreen;
 
             // MSAA is done for the screen textures already
@@ -835,6 +835,14 @@ namespace Engine.Rendering
             RecalculateRenderTargets();
 
             GraphicsDeviceManager.ApplyChanges();
+
+            if (!Instance.IsFullscreen)
+            {
+                var desktop = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
+                Instance.Window.Position = new Point(
+                    (desktop.Width - Width) / 2,
+                    (desktop.Height - Height) / 2);
+            }
 
             needsDisplayRebuild = false;
         }

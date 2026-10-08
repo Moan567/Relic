@@ -1,5 +1,7 @@
 ﻿using Engine.Utils;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,56 +14,56 @@ namespace Engine
 {
     public static class Skybox
     {
-        static Microsoft.Xna.Framework.Graphics.VertexPosition[] skyCubeStrip = {
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(-1.0f, 1.0f,  1.0f)),     // Front-top-left
+        static VertexPosition[] skyCubeStrip = {
+            new VertexPosition(new Vector3(-1.0f, 1.0f,  1.0f)),     // Front-top-left
             new VertexPosition(new Vector3(1.0f,  1.0f,  1.0f)),      // Front-top-right
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(-1.0f,-1.0f,  1.0f)),    // Front-bottom-left
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(1.0f, -1.0f,  1.0f)),     // Front-bottom-right
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(1.0f, -1.0f, -1.0f)),    // Back-bottom-right
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(1.0f,  1.0f,  1.0f)),      // Front-top-right
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(1.0f,  1.0f, -1.0f)),     // Back-top-right
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(-1.0f, 1.0f,  1.0f)),     // Front-top-left
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(-1.0f, 1.0f, -1.0f)),    // Back-top-left
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(-1.0f,-1.0f,  1.0f)),    // Front-bottom-left
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(-1.0f,-1.0f, -1.0f)),   // Back-bottom-left
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(1.0f, -1.0f, -1.0f)),    // Back-bottom-right
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(-1.0f, 1.0f, -1.0f)),    // Back-top-left
-            new Microsoft.Xna.Framework.Graphics.VertexPosition(new Vector3(1.0f,  1.0f, -1.0f))      // Back-top-right
+            new VertexPosition(new Vector3(-1.0f,-1.0f,  1.0f)),    // Front-bottom-left
+            new VertexPosition(new Vector3(1.0f, -1.0f,  1.0f)),     // Front-bottom-right
+            new VertexPosition(new Vector3(1.0f, -1.0f, -1.0f)),    // Back-bottom-right
+            new VertexPosition(new Vector3(1.0f,  1.0f,  1.0f)),      // Front-top-right
+            new VertexPosition(new Vector3(1.0f,  1.0f, -1.0f)),     // Back-top-right
+            new VertexPosition(new Vector3(-1.0f, 1.0f,  1.0f)),     // Front-top-left
+            new VertexPosition(new Vector3(-1.0f, 1.0f, -1.0f)),    // Back-top-left
+            new VertexPosition(new Vector3(-1.0f,-1.0f,  1.0f)),    // Front-bottom-left
+            new VertexPosition(new Vector3(-1.0f,-1.0f, -1.0f)),   // Back-bottom-left
+            new VertexPosition(new Vector3(1.0f, -1.0f, -1.0f)),    // Back-bottom-right
+            new VertexPosition(new Vector3(-1.0f, 1.0f, -1.0f)),    // Back-top-left
+            new VertexPosition(new Vector3(1.0f,  1.0f, -1.0f))      // Back-top-right
         };
-        static Microsoft.Xna.Framework.Graphics.VertexBuffer cubeBuffer;
+        static VertexBuffer cubeBuffer;
 
-        private static Microsoft.Xna.Framework.Graphics.TextureCube skyBoxTexture;
+        private static TextureCube skyBoxTexture;
         private static ShaderHandle skyBoxEffect;
-        public static Microsoft.Xna.Framework.Graphics.TextureCube GetSkyTexture() => skyBoxTexture;
-        public static void Init(Microsoft.Xna.Framework.Content.ContentManager Content)
+        public static TextureCube GetSkyTexture() => skyBoxTexture;
+        public static void Init(ContentManager Content)
         {
             skyBoxEffect = ShaderBuilder.BuildSkyboxShader(MainEngine.Instance.GraphicsDevice);
             skyBoxEffect.Param("World").SetValue(Matrix.Identity);
 
             if (cubeBuffer == null)
             {
-                cubeBuffer = new Microsoft.Xna.Framework.Graphics.VertexBuffer(MainEngine.Instance.GraphicsDevice, typeof(Microsoft.Xna.Framework.Graphics.VertexPosition), skyCubeStrip.Length, Microsoft.Xna.Framework.Graphics.BufferUsage.WriteOnly);
-
+                cubeBuffer = new VertexBuffer(MainEngine.Instance.GraphicsDevice, typeof(VertexPosition), skyCubeStrip.Length, BufferUsage.WriteOnly);
+                
                 cubeBuffer.SetData(skyCubeStrip);
             }
         }
-        public static void SetSkyTexture(Microsoft.Xna.Framework.Graphics.TextureCube tex)
+        public static void SetSkyTexture(TextureCube tex)
         {
             skyBoxTexture = tex;
         }
-        public static Microsoft.Xna.Framework.Graphics.TextureCube LoadSkybox(Microsoft.Xna.Framework.Content.ContentManager content, Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, string path)
+        public static TextureCube LoadSkybox(ContentManager content, GraphicsDevice graphicsDevice, string path)
         {
             string fullPath = Path.Combine(content.RootDirectory, path);
             if (path.EndsWith(".hdr", StringComparison.OrdinalIgnoreCase) ||
                 File.Exists(Path.ChangeExtension(fullPath,"hdr")))
             {
                 fullPath = Path.ChangeExtension(fullPath,"hdr");
-                var equirectTexture = RadianceHdrLoader.Load(graphicsDevice, fullPath);
+                Texture2D equirectTexture = RadianceHdrLoader.Load(graphicsDevice, fullPath);
                 ShaderHandle equirectToCubeEffect = ShaderBuilder.BuildEquirectToCubeShader(graphicsDevice);
                 return EquirectToCubemapConverter.Convert(graphicsDevice, equirectToCubeEffect, equirectTexture, 1024);
             }
 
-            return content.Load<Microsoft.Xna.Framework.Graphics.TextureCube>(path);
+            return content.Load<TextureCube>(path);
         }
         public static void Draw(Matrix view, Matrix projection)
         {
@@ -75,7 +77,7 @@ namespace Engine
             MainEngine.Instance.GraphicsDevice.SetVertexBuffer(cubeBuffer);
 
             skyBoxEffect.RenderEachPass(() =>
-                MainEngine.Instance.GraphicsDevice.DrawPrimitives(Microsoft.Xna.Framework.Graphics.PrimitiveType.TriangleStrip, 0, 12));
+                MainEngine.Instance.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleStrip, 0, 12));
 
             MainEngine.Instance.GraphicsDevice.SetVertexBuffer(null);
         }

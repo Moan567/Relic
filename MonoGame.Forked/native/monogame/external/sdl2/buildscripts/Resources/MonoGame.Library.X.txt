@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NoWarn>NU5128</NoWarn>
+    <Title>MonoGame build of {X} Library</Title>
+    <Description>This package contains binaries for {X} library built for usage with MonoGame.</Description>
+    <PackageIcon>Icon.png</PackageIcon>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <PackageLicenseFile>{LicenseName}</PackageLicenseFile>
+    <PackageReadMeFile>{ReadMeName}</PackageReadMeFile>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <None Include="{LicensePath}" Pack="true" PackagePath="" />
+      <None Include="{ReadMePath}" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    {LibrariesToInclude}
+  </ItemGroup>
+
+</Project>

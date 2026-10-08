@@ -1,10 +1,13 @@
 <Solution>
   <Folder Name="/Core/">
     <Project Path="Engine/Engine.csproj" Id="03dfe8a3-e64e-41ad-845f-d83501b43c52" />
+    <Project Path="MonoGame.Forked/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj" />
+    <Project Path="MonoGame.ImGuiNet-main/MonoGame.ImGuiNet/Monogame.ImGuiNet.csproj" />
   </Folder>
   <Folder Name="/Editor/">
-    <Project Path="Mapcompiler 0.01/Mapcompiler.csproj" Id="bcffa5c9-8bc3-412e-b90f-edb1ab557610" />
+    <Project Path="Mapcompiler/Mapcompiler.csproj" />
   </Folder>
-  <Folder Name="/thirdparty/" />
-  <Folder Name="/thirdparty/tools/" />
+  <Folder Name="/Game/">
+    <Project Path="Game/Game.csproj" />
+  </Folder>
 </Solution>

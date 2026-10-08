@@ -87,7 +87,7 @@ namespace Engine
             _elapsedTime += gameTime.ElapsedGameTime;
 
             _alpha = 1f;
-            if (_elapsedTime >= _displayTime + TimeSpan.FromSeconds(0.5f))
+            if (_elapsedTime >= _displayTime + TimeSpan.FromSeconds(10.5f))
             {
                 IsActive = false;
                 OnComplete?.Invoke();
@@ -125,7 +125,10 @@ namespace Engine
             Debug.Assert(IsActive, $"Attempting to draw {nameof(SplashScreen)} when it is no longer active");
             Debug.Assert(!IsDisposed, $"Attempting to draw {nameof(SplashScreen)} after is has been disposed");
 
-            _gd.Clear(Color.Black);
+            if (_elapsedTime < _displayTime)
+            {
+                _gd.Clear(Color.Black);
+            }
             spriteBatch.Begin(samplerState: SamplerState.AnisotropicClamp);
             spriteBatch.Draw(_splashTexture, _splashRect, Color.White * _alpha);
             spriteBatch.End();

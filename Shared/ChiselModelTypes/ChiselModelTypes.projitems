@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>345bb408-d18a-4252-9700-2d75f7a8c32a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chisel</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BlendSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CCMDLHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CFootIKHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChoreoScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CIKSolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChiselModelData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CModelAnimator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CMorphState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CSequencePlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EditorFieldAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EyeData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Triangulator.cs" />
+  </ItemGroup>
+</Project>
