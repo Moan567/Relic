@@ -1,4 +1,4 @@
-﻿using Engine;
+using Engine;
 using Engine.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

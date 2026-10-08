@@ -1,4 +1,4 @@
-﻿using Engine.Entities;
+using Engine.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Rockwall;

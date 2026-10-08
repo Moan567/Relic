@@ -1,4 +1,4 @@
-﻿using Gum.Wireframe;
+using Gum.Wireframe;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameGum.GueDeriving;
 using RenderingLibrary.Graphics;

@@ -1,4 +1,4 @@
-﻿using Engine;
+using Engine;
 using Engine.Compilation;
 using Engine.Scripting.Sound;
 using Engine.Sound;

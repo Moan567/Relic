@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
+using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -38,49 +38,49 @@ namespace MonoGame.Tools.Tests
         [Test]
         public void ConvertFrom_SingleUnicodeCharacter_ReturnsSingleCharacterRegion()
         {
-            var result = (CharacterRegion)converter.ConvertFrom(null, null, "あ");
-            Assert.AreEqual('あ', result.Start);
-            Assert.AreEqual('あ', result.End);
+            var result = (CharacterRegion)converter.ConvertFrom(null, null, "?");
+            Assert.AreEqual('?', result.Start);
+            Assert.AreEqual('?', result.End);
         }
 
         [Test]
         public void ConvertFrom_UnicodeRange_ReturnsCharacterRegion()
         {
-            var result = (CharacterRegion)converter.ConvertFrom(null, null, "あ-ん");
-            Assert.AreEqual('あ', result.Start);
-            Assert.AreEqual('ん', result.End);
+            var result = (CharacterRegion)converter.ConvertFrom(null, null, "?-?");
+            Assert.AreEqual('?', result.Start);
+            Assert.AreEqual('?', result.End);
         }
 
         [Test]
         public void ConvertFrom_CyrillicRange_ReturnsCharacterRegion()
         {
-            var result = (CharacterRegion)converter.ConvertFrom(null, null, "А-Я");
-            Assert.AreEqual('А', result.Start);
-            Assert.AreEqual('Я', result.End);
+            var result = (CharacterRegion)converter.ConvertFrom(null, null, "?-?");
+            Assert.AreEqual('?', result.Start);
+            Assert.AreEqual('?', result.End);
         }
 
         [Test]
         public void ConvertFrom_HexadecimalCodePoint_ReturnsSingleCharacterRegion()
         {
             var result = (CharacterRegion)converter.ConvertFrom(null, null, "0x3042");
-            Assert.AreEqual('あ', result.Start);
-            Assert.AreEqual('あ', result.End);
+            Assert.AreEqual('?', result.Start);
+            Assert.AreEqual('?', result.End);
         }
 
         [Test]
         public void ConvertFrom_DecimalEntityCodePoint_ReturnsSingleCharacterRegion()
         {
             var result = (CharacterRegion)converter.ConvertFrom(null, null, "&#12354;");
-            Assert.AreEqual('あ', result.Start);
-            Assert.AreEqual('あ', result.End);
+            Assert.AreEqual('?', result.Start);
+            Assert.AreEqual('?', result.End);
         }
 
         [Test]
         public void ConvertFrom_IntegerCodePoint_ReturnsSingleCharacterRegion()
         {
-            var result = (CharacterRegion)converter.ConvertFrom(null, null, "12354"); // 'あ' in decimal
-            Assert.AreEqual('あ', result.Start);
-            Assert.AreEqual('あ', result.End);
+            var result = (CharacterRegion)converter.ConvertFrom(null, null, "12354"); // '?' in decimal
+            Assert.AreEqual('?', result.Start);
+            Assert.AreEqual('?', result.End);
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace MonoGame.Tools.Tests
         public void ConvertFrom_InvalidRangeOrder_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => converter.ConvertFrom(null, null, "Z-A"));
-            Assert.Throws<ArgumentException>(() => converter.ConvertFrom(null, null, "ん-あ"));
+            Assert.Throws<ArgumentException>(() => converter.ConvertFrom(null, null, "?-?"));
         }
     }
 }

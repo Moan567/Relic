@@ -1,4 +1,4 @@
-﻿using Engine.Console;
+using Engine.Console;
 using Engine.Scripting.ValueScript;
 using Engine.Sound;
 using Microsoft.Xna.Framework;

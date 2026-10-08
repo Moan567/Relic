@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Eto.Drawing;
 
@@ -9,8 +9,8 @@ namespace MonoGame.Tools.Pipeline
         private const int CellHeight = 32;
         private const int Spacing = 10;
         private const int Margin = 10;
-        private const string ArrowCollapse  = "▲";
-        private const string ArrowExpand = "▼";
+        private const string ArrowCollapse  = "?";
+        private const string ArrowExpand = "?";
         private const int ButtonSpacing = 3;
 
         public string Text { get; set; }

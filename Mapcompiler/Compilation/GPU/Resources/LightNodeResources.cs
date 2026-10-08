@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Rockwall;
 using Silk.NET.OpenAL;
 using System;

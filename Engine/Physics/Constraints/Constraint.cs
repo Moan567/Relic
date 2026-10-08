@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 namespace Engine.Physics.Constraints;
 
 public interface Constraint

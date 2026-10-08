@@ -1,4 +1,4 @@
-ï»¿// MonoGame - Copyright (C) MonoGame Foundation, Inc
+// MonoGame - Copyright (C) MonoGame Foundation, Inc
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
@@ -34,7 +34,7 @@ namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
         /// <param name="type">The type.</param>
         /// <returns>The size of the specified type, in bytes.</returns>
         /// <remarks>Call this method to compute offset parameters for the Write method. If the specified 
-        /// data type cannot be packed into a vertex bufferâ€”for example, if type is not a valid value typeâ€”a 
+        /// data type cannot be packed into a vertex buffer—for example, if type is not a valid value type—a 
         /// NotSupportedException is thrown.</remarks>
         /// <exception cref="NotSupportedException">type is not a valid value type</exception>
         public static int SizeOf(Type type)

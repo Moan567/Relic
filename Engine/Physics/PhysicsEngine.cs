@@ -1,4 +1,4 @@
-﻿using Engine.Entities;
+using Engine.Entities;
 using Engine.Sound;
 using Engine.Utils;
 using JoltPhysicsSharp;

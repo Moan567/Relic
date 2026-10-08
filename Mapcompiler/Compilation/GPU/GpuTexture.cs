@@ -1,4 +1,4 @@
-﻿using Silk.NET.OpenGL;
+using Silk.NET.OpenGL;
 using System;
 
 public sealed class GpuTexture : IDisposable

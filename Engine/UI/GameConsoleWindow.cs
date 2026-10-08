@@ -1,4 +1,4 @@
-﻿using Engine.Console;
+using Engine.Console;
 using Gum.Forms.Controls;
 using Microsoft.Xna.Framework;
 using MonoGameGum;

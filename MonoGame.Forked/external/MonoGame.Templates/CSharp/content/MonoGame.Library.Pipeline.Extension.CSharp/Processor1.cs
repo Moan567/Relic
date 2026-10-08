@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content.Pipeline;
+using Microsoft.Xna.Framework.Content.Pipeline;
 
 using TInput = System.String;
 using TOutput = System.String;

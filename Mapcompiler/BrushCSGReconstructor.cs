@@ -1,4 +1,4 @@
-﻿using MapCompiler.Compilation;
+using MapCompiler.Compilation;
 using Microsoft.Xna.Framework;
 using Rockwall;
 using System;

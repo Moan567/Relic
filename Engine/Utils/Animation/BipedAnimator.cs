@@ -1,4 +1,4 @@
-﻿using Chisel.Models;
+using Relic.Models;
 using Engine;
 using Engine.Physics;
 using Engine.Rendering;
@@ -9,9 +9,9 @@ using RenderingLibrary.Graphics;
 using Rockwall;
 using System;
 using System.Collections.Generic;
-using static Chisel.Models.CModel;
+using static Relic.Models.CModel;
 
-namespace Chisel.Utils.Animation
+namespace Relic.Utils.Animation
 {
     public enum RootMotionMode
     {

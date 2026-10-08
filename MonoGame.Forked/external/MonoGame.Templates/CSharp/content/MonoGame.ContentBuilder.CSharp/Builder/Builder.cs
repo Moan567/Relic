@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Entry point for the Content Builder project, 
 /// which when executed will build content according to the "Content Collection Strategy" defined in the Builder class.
 /// </summary>

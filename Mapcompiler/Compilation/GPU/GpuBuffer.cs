@@ -1,4 +1,4 @@
-﻿using Silk.NET.OpenGL;
+using Silk.NET.OpenGL;
 using System;
 using System.Runtime.InteropServices;
 

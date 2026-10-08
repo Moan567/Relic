@@ -1,4 +1,4 @@
-﻿// MonoGame - Copyright (C) MonoGame Foundation, Inc
+// MonoGame - Copyright (C) MonoGame Foundation, Inc
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
@@ -77,8 +77,8 @@ namespace Microsoft.Xna.Framework.Input
         /// Initializes a new instance of the <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/> struct
         /// using the specified stick, trigger, and button values.
         /// </summary>
-        /// <param name="leftThumbStick">Left stick value. Each axis is clamped between −1.0 and 1.0.</param>
-        /// <param name="rightThumbStick">Right stick value. Each axis is clamped between −1.0 and 1.0.</param>
+        /// <param name="leftThumbStick">Left stick value. Each axis is clamped between -1.0 and 1.0.</param>
+        /// <param name="rightThumbStick">Right stick value. Each axis is clamped between -1.0 and 1.0.</param>
         /// <param name="leftTrigger">Left trigger value. This value is clamped between 0.0 and 1.0.</param>
         /// <param name="rightTrigger">Right trigger value. This value is clamped between 0.0 and 1.0.</param>
         /// <param name="button">Button(s) to initialize as pressed.</param>
@@ -91,8 +91,8 @@ namespace Microsoft.Xna.Framework.Input
         /// Initializes a new instance of the <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/> struct
         /// using the specified stick, trigger, and button values.
         /// </summary>
-        /// <param name="leftThumbStick">Left stick value. Each axis is clamped between −1.0 and 1.0.</param>
-        /// <param name="rightThumbStick">Right stick value. Each axis is clamped between −1.0 and 1.0.</param>
+        /// <param name="leftThumbStick">Left stick value. Each axis is clamped between -1.0 and 1.0.</param>
+        /// <param name="rightThumbStick">Right stick value. Each axis is clamped between -1.0 and 1.0.</param>
         /// <param name="leftTrigger">Left trigger value. This value is clamped between 0.0 and 1.0.</param>
         /// <param name="rightTrigger">Right trigger value. This value is clamped between 0.0 and 1.0.</param>
         /// <param name="buttons"> Array of Buttons to initialize as pressed.</param>

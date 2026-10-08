@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace MapCompiler.Compilation.GPU.Resources;
 public sealed class PropVertexResources : IDisposable

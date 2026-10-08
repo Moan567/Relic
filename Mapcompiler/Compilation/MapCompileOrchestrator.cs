@@ -1,4 +1,4 @@
-using Chisel.Formatter;
+using Relic.Formatter;
 using MapCompiler.Compilation;
 using MapCompiler.Compilation.GPU;
 using MapCompiler.Compilation.GPU.Resources;

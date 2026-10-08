@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Xna.Framework.Graphics
+namespace Microsoft.Xna.Framework.Graphics
 {
     /// <summary>
     /// Helper class which ensures we only lookup a vertex 

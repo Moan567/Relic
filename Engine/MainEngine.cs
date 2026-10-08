@@ -1,5 +1,5 @@
-using Chisel.Formatter;
-using Chisel.Utils;
+using Relic.Formatter;
+using Relic.Utils;
 using Engine.Compilation;
 using Engine.Conditions;
 using Engine.Console;
@@ -358,6 +358,10 @@ namespace Engine
 
             GameSettings.Settings.Add("verticalSync", false);
             GameSettings.Settings.Add("windowedMode", true);
+
+            // store default windowed size so windowed/fullscreen transitions can restore user size
+            GameSettings.Settings.Add("windowedWidth", (Int64)Width);
+            GameSettings.Settings.Add("windowedHeight", (Int64)Height);
 
             GameSettings.Settings.Add("rawInput", true);
 
@@ -779,7 +783,7 @@ namespace Engine
                 float vw = GraphicsDevice.Viewport.Width;
                 float vh = GraphicsDevice.Viewport.Height;
 
-                string text = $"Chisel Release Build: {BuildInfo.BuildNumber}";
+                string text = $"Relic Release Build: {BuildInfo.BuildNumber}";
 
                 float textWidth = ImGui.CalcTextSize(text).X;
 

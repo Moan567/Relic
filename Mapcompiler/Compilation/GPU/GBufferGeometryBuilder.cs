@@ -1,4 +1,4 @@
-﻿using MapCompiler.Compilation.GPU.Resources;
+using MapCompiler.Compilation.GPU.Resources;
 using Microsoft.Xna.Framework;
 using Rockwall;
 using System;

@@ -1,4 +1,4 @@
-﻿using Engine.Compilation;
+using Engine.Compilation;
 using Engine.Physics;
 using Engine.Utils;
 using Microsoft.Xna.Framework;

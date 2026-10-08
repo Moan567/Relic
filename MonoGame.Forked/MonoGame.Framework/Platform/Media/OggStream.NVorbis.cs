@@ -1,4 +1,4 @@
-﻿// This code originated from:
+// This code originated from:
 //
 //    http://theinstructionlimit.com/ogg-streaming-using-opentk-and-nvorbis
 //    https://github.com/NVorbis/NVorbis

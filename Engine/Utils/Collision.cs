@@ -1,5 +1,5 @@
-﻿using Chisel.Collision;
-using Chisel.Utils;
+using Relic.Collision;
+using Relic.Utils;
 using Engine.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -705,7 +705,7 @@ namespace Engine.Utils
                 Vector3 v1 = verts[tris[j + 1]].Position;
                 Vector3 v2 = verts[tris[j + 2]].Position;
 
-                // Fast AABB check per‐triangle
+                // Fast AABB check per-triangle
                 var triBox = new BoundingBox(
                     Vector3.Min(Vector3.Min(v0, v1), v2),
                     Vector3.Max(Vector3.Max(v0, v1), v2)

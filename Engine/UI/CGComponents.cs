@@ -1,4 +1,4 @@
-﻿using Gum.DataTypes.Variables;
+using Gum.DataTypes.Variables;
 using Gum.Forms;
 using Gum.Forms.Controls;
 using Gum.Forms.DefaultVisuals;

@@ -1,4 +1,4 @@
-﻿using Chisel.Utils;
+using Relic.Utils;
 using Microsoft.Xna.Framework;
 using Rockwall;
 using System;
@@ -71,7 +71,7 @@ namespace MapCompiler
             return new PlaneBasis { origin = origin, u = u, v = v };
         }
 
-        // A standard monotone‐chain convex hull on 2D points:
+        // A standard monotone-chain convex hull on 2D points:
         static List<Vector2> ConvexHull2D(List<Vector2> pts)
         {
             pts.Sort((a, b) => a.X != b.X
@@ -99,7 +99,7 @@ namespace MapCompiler
             return lower;
         }
 
-        // convenience: 2D cross‐product
+        // convenience: 2D cross-product
         static float Cross(this Vector2 a, Vector2 b)
             => a.X * b.Y - a.Y * b.X;
         public static List<VisLeaf> GetVisLeaves(Brush[] brushes)
@@ -1077,7 +1077,7 @@ namespace MapCompiler
                 // project both polys onto this axis
                 Project(poly1, axis, out float minA, out float maxA);
                 Project(poly2, axis, out float minB, out float maxB);
-                // expand A’s interval by 'expansion' each side
+                // expand A�s interval by 'expansion' each side
                 minA -= expansion;
                 maxA += expansion;
                 // if intervals [minA,maxA] and [minB,maxB] do not overlap, we found a separating axis

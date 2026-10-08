@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using UIKit;
 
 namespace Microsoft.Xna.Framework.Input

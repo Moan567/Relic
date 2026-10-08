@@ -1,6 +1,6 @@
-﻿/*
+/*
 This was adapted from a version I found online. Here's the original header:
-    Based on the Public Domain MaxRectsBinPack.cpp source by Jukka Jylänki
+    Based on the Public Domain MaxRectsBinPack.cpp source by Jukka Jyl�nki
     https://github.com/juj/RectangleBinPack/
     Ported to C# by Sven Magnus
     This version is also public domain - do whatever you want with it.

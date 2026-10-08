@@ -1,4 +1,4 @@
-﻿// MonoGame - Copyright (C) MonoGame Foundation, Inc
+// MonoGame - Copyright (C) MonoGame Foundation, Inc
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
@@ -49,13 +49,23 @@ namespace Microsoft.Xna.Framework.Graphics
 
                 if (tex != null)
                 {
-                    _targets[i] = tex.glTarget;
-                    GL.BindTexture(tex.glTarget, tex.glTexture);
-                    GraphicsExtensions.CheckGLError();
-
-                    unchecked
+                    // Only bind if the GL texture handle appears valid (> 0). Avoid binding
+                    // invalid or disposed textures which can generate GL_INVALID_OPERATION.
+                    if (tex.glTexture > 0 && tex.glTarget != 0)
                     {
-                        _graphicsDevice._graphicsMetrics._textureCount++;
+                        _targets[i] = tex.glTarget;
+                        GL.BindTexture(tex.glTarget, tex.glTexture);
+                        GraphicsExtensions.CheckGLError();
+
+                        unchecked
+                        {
+                            _graphicsDevice._graphicsMetrics._textureCount++;
+                        }
+                    }
+                    else
+                    {
+                        // Ensure we don't leave a stale target recorded for this slot.
+                        _targets[i] = 0;
                     }
                 }
 

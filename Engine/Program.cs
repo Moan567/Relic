@@ -1,4 +1,4 @@
-﻿using Engine;
+using Engine;
 using Engine.Utils;
 
 public class StartupDemo

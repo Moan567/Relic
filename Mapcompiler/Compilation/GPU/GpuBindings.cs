@@ -1,4 +1,4 @@
-﻿namespace MapCompiler.Compilation.GPU;
+namespace MapCompiler.Compilation.GPU;
 public static class GpuBindings
 {
     public const uint Lights = 0;

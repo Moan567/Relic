@@ -1,4 +1,4 @@
-﻿#region LZ4 original
+#region LZ4 original
 
 /*
    LZ4 - Fast LZ compression algorithm

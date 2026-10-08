@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Threading;
 using Microsoft.Xna.Framework.Graphics;
 using SharpDX;

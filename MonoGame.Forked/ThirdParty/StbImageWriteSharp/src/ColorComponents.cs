@@ -1,4 +1,4 @@
-﻿namespace StbImageWriteSharp
+namespace StbImageWriteSharp
 {
 #if !STBSHARP_INTERNAL
 	public

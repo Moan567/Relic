@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace Microsoft.Xna.Framework.Content.Pipeline.Builder.Convertors;

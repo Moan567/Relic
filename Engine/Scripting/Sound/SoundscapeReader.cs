@@ -1,4 +1,4 @@
-﻿using Engine.Scripting.ValueScript;
+using Engine.Scripting.ValueScript;
 using System;
 using System.Collections.Generic;
 

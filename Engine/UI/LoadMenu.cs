@@ -1,4 +1,4 @@
-﻿using Engine.SaveSystem;
+using Engine.SaveSystem;
 using Engine.UI;
 using Microsoft.Xna.Framework.Graphics;
 using System;

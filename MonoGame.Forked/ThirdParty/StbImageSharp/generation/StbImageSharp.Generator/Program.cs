@@ -1,4 +1,4 @@
-﻿using Hebron;
+using Hebron;
 using Hebron.Roslyn;
 using Microsoft.CodeAnalysis;
 using System;

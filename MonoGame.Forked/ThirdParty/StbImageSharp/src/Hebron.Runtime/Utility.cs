@@ -1,4 +1,4 @@
-﻿namespace Hebron.Runtime
+namespace Hebron.Runtime
 {
 	internal class Utility
 	{

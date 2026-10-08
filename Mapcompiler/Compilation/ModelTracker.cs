@@ -1,6 +1,6 @@
-﻿using Chisel.Models;
-using Chisel.Models.Data;
-using Chisel.Utils;
+using Relic.Models;
+using Relic.Models.Data;
+using Relic.Utils;
 using MapCompiler.Compilation;
 using MapCompiler.Compilation.GPU;
 using MapCompiler.Compilation.GPU.Resources;

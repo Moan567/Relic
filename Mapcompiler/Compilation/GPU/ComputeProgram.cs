@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Silk.NET.OpenGL;
 using System;
 using System.Diagnostics;

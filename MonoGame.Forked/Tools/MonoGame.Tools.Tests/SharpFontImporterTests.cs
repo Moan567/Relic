@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
 using MonoGame.Framework.Utilities;
@@ -31,7 +31,7 @@ namespace MonoGame.Tests.ContentPipeline
                 CharacterRegions = [new CharacterRegion((char)32, (char)127)] //32 to 127 are all printable ascii chars
             }, Path.GetFullPath(fontpath));
 
-            //This is what I use to generate the source of truth, if there are ever any fixes or changes and a new source of truth is needed, its as shrimple 🍤 as this.
+            //This is what I use to generate the source of truth, if there are ever any fixes or changes and a new source of truth is needed, its as shrimple ?? as this.
             //var newTruth = JsonSerializer.Serialize(SFImp.Glyphs.Select(o => new ABCGlyphData(o.Character, o.Data.CharacterWidths.A, o.Data.CharacterWidths.B, o.Data.CharacterWidths.C)));
 
             IEnumerable<ABCGlyphData> sourceOfTruthGlyphs = JsonSerializer.Deserialize<IEnumerable<ABCGlyphData>>(SourceOfTruthJSON);

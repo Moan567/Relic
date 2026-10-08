@@ -1,4 +1,4 @@
-﻿using Engine.Sound;
+using Engine.Sound;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

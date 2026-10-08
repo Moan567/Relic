@@ -1,4 +1,4 @@
-﻿using Engine.Compilation;
+using Engine.Compilation;
 using Engine.Console;
 using Engine.Entities.BrushEntities;
 using Engine.SaveSystem;

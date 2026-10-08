@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Originally adapted from withoutaface/MonoGameImGuiNETexamples which is a port of the C++ Dear IMGUI sample code for the C++ version of Dear ImGui
  */
 

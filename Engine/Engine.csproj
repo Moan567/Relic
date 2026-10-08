@@ -16,11 +16,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>embedded</DebugType>
-    <DefineConstants>$(DefineConstants);CHISEL_GLSL</DefineConstants>
+    <DefineConstants>$(DefineConstants);Relic_GLSL</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>embedded</DebugType>
-    <DefineConstants>$(DefineConstants);CHISEL_GLSL</DefineConstants>
+    <DefineConstants>$(DefineConstants);Relic_GLSL</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AssimpNet" Version="4.1.0" />
@@ -69,8 +69,8 @@
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
   </Target>
-  <Import Project="..\Shared\ChiselSharedTypes\ChiselSharedTypes.projitems" Label="Shared" />
-  <Import Project="..\Shared\ChiselModelTypes\ChiselModelTypes.projitems" Label="Shared" />
+  <Import Project="..\Shared\RelicSharedTypes\RelicSharedTypes.projitems" Label="Shared" />
+  <Import Project="..\Shared\RelicModelTypes\RelicModelTypes.projitems" Label="Shared" />
     <ItemGroup>
 	    <None Include="joltc.dll" Link="runtimes\win-x64\native\joltc.dll" CopyToOutputDirectory="PreserveNewest" Visible="false" />
     </ItemGroup>
@@ -84,12 +84,12 @@
 	<!-- Don't worry about this below, it's just for me; it auto increments the build number on my machine. -->
 	<!-- It won't find anything on yours, and that's exactly what's supposed to happen :) -->
 	<PropertyGroup>
-		<ChiselBuildScript>$(MSBuildThisFileDirectory)..\..\..\..\ChiselBuildBump.bat</ChiselBuildScript>
-		<ChiselBuildInfoFile>$(MSBuildThisFileDirectory)BuildInfo.g.cs</ChiselBuildInfoFile>
+		<RelicBuildScript>$(MSBuildThisFileDirectory)..\..\..\..\RelicBuildBump.bat</RelicBuildScript>
+		<RelicBuildInfoFile>$(MSBuildThisFileDirectory)BuildInfo.g.cs</RelicBuildInfoFile>
 	</PropertyGroup>
 
-	<Target Name="ChiselBumpBuildNumber" BeforeTargets="CoreCompile">
-		<Exec Command="&quot;$(ChiselBuildScript)&quot; &quot;$(ChiselBuildInfoFile)&quot;" Condition="Exists('$(ChiselBuildScript)')" ContinueOnError="WarnAndContinue" />
+	<Target Name="RelicBumpBuildNumber" BeforeTargets="CoreCompile">
+		<Exec Command="&quot;$(RelicBuildScript)&quot; &quot;$(RelicBuildInfoFile)&quot;" Condition="Exists('$(RelicBuildScript)')" ContinueOnError="WarnAndContinue" />
 	</Target>
 	
 </Project>

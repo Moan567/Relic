@@ -1,4 +1,4 @@
-ï»¿using NUnit.Framework;
+using NUnit.Framework;
 using StbImageSharp.Tests.Utility;
 using System;
 using System.IO;
@@ -26,7 +26,7 @@ namespace StbImageSharp.Tests
 		}
 
 		[TestCase("IDockable.png", 715, 426, ColorComponents.RedGreenBlueAlpha)]
-		[TestCase("sample_1280Ã—853.hdr", 1280, 853, ColorComponents.RedGreenBlue)]
+		[TestCase("sample_1280×853.hdr", 1280, 853, ColorComponents.RedGreenBlue)]
 		[TestCase("DockPanes.jpg", 609, 406, ColorComponents.RedGreenBlue)]
 		public void Load(string filename, int width, int height, ColorComponents colorComponents)
 		{
@@ -45,7 +45,7 @@ namespace StbImageSharp.Tests
 			Assert.AreEqual(result.Width * result.Height * 4, result.Data.Length);
 		}
 
-		[TestCase("sample_1280Ã—853.hdr", 1280, 853, ColorComponents.RedGreenBlue)]
+		[TestCase("sample_1280×853.hdr", 1280, 853, ColorComponents.RedGreenBlue)]
 		public void LoadHdr(string filename, int width, int height, ColorComponents colorComponents)
 		{
 			ImageResultFloat result = null;
@@ -63,7 +63,7 @@ namespace StbImageSharp.Tests
 			Assert.AreEqual(result.Width * result.Height * 4, result.Data.Length);
 		}
 
-		[TestCase("sample_1280Ã—853.hdr", 2000, 1280, 853, ColorComponents.RedGreenBlue, false)]
+		[TestCase("sample_1280×853.hdr", 2000, 1280, 853, ColorComponents.RedGreenBlue, false)]
 		[TestCase("DockPanes.jpg", 2000, 609, 406, ColorComponents.RedGreenBlue, false)]
 		public void Info(string filename, int headerSize, int width, int height, ColorComponents colorComponents, bool is16bit)
 		{

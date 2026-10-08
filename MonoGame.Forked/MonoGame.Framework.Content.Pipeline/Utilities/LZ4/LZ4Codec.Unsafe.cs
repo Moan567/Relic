@@ -1,4 +1,4 @@
-﻿#region license
+#region license
 
 /*
 Copyright (c) 2013, Milosz Krajewski

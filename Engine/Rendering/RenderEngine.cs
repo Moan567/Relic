@@ -1,5 +1,5 @@
-using Chisel.Collision;
-using Chisel.Utils;
+using Relic.Collision;
+using Relic.Utils;
 using Cyotek.Drawing.BitmapFont;
 using Engine;
 using Engine.Console;
@@ -120,6 +120,9 @@ namespace Engine.Rendering
 
         public static DisplayMode ActiveDisplayMode;
         public static List<DisplayMode> ValidDisplayModes;
+        // Saved windowed dimensions so toggling fullscreen/windowed restores previous size
+        private static int _lastWindowedWidth = MainEngine.Width;
+        private static int _lastWindowedHeight = MainEngine.Height;
 
         private static SamplerState worldTextureSamplerState = new SamplerState { Filter = TextureFilter.Anisotropic, MaxAnisotropy = 8, AddressU = TextureAddressMode.Wrap, AddressV = TextureAddressMode.Wrap };
         public static SamplerState WorldTextureSamplerState
@@ -587,10 +590,21 @@ namespace Engine.Rendering
                                         && v is bool b && b,
                 OnChanged = val =>
                 {
-                    //if(val != (bool)Convert.ChangeType(GameSettings.Settings["windowedMode"],typeof(bool)) && val == false)
-                    //{
-                    //    ChangeDisplayMode(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode);
-                    //}
+                    // val == true => windowed enabled; val == false => fullscreen
+                    if (!val)
+                    {
+                        // switching to fullscreen: save current windowed size
+                        GameSettings.Settings["windowedWidth"] = (Int64)Width;
+                        GameSettings.Settings["windowedHeight"] = (Int64)Height;
+                    }
+                    else
+                    {
+                        // switching to windowed: restore saved values into local cache
+                        if (GameSettings.Settings.TryGetValue("windowedWidth", out var lw) && lw is Int64 lwv)
+                            _lastWindowedWidth = (int)lwv;
+                        if (GameSettings.Settings.TryGetValue("windowedHeight", out var lh) && lh is Int64 lhv)
+                            _lastWindowedHeight = (int)lhv;
+                    }
 
                     Instance.IsFullscreen = !val;
                     GameSettings.Settings["windowedMode"] = val;
@@ -610,6 +624,12 @@ namespace Engine.Rendering
             PurpleTexture = new Texture2D(Instance.GraphicsDevice, 1, 1);
             ErrorTexture = new Texture2D(Instance.GraphicsDevice, 16, 16);
             ActiveDisplayMode = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
+
+            // Load stored windowed size if present so we can restore when switching out of fullscreen
+            if (GameSettings.Settings.TryGetValue("windowedWidth", out var lw) && lw is Int64 lwv)
+                _lastWindowedWidth = (int)lwv;
+            if (GameSettings.Settings.TryGetValue("windowedHeight", out var lh) && lh is Int64 lhv)
+                _lastWindowedHeight = (int)lhv;
 
             WhiteTexture .SetData(0, new Rectangle(0, 0, 1, 1), new Color[1] { Color.White }, 0, 1);
             DimTexture   .SetData(0, new Rectangle(0, 0, 1, 1), new Color[1] { new Color(200, 200, 200) }, 0, 1);
@@ -687,8 +707,24 @@ namespace Engine.Rendering
 
         public static void WindowResized(int width, int height)
         {
-            Width = width;
-            Height = height;
+            // Only update the saved windowed size when we're in windowed mode. When fullscreen,
+            // ignore client resize events which may report the display mode size.
+            if (Instance.IsFullscreen)
+            {
+                Width = ActiveDisplayMode.Width;
+                Height = ActiveDisplayMode.Height;
+            }
+            else
+            {
+                Width = width;
+                Height = height;
+
+                // remember the last windowed size and persist it to settings so it survives restarts
+                _lastWindowedWidth = width;
+                _lastWindowedHeight = height;
+                GameSettings.Settings["windowedWidth"] = (Int64)_lastWindowedWidth;
+                GameSettings.Settings["windowedHeight"] = (Int64)_lastWindowedHeight;
+            }
 
             RecalculateRenderTargets();
         }
@@ -819,8 +855,18 @@ namespace Engine.Rendering
         /// </summary>
         public static void RebuildDisplay()
         {
-            Width = ActiveDisplayMode.Width;
-            Height = ActiveDisplayMode.Height;
+            // Choose dimensions based on fullscreen state. Fullscreen uses the active display mode;
+            // windowed restores the user's last windowed size.
+            if (Instance.IsFullscreen)
+            {
+                Width = ActiveDisplayMode.Width;
+                Height = ActiveDisplayMode.Height;
+            }
+            else
+            {
+                Width = _lastWindowedWidth > 0 ? _lastWindowedWidth : ActiveDisplayMode.Width;
+                Height = _lastWindowedHeight > 0 ? _lastWindowedHeight : ActiveDisplayMode.Height;
+            }
 
             GraphicsDeviceManager.PreferredBackBufferHeight = Height;
             GraphicsDeviceManager.PreferredBackBufferWidth = Width;
@@ -845,6 +891,16 @@ namespace Engine.Rendering
             }
 
             needsDisplayRebuild = false;
+
+            // Switching display modes can leave a stale GL error queued up; clear it so
+            // the next CheckGLError in a rendering pass doesn't throw a bogus exception.
+            try
+            {
+                var glType = typeof(Microsoft.Xna.Framework.Graphics.GraphicsDevice).Assembly
+                    .GetType("MonoGame.OpenGL.GL");
+                glType?.GetMethod("GetError", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public)?.Invoke(null, null);
+            }
+            catch { }
         }
         /// <summary>
         /// Recomputes the <see cref="RenderTarget2D"/> associated with the final image displayed on screen.

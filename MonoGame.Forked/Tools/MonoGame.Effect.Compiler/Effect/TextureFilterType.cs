@@ -1,4 +1,4 @@
-﻿
+
 namespace MonoGame.Effect
 {
     public enum TextureFilterType

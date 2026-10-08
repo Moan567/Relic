@@ -1,4 +1,4 @@
-﻿using Engine.Compilation;
+using Engine.Compilation;
 using Engine.Rendering;
 using Microsoft.Xna.Framework;
 using Rockwall;

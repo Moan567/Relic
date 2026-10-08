@@ -1,4 +1,4 @@
-﻿using SharpDX.MediaFoundation;
+using SharpDX.MediaFoundation;
 using System;
 using System.Runtime.InteropServices;
 

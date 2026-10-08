@@ -1,4 +1,4 @@
-﻿using Engine.Compilation;
+using Engine.Compilation;
 using System;
 
 namespace Engine.Entities.LogicEntities;

@@ -1,4 +1,4 @@
-﻿using Engine.Utils;
+using Engine.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Rockwall;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using static Chisel.Models.CModel;
+using static Relic.Models.CModel;
 using static Engine.Utils.ProceduralMeshes;
 
 namespace Engine.Rendering;

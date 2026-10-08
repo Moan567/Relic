@@ -1,4 +1,4 @@
-﻿using MonoGame.Framework.Utilities;
+using MonoGame.Framework.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

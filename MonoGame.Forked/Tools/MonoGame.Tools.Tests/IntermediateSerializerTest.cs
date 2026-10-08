@@ -1,4 +1,4 @@
-﻿// MonoGame - Copyright (C) MonoGame Foundation, Inc
+// MonoGame - Copyright (C) MonoGame Foundation, Inc
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
@@ -383,8 +383,8 @@ namespace MonoGame.Tests.ContentPipeline
             SerializeAndAssert("18_PrimitiveTypes.xml", new PrimitiveTypes
             {
                 Char = 'A',
-                Char2 = '°',
-                Char3 = 'Δ',
+                Char2 = '�',
+                Char3 = '?',
                 Byte = 127,
                 SByte = -127,
                 Short = -1000,

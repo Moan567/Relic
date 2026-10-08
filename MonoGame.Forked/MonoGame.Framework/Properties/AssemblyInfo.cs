@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -10,8 +10,8 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MonoGame Team")]
 [assembly: AssemblyProduct("MonoGame.Framework")]
-[assembly: AssemblyCopyright("Copyright Â© 2009-2026 MonoGame Team")]
-[assembly: AssemblyTrademark("MonoGameÂ® is a registered trademark of the MonoGame Team")]
+[assembly: AssemblyCopyright("Copyright © 2009-2026 MonoGame Team")]
+[assembly: AssemblyTrademark("MonoGame® is a registered trademark of the MonoGame Team")]
 [assembly: AssemblyCulture("")]
 
 // Mark the assembly as CLS compliant so it can be safely used in other .NET languages

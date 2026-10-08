@@ -1,4 +1,4 @@
-﻿using Engine.Input;
+using Engine.Input;
 using Engine.Utils.Settings;
 using Gum.Forms.Controls;
 using MonoGameGum;

@@ -1,4 +1,4 @@
-﻿using Engine.Console;
+using Engine.Console;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

@@ -1,4 +1,4 @@
-﻿# Changelog
+# Changelog
 
 ## 3.8.4 Release - April 2nd - 2025
 
@@ -109,7 +109,7 @@ Massive thanks to our 16 1st time contributors! We're grateful for helping us ma
 - Remove temp buffer alloc get data when reading full texture by @MutsiMutsi in https://github.com/MonoGame/MonoGame/pull/8590
 - Content.Load<Texture>() fallback to load from file when no .xnb exists by @titanix in https://github.com/MonoGame/MonoGame/pull/8582
 - Add MonoGame.Templates submodule by @CartBlanche in https://github.com/MonoGame/MonoGame/pull/8593
-- Modify .gitmodules to use https for Templates to resolve permission i… by @MonogameGuy in https://github.com/MonoGame/MonoGame/pull/8598
+- Modify .gitmodules to use https for Templates to resolve permission i� by @MonogameGuy in https://github.com/MonoGame/MonoGame/pull/8598
 - [Pipeline] Use AssimpNetter nuget for now by @harry-cpp in https://github.com/MonoGame/MonoGame/pull/8607
 - Update dotnetcli domain by @richlander in https://github.com/MonoGame/MonoGame/pull/8613
 - Update deps repo by @harry-cpp in https://github.com/MonoGame/MonoGame/pull/8615
@@ -189,7 +189,7 @@ Massive thanks to our 16 1st time contributors! We're grateful for helping us ma
 - Change to fix ILC warning by @ThomasFOG in https://github.com/MonoGame/MonoGame/pull/8083
 - Prevent the timing of audio tests from overrunning by @squarebananas in https://github.com/MonoGame/MonoGame/pull/7585
 - Update SDL_GameControllerDB to latest version by @Vectovox in https://github.com/MonoGame/MonoGame/pull/8086
-- add Byte4TypeConverter as it was needed for a SkinnedModelProcesor th… by @pr3luder in https://github.com/MonoGame/MonoGame/pull/6836
+- add Byte4TypeConverter as it was needed for a SkinnedModelProcesor th� by @pr3luder in https://github.com/MonoGame/MonoGame/pull/6836
 - Removed unnecessary clearing of _queuedBuffers that can lead to problems by @CidVonHighwind in https://github.com/MonoGame/MonoGame/pull/7820
 - VSInputTxVc Color and TexCoord swap. by @HouseOfPandas in https://github.com/MonoGame/MonoGame/pull/7919
 - Wait building assemblies before running MGCB. by @jvlppm in https://github.com/MonoGame/MonoGame/pull/6337
@@ -440,7 +440,7 @@ Massive thanks to our 16 1st time contributors! We're grateful for helping us ma
 - API to query graphical system at runtime. [#6872](https://github.com/MonoGame/MonoGame/pull/6872)
 - Etc2 texture format support. [#6864](https://github.com/MonoGame/MonoGame/pull/6864)
 - MonoGame.Content.Builder package. [#6905](https://github.com/MonoGame/MonoGame/pull/6905)
-- τ constant. [#6937](https://github.com/MonoGame/MonoGame/pull/6937)
+- t constant. [#6937](https://github.com/MonoGame/MonoGame/pull/6937)
 - [UWP] Overloads for more detailed vibration control. [#6933](https://github.com/MonoGame/MonoGame/pull/6933)
 - [MGCB Editor] Always use Headerbar. [#6938](https://github.com/MonoGame/MonoGame/pull/6938)
 - Joystick display name for the Joystick API. [#7008](https://github.com/MonoGame/MonoGame/pull/7008)

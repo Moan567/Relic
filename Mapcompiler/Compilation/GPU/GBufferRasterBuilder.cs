@@ -1,4 +1,4 @@
-﻿using MapCompiler.Compilation.GPU.Resources;
+using MapCompiler.Compilation.GPU.Resources;
 using Rockwall;
 using Silk.NET.OpenGL;
 using System;

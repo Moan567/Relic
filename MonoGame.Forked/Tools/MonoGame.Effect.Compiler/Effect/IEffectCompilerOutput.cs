@@ -1,4 +1,4 @@
-﻿namespace MonoGame.Effect
+namespace MonoGame.Effect
 {
     public interface IEffectCompilerOutput
     {

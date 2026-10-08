@@ -1,4 +1,4 @@
-﻿using Engine.Compilation;
+using Engine.Compilation;
 using Engine.Utils;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json.Linq;

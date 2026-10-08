@@ -1,4 +1,4 @@
-﻿using Engine.Scripting.Sound;
+using Engine.Scripting.Sound;
 using JoltPhysicsSharp;
 using Microsoft.Xna.Framework;
 using System;

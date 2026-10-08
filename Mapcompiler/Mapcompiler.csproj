@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -32,11 +32,11 @@
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>
 
-  <Import Project="..\Shared\ChiselSharedTypes\ChiselSharedTypes.projitems" Label="Shared" />
+  <Import Project="..\Shared\RelicSharedTypes\RelicSharedTypes.projitems" Label="Shared" />
 
-  <Import Project="..\Shared\ChiselEditorUtils\ChiselEditorUtils.projitems" Label="Shared" />
+  <Import Project="..\Shared\RelicEditorUtils\RelicEditorUtils.projitems" Label="Shared" />
 
-  <Import Project="..\Shared\ChiselModelTypes\ChiselModelTypes.projitems" Label="Shared" />
+  <Import Project="..\Shared\RelicModelTypes\RelicModelTypes.projitems" Label="Shared" />
 
   <ItemGroup>
     <EmbeddedResource Include="Shaders\**\*.glsl" />

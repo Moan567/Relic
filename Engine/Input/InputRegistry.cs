@@ -1,4 +1,4 @@
-﻿using Engine.Utils.Settings;
+using Engine.Utils.Settings;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Newtonsoft.Json;

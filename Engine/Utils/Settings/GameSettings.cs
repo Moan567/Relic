@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,7 +25,7 @@ public enum OptionsTab
 }
 public static class GameSettings
 {
-    public static string GameName = "ChiselGame";
+    public static string GameName = "RelicGame";
     private static string savePath => $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData,Environment.SpecialFolderOption.Create)}/{GameName}/game.cfg";
 
     private static readonly List<string> tabs = new();

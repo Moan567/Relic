@@ -1,9 +1,9 @@
-﻿using Chisel;
-using Chisel.Collision;
-using Chisel.Models;
-using Chisel.Models.Data;
-using Chisel.Models.Morph;
-using Chisel.Utils.Animation;
+using Relic;
+using Relic.Collision;
+using Relic.Models;
+using Relic.Models.Data;
+using Relic.Models.Morph;
+using Relic.Utils.Animation;
 using Engine.Console;
 using Engine.Physics;
 using Engine.Rendering;
@@ -26,7 +26,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using ToolsUtilitiesStandard.Helpers;
-using static Chisel.Models.CModel;
+using static Relic.Models.CModel;
 using static Microsoft.Xna.Framework.MathHelper;
 using BoundingBox = Microsoft.Xna.Framework.BoundingBox;
 

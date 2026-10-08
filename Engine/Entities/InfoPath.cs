@@ -1,4 +1,4 @@
-﻿using Engine.Compilation;
+using Engine.Compilation;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

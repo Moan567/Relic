@@ -1,4 +1,4 @@
-ï»¿using Chisel;
+using Relic;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Rockwall;
@@ -107,12 +107,12 @@ namespace MapCompiler
 
             (string text, ConsoleColor color)[] lines =
             {
-                (@" â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—     â–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—     ", ConsoleColor.Magenta),
-                (@" â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•â•â•â•â•     ", ConsoleColor.Magenta),
-                (@" â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘          ", ConsoleColor.White  ),
-                (@" â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•â•â•  â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘          ", ConsoleColor.White  ),
-                (@" â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—     ", ConsoleColor.Yellow ),
-                (@" â•šâ•â•  â•šâ•â•â•šâ•â•â•â•â•â•â•â•šâ•â•â•â•â•â•â•â•šâ•â• â•šâ•â•â•â•â•â•     ", ConsoleColor.Yellow ),
+                (@" ¦¦¦¦¦¦+ ¦¦¦¦¦¦¦+¦¦+     ¦¦+ ¦¦¦¦¦¦+     ", ConsoleColor.Magenta),
+                (@" ¦¦+--¦¦+¦¦+----+¦¦¦     ¦¦¦¦¦+----+     ", ConsoleColor.Magenta),
+                (@" ¦¦¦¦¦¦++¦¦¦¦¦+  ¦¦¦     ¦¦¦¦¦¦          ", ConsoleColor.White  ),
+                (@" ¦¦+--¦¦+¦¦+--+  ¦¦¦     ¦¦¦¦¦¦          ", ConsoleColor.White  ),
+                (@" ¦¦¦  ¦¦¦¦¦¦¦¦¦¦+¦¦¦¦¦¦¦+¦¦¦+¦¦¦¦¦¦+     ", ConsoleColor.Yellow ),
+                (@" +-+  +-++------++------++-+ +-----+     ", ConsoleColor.Yellow ),
             };
 
             foreach (var (text, color) in lines)
@@ -129,7 +129,7 @@ namespace MapCompiler
 
         static (Brush[] brushes, Rockwall.EntityReference[] entities, Rockwall.Terrain[] terrains) LoadMap(string json)
         {
-            var map = Chisel.Formatter.MapMigration.LoadAndMigrate(json);
+            var map = Relic.Formatter.MapMigration.LoadAndMigrate(json);
             return (map.Brushes, map.EntityReferences, map.Terrains);
         }
 
