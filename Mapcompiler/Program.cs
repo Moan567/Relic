@@ -13,7 +13,7 @@ namespace MapCompiler
     internal class Program
     {
         public const int VersionMajor = 8;
-        public const int VersionMinor = 2;
+        public const int VersionMinor = 4;
         public const int VersionPatch = 0;
 
         public static string WorkingDir;
@@ -109,8 +109,8 @@ namespace MapCompiler
             {
                 (" ██████╗ ███████╗██╗     ██╗ ██████╗", ConsoleColor.Magenta),
                 (" ██╔══██╗██╔════╝██║     ██║██╔════╝", ConsoleColor.Magenta),
-                (" ██████╔╝█████╗  ██║     ██║██║", ConsoleColor.White),
-                (" ██╔══██╗██╔══╝  ██║     ██║██║ ", ConsoleColor.White),
+                (" ██████╔╝█████╗  ██║     ██║██║     ", ConsoleColor.White),
+                (" ██╔══██╗██╔══╝  ██║     ██║██║     ", ConsoleColor.White),
                 (" ██║  ██║███████╗███████╗██║╚██████╗", ConsoleColor.Yellow),
                 (" ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝ ╚═════╝", ConsoleColor.Yellow),
             };
