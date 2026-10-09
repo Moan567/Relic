@@ -283,8 +283,27 @@ contract shall be construed against the drafter shall not be used to construe
 this License against a Contributor.
 
 
+===================================================================
+ADDITIONAL TERMS: BRANDING & SPLASH SCREEN REQUIREMENTS
+===================================================================
+
+Notwithstanding the provisions of Section 2 and Section 3 of this 
+License, any distribution or executable built using the Covered 
+Software is subject to the following additional branding condition:
+
+1. Splash Screen Preservation:
+   All binary or executable applications created or distributed using 
+   this engine must display the default "Relic Engine" splash screen upon 
+   application startup without modification, delay, or removal.
+
+2. Trademark & Assets:
+   The Relic Engine logo, artwork, and name remain the property of the 
+   original copyright holder. Removal of the splash screen requires 
+   a separate written commercial exemption granted by the copyright holder.
+
+===================================================================
 Exhibit A - Source Code Form License Notice
--------------------------------------------
+===================================================================
 
 This Source Code Form is subject to the terms of the Mozilla Public License,
 v. 2.0. If a copy of the MPL was not distributed with this file, You can
