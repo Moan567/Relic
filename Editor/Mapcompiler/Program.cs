@@ -24,9 +24,11 @@ namespace MapCompiler
 
             PrintBanner();
 
-            // Strip a leading '@' or '>' from each arg (legacy editor invocation prefix).
+            // Strip a leading '@', '>' or '-' from each arg (legacy editor invocation prefix).
+            // The editor passes arguments as -"path", and Windows hands those through with the
+            // dash still attached, so the path would otherwise be read as "-C:\..." and fail.
             for (int i = 0; i < args.Length; i++)
-                if (args[i].Length > 1 && (args[i][0] == '@' || args[i][0] == '>'))
+                if (args[i].Length > 1 && (args[i][0] == '@' || args[i][0] == '>' || args[i][0] == '-'))
                     args[i] = args[i][1..];
 
             if (args.Length < 1) { CompilerConsole.Error("No map file specified."); PrintUsage(); return -100; }

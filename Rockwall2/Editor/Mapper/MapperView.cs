@@ -174,7 +174,31 @@ public class MapperView : IEditorScene
 
             GlobalEditorData.EditorOverrides.overrides = GlobalEditorData.EditorOverrides.overrides.Concat(defaultSettings.overrides.Where(e => !GlobalEditorData.EditorOverrides.overrides.Contains(e))).ToArray();
 
-            GlobalEditorData.WorkingDirectory = Path.IsPathRooted(GlobalEditorData.EditorOverrides.workingdir) ? GlobalEditorData.EditorOverrides.workingdir : Path.GetFullPath(Path.Combine(ConfigManager.currentConfig.EditorAssetsPath, GlobalEditorData.EditorOverrides.workingdir));
+            // EditorAssetsPath already points at the game working root (...\Game\Working),
+            // and material textures are named relative to that root (e.g. "Textures/dev/devgrey").
+            // A relative workingdir therefore names a top-level folder *of* that root, so it must
+            // replace the final segment rather than nest underneath it -- otherwise "Textures"
+            // resolves to Working\Textures and texture lookups become Working\Textures\Textures\...
+            // which silently misses every texture.
+            string workingDir = GlobalEditorData.EditorOverrides.workingdir;
+            if (string.IsNullOrWhiteSpace(workingDir) || workingDir == ".")
+            {
+                GlobalEditorData.WorkingDirectory = ConfigManager.currentConfig.EditorAssetsPath;
+            }
+            else if (Path.IsPathRooted(workingDir))
+            {
+                GlobalEditorData.WorkingDirectory = workingDir;
+            }
+            else
+            {
+                string assetsRoot = ConfigManager.currentConfig.EditorAssetsPath;
+                string assetsLeaf = Path.GetFileName(assetsRoot.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
+                string combined = Path.Combine(assetsRoot, workingDir);
+
+                GlobalEditorData.WorkingDirectory = string.Equals(workingDir, assetsLeaf, StringComparison.OrdinalIgnoreCase)
+                    ? assetsRoot
+                    : Path.GetFullPath(combined);
+            }
         }
         else
         {

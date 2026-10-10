@@ -200,7 +200,7 @@
     <Variable>
       <Type>int</Type>
       <Name>MenuBackground.Alpha</Name>
-      <Value xsi:type="xsd:int">8</Value>
+      <Value xsi:type="xsd:int">36</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -525,13 +525,13 @@
     <Variable>
       <Type>float</Type>
       <Name>Relic_logo.X</Name>
-      <Value xsi:type="xsd:float">356</Value>
+      <Value xsi:type="xsd:float">353</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
       <Name>Relic_logo.Y</Name>
-      <Value xsi:type="xsd:float">-491</Value>
+      <Value xsi:type="xsd:float">-485</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

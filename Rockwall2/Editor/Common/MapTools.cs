@@ -558,12 +558,79 @@ public static class MapTools
                 }
             }
 
+            // The compiler writes .cmap/.clm next to the source map (i.e. in
+            // Working/Maps), but the game loads them from its own Content/Maps.
+            // Nothing reconciles the two except a Game rebuild, so copy them
+            // across here or the game keeps running a stale map.
+            SyncCompiledMapToGame();
+
+            if (exeProcess.HasExited && exeProcess.ExitCode != 0)
+            {
+                Program.ShowMessageBox(Silk.NET.SDL.MessageBoxFlags.Warning, "Compile failed",
+                    $"The map compiler exited with code {exeProcess.ExitCode}.\n" +
+                    "See the compiler console for details.");
+            }
+
             // Hopefully this will fix the issue of the game just running anyway even if the map compiler fails.
             if (run && exeProcess.HasExited && exeProcess.ExitCode == 0)
             {
-                RunCommands([$"{Path.GetFileNameWithoutExtension(ConfigManager.currentConfig.GamePath)} -map \"{Path.ChangeExtension(ActivePath, "cmap")}\""],
+                // Pass the game's own Content/Maps copy (not the working-directory one) so that
+                // "Run" and launching the game manually both load the exact same file.
+                RunCommands([$"{Path.GetFileNameWithoutExtension(ConfigManager.currentConfig.GamePath)} -map \"{GetRuntimeMapPath("cmap")}\""],
                             Path.GetDirectoryName(ConfigManager.currentConfig.GamePath));
             }
+        }
+    }
+
+    /// <summary>
+    /// Full path of the given extension for the current map inside the game's
+    /// Content/Maps directory -- the copy the game actually loads.
+    /// </summary>
+    static string GetRuntimeMapPath(string ext)
+    {
+        // Use ChangeExtension rather than concatenating: ext is supplied without a
+        // leading dot (e.g. "cmap"), so "empty" + "cmap" would give "emptycmap".
+        string name = Path.GetFileName(Path.ChangeExtension(Path.GetFullPath(ActivePath), ext));
+        return Path.Combine(
+            Path.GetDirectoryName(ConfigManager.currentConfig.GamePath)!, "Content", "Maps", name);
+    }
+
+    /// <summary>
+    /// Copies the freshly compiled .cmap/.clm from the editor's working Maps
+    /// directory into the game's Content/Maps directory, which is where the game
+    /// actually loads maps from at runtime.
+    /// </summary>
+    static void SyncCompiledMapToGame()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(ActivePath)) return;
+
+            string compiledMap = Path.ChangeExtension(Path.GetFullPath(ActivePath), "cmap");
+            if (!File.Exists(compiledMap))
+            {
+                Console.WriteLine("[MapTools] Compile produced no .cmap; not syncing to the game.");
+                return;
+            }
+
+            string gameContentDir = Path.Combine(
+                Path.GetDirectoryName(ConfigManager.currentConfig.GamePath)!, "Content", "Maps");
+
+            if (!Directory.Exists(gameContentDir)) Directory.CreateDirectory(gameContentDir);
+
+            foreach (string ext in new[] { ".cmap", ".clm" })
+            {
+                string src = Path.ChangeExtension(compiledMap, ext);
+                if (File.Exists(src))
+                {
+                    File.Copy(src, Path.Combine(gameContentDir, Path.GetFileName(src)), true);
+                    Console.WriteLine($"[MapTools] Synced {Path.GetFileName(src)} to the game.");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"[MapTools] Failed to copy compiled map to the game directory: {e.Message}");
         }
     }
     static void RunCommands(List<string> cmds, string workingDirectory = "")

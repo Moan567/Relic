@@ -1558,23 +1558,8 @@
 /processorParam:TextureFormat=Color
 /build:../Working/Textures/base/basicSpecular.png;Textures/base/basicSpecular.png
 
-#begin ../Working/Maps/empty.cmap
-/copy:../Working/Maps/empty.cmap;Maps/empty.cmap
-
 #begin ../Working/Maps/empty.clm
 /copy:../Working/Maps/empty.clm;Maps/empty.clm
-
-#begin ../Working/Maps/tbtest.cmap
-/copy:../Working/Maps/tbtest.cmap;Maps/tbtest.cmap
-
-#begin ../Working/Maps/tbtest_standard.cmap
-/copy:../Working/Maps/tbtest_standard.cmap;Maps/tbtest_standard.cmap
-
-#begin ../Working/Maps/tbtest.clm
-/copy:../Working/Maps/tbtest.clm;Maps/tbtest.clm
-
-#begin ../Working/Maps/tbtest_standard.clm
-/copy:../Working/Maps/tbtest_standard.clm;Maps/tbtest_standard.clm
 
 #begin ../Working/Gum/Fonts/OldEnglishFive.ttf
 /copy:../Working/Gum/Fonts/OldEnglishFive.ttf;Gum/Fonts/OldEnglishFive.ttf
@@ -1842,3 +1827,6 @@
 
 #begin ../Working/Gum/Relic.png
 /copy:../Working/Gum/Relic.png;Gum/Relic.png
+
+#begin ../Working/Maps/empty.cmap
+/copy:../Working/Maps/empty.cmap;Maps/empty.cmap

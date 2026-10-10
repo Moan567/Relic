@@ -27,7 +27,11 @@ public class GameEngine : MainEngine
 
     public static AutoExposure Exposure;
     public static Bloom Bloom;
-    bool isActivelyPlaying => IsMapLoaded;
+
+    // Deliberately NOT tied to IsMapLoaded: a backdrop map stays loaded while the
+    // menu is up, so gameplay state has to be tracked separately.
+    private bool inGameplay;
+    bool isActivelyPlaying => inGameplay;
 
     private float autosaveTimer = 0;
 
@@ -73,6 +77,7 @@ public class GameEngine : MainEngine
         base.LoadContent();
 
         var args = Environment.GetCommandLineArgs();
+        bool launchingIntoMap = false;
         if (args != null)
         {
             for (int i = 0; i < args.Length; i++)
@@ -94,8 +99,20 @@ public class GameEngine : MainEngine
                 }
 
                 if (!args[i].StartsWith('-')) continue;
-                if (args[i] == "-map") { Console.Execute($"map {args[i + 1]}"); IsPaused = false; }
+                if (args[i] == "-map") { Console.Execute($"map {args[i + 1]}"); IsPaused = false; launchingIntoMap = true; }
             }
+        }
+
+        // Load a map to sit behind the main menu. It stays unpaused so entity
+        // updates (and therefore the CameraDirector) keep running; the menu simply
+        // draws on top of it. Skipped when -map was passed, so that flag wins.
+        if (!launchingIntoMap)
+        {
+            LoadMap($"{FullPath}/Maps/empty", onComplete: () =>
+            {
+                inGameplay = false;
+                IsPaused = false;
+            });
         }
     }
 
@@ -107,6 +124,11 @@ public class GameEngine : MainEngine
         if (!isActivelyPlaying)
         {
             UnlockMouse();
+
+            // Pause zeroes the engine timescale (MainEngine.Update), which would
+            // freeze the backdrop mid-shot. Escape/alt-tab can set this while the
+            // menu is up, so hold it off until gameplay actually begins.
+            IsPaused = false;
         }
         bool showMenu = (IsPaused || !isActivelyPlaying);
         if (showMenu && !GumUtils.IsScreenActive("Menu"))
@@ -160,8 +182,22 @@ public class GameEngine : MainEngine
         {
             if (!isActivelyPlaying)
             {
-                // Start a new game. Here you would load a map.
-                LoadMap($"{FullPath}/Maps/empty");
+                // The backdrop map is already loaded, so starting a game is just
+                // handing control to the player. If the backdrop hasn't finished
+                // loading yet, fall back to loading it normally.
+                if (IsMapLoaded)
+                {
+                    inGameplay = true;
+                    IsPaused = false;
+                }
+                else
+                {
+                    LoadMap($"{FullPath}/Maps/empty", onComplete: () =>
+                    {
+                        inGameplay = true;
+                        IsPaused = false;
+                    });
+                }
             }
             else
             {
