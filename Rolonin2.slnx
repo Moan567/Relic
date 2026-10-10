@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Engine/Engine.csproj" Id="03dfe8a3-e64e-41ad-845f-d83501b43c52" />
+    <Project Path="MonoGame.Forked/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj" />
+    <Project Path="MonoGame.ImGuiNet-main/MonoGame.ImGuiNet/Monogame.ImGuiNet.csproj" />
+  </Folder>
+  <Folder Name="/Editor/">
+    <Project Path="Editor/Mapcompiler/Mapcompiler.csproj" />
+    <Project Path="Rockwall2/Rockwall2.csproj" />
+  </Folder>
+  <Folder Name="/Game/">
+    <Project Path="Game/Game.csproj" />
+  </Folder>
+</Solution>
