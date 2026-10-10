@@ -1,0 +1,121 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        xmlns:common="clr-namespace:Rockwall2.Editor.Common;assembly=Rockwall2"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Rockwall2.MaterialPicker"
+        Icon="/Assets/rockwall2icon.ico"
+        Background="#202020"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0"
+        Title="Material Picker">
+
+	<Border BorderThickness="1" BorderBrush="#686868">
+		<DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+			<controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+								 PointerMoved="TitleBar_PointerMoved"
+								 PointerReleased="TitleBar_PointerReleased"
+								 VerticalAlignment="Top"
+								 DockPanel.Dock="Top"/>
+
+			<Grid DockPanel.Dock="Top" ColumnDefinitions="220,*" Margin="8">
+				<AutoCompleteBox x:Name="pathFilterBox"
+								  Grid.Column="0"
+								  Watermark="Filter by path"
+								  FilterMode="Contains"
+								  TextChanged="pathFilterBox_TextChanged"
+								  Margin="0,0,8,0"/>
+				<TextBox x:Name="nameFilterBox"
+						 Grid.Column="1"
+						 Watermark="Filter by name"
+						 TextChanged="nameFilterBox_TextChanged"/>
+			</Grid>
+
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="64"/>
+				</Grid.RowDefinitions>
+
+				<ScrollViewer Grid.Row="0"
+							  x:Name="textureScroll"
+							  HorizontalScrollBarVisibility="Disabled"
+							  VerticalScrollBarVisibility="Visible"
+							  AllowAutoHide="False"
+							  Background="#1A1A1A">
+					<ItemsControl x:Name="textureList">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel Orientation="Horizontal"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+
+						<ItemsControl.ItemTemplate>
+							<DataTemplate x:DataType="common:TextureItem">
+								<Border BorderThickness="1"
+										Margin="4"
+										Padding="2"
+										Width="140"
+										Height="192"
+										Background="Transparent"
+										Tapped="Item_Tapped"
+										DoubleTapped="Item_DoubleTapped"
+										Classes.selected="{Binding IsSelected}">
+									<Border.Styles>
+										<Style Selector="Border">
+											<Setter Property="BorderBrush" Value="Transparent"/>
+										</Style>
+										<Style Selector="Border.selected">
+											<Setter Property="BorderBrush" Value="DodgerBlue"/>
+										</Style>
+									</Border.Styles>
+									<StackPanel Width="136">
+										<Image Source="{Binding Image}"
+											   Stretch="Uniform"
+											   Width="128"
+											   Height="128"/>
+										<TextBlock Text="{Binding Name}"
+												   FontSize="10"
+												   Foreground="White"
+												   Width="132"
+												   TextTrimming="CharacterEllipsis"/>
+										<TextBlock Text="{Binding RelativePath}"
+												   FontSize="9"
+												   Foreground="Gray"
+												   Width="132"
+												   TextTrimming="CharacterEllipsis"/>
+										<TextBlock Text="{Binding MaterialIdx}"
+												   FontSize="9"
+												   Foreground="LightGray"/>
+									</StackPanel>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+
+				<Panel Grid.Row="1">
+					<Panel.Background>
+						<ImageBrush Source="/Assets/Decor/header.png" TileMode="Tile" Stretch="Fill"/>
+					</Panel.Background>
+					<Button x:Name="cancelButton"
+							Width="128" Height="32"
+							HorizontalAlignment="Left"
+							Margin="16,0,0,0"
+							Click="cancelButton_Click">Cancel</Button>
+					<Button x:Name="acceptButton"
+							Width="128" Height="32"
+							HorizontalAlignment="Right"
+							Margin="0,0,16,0"
+							Click="acceptButton_Click">Accept</Button>
+				</Panel>
+
+			</Grid>
+		</DockPanel>
+	</Border>
+</Window>

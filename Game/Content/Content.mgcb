@@ -1575,3 +1575,270 @@
 
 #begin ../Working/Maps/tbtest_standard.clm
 /copy:../Working/Maps/tbtest_standard.clm;Maps/tbtest_standard.clm
+
+#begin ../Working/Gum/Fonts/OldEnglishFive.ttf
+/copy:../Working/Gum/Fonts/OldEnglishFive.ttf;Gum/Fonts/OldEnglishFive.ttf
+
+#begin ../Working/Gum/FontCache/Font32Sitka_Display.bmfc
+/copy:../Working/Gum/FontCache/Font32Sitka_Display.bmfc;Gum/FontCache/Font32Sitka_Display.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Sitka_Display.fnt
+/copy:../Working/Gum/FontCache/Font32Sitka_Display.fnt;Gum/FontCache/Font32Sitka_Display.fnt
+
+#begin ../Working/Gum/FontCache/Font32Sitka_Display_0.png
+/copy:../Working/Gum/FontCache/Font32Sitka_Display_0.png;Gum/FontCache/Font32Sitka_Display_0.png
+
+#begin ../Working/Gum/FontCache/Font32Copperplate_Gothic_Light.bmfc
+/copy:../Working/Gum/FontCache/Font32Copperplate_Gothic_Light.bmfc;Gum/FontCache/Font32Copperplate_Gothic_Light.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Copperplate_Gothic_Light.fnt
+/copy:../Working/Gum/FontCache/Font32Copperplate_Gothic_Light.fnt;Gum/FontCache/Font32Copperplate_Gothic_Light.fnt
+
+#begin ../Working/Gum/FontCache/Font32Copperplate_Gothic_Light_0.png
+/copy:../Working/Gum/FontCache/Font32Copperplate_Gothic_Light_0.png;Gum/FontCache/Font32Copperplate_Gothic_Light_0.png
+
+#begin ../Working/Gum/FontCache/Font32Eras_Demi_ITC.bmfc
+/copy:../Working/Gum/FontCache/Font32Eras_Demi_ITC.bmfc;Gum/FontCache/Font32Eras_Demi_ITC.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Eras_Demi_ITC.fnt
+/copy:../Working/Gum/FontCache/Font32Eras_Demi_ITC.fnt;Gum/FontCache/Font32Eras_Demi_ITC.fnt
+
+#begin ../Working/Gum/FontCache/Font32Eras_Demi_ITC_0.png
+/copy:../Working/Gum/FontCache/Font32Eras_Demi_ITC_0.png;Gum/FontCache/Font32Eras_Demi_ITC_0.png
+
+#begin ../Working/Gum/FontCache/Font32Yu_Mincho_Light.bmfc
+/copy:../Working/Gum/FontCache/Font32Yu_Mincho_Light.bmfc;Gum/FontCache/Font32Yu_Mincho_Light.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Yu_Mincho_Light.fnt
+/copy:../Working/Gum/FontCache/Font32Yu_Mincho_Light.fnt;Gum/FontCache/Font32Yu_Mincho_Light.fnt
+
+#begin ../Working/Gum/FontCache/Font32Yu_Mincho_Light_0.png
+/copy:../Working/Gum/FontCache/Font32Yu_Mincho_Light_0.png;Gum/FontCache/Font32Yu_Mincho_Light_0.png
+
+#begin ../Working/Gum/FontCache/Font32Britannic_Bold.bmfc
+/copy:../Working/Gum/FontCache/Font32Britannic_Bold.bmfc;Gum/FontCache/Font32Britannic_Bold.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Britannic_Bold.fnt
+/copy:../Working/Gum/FontCache/Font32Britannic_Bold.fnt;Gum/FontCache/Font32Britannic_Bold.fnt
+
+#begin ../Working/Gum/FontCache/Font32Britannic_Bold_0.png
+/copy:../Working/Gum/FontCache/Font32Britannic_Bold_0.png;Gum/FontCache/Font32Britannic_Bold_0.png
+
+#begin ../Working/Gum/FontCache/Font32Agency_FB.bmfc
+/copy:../Working/Gum/FontCache/Font32Agency_FB.bmfc;Gum/FontCache/Font32Agency_FB.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Agency_FB.fnt
+/copy:../Working/Gum/FontCache/Font32Agency_FB.fnt;Gum/FontCache/Font32Agency_FB.fnt
+
+#begin ../Working/Gum/FontCache/Font32Agency_FB_0.png
+/copy:../Working/Gum/FontCache/Font32Agency_FB_0.png;Gum/FontCache/Font32Agency_FB_0.png
+
+#begin ../Working/Gum/FontCache/Font32Bahnschrift_Light.bmfc
+/copy:../Working/Gum/FontCache/Font32Bahnschrift_Light.bmfc;Gum/FontCache/Font32Bahnschrift_Light.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Bahnschrift_Light.fnt
+/copy:../Working/Gum/FontCache/Font32Bahnschrift_Light.fnt;Gum/FontCache/Font32Bahnschrift_Light.fnt
+
+#begin ../Working/Gum/FontCache/Font32Bahnschrift_Light_0.png
+/copy:../Working/Gum/FontCache/Font32Bahnschrift_Light_0.png;Gum/FontCache/Font32Bahnschrift_Light_0.png
+
+#begin ../Working/Gum/FontCache/Font32Bodoni_MT.bmfc
+/copy:../Working/Gum/FontCache/Font32Bodoni_MT.bmfc;Gum/FontCache/Font32Bodoni_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Bodoni_MT.fnt
+/copy:../Working/Gum/FontCache/Font32Bodoni_MT.fnt;Gum/FontCache/Font32Bodoni_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font32Bodoni_MT_0.png
+/copy:../Working/Gum/FontCache/Font32Bodoni_MT_0.png;Gum/FontCache/Font32Bodoni_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font32Calisto_MT.bmfc
+/copy:../Working/Gum/FontCache/Font32Calisto_MT.bmfc;Gum/FontCache/Font32Calisto_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Calisto_MT.fnt
+/copy:../Working/Gum/FontCache/Font32Calisto_MT.fnt;Gum/FontCache/Font32Calisto_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font32Calisto_MT_0.png
+/copy:../Working/Gum/FontCache/Font32Calisto_MT_0.png;Gum/FontCache/Font32Calisto_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font32Chiller.bmfc
+/copy:../Working/Gum/FontCache/Font32Chiller.bmfc;Gum/FontCache/Font32Chiller.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Chiller.fnt
+/copy:../Working/Gum/FontCache/Font32Chiller.fnt;Gum/FontCache/Font32Chiller.fnt
+
+#begin ../Working/Gum/FontCache/Font32Chiller_0.png
+/copy:../Working/Gum/FontCache/Font32Chiller_0.png;Gum/FontCache/Font32Chiller_0.png
+
+#begin ../Working/Gum/FontCache/Font32Ebrima.bmfc
+/copy:../Working/Gum/FontCache/Font32Ebrima.bmfc;Gum/FontCache/Font32Ebrima.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Ebrima.fnt
+/copy:../Working/Gum/FontCache/Font32Ebrima.fnt;Gum/FontCache/Font32Ebrima.fnt
+
+#begin ../Working/Gum/FontCache/Font32Ebrima_0.png
+/copy:../Working/Gum/FontCache/Font32Ebrima_0.png;Gum/FontCache/Font32Ebrima_0.png
+
+#begin ../Working/Gum/FontCache/Font32Gill_Sans_MT.bmfc
+/copy:../Working/Gum/FontCache/Font32Gill_Sans_MT.bmfc;Gum/FontCache/Font32Gill_Sans_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Gill_Sans_MT.fnt
+/copy:../Working/Gum/FontCache/Font32Gill_Sans_MT.fnt;Gum/FontCache/Font32Gill_Sans_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font32Gill_Sans_MT_0.png
+/copy:../Working/Gum/FontCache/Font32Gill_Sans_MT_0.png;Gum/FontCache/Font32Gill_Sans_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font32Leelawadee_UI.bmfc
+/copy:../Working/Gum/FontCache/Font32Leelawadee_UI.bmfc;Gum/FontCache/Font32Leelawadee_UI.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Leelawadee_UI.fnt
+/copy:../Working/Gum/FontCache/Font32Leelawadee_UI.fnt;Gum/FontCache/Font32Leelawadee_UI.fnt
+
+#begin ../Working/Gum/FontCache/Font32Leelawadee_UI_0.png
+/copy:../Working/Gum/FontCache/Font32Leelawadee_UI_0.png;Gum/FontCache/Font32Leelawadee_UI_0.png
+
+#begin ../Working/Gum/FontCache/Font32Microsoft_JhengHei_UI.bmfc
+/copy:../Working/Gum/FontCache/Font32Microsoft_JhengHei_UI.bmfc;Gum/FontCache/Font32Microsoft_JhengHei_UI.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Microsoft_JhengHei_UI.fnt
+/copy:../Working/Gum/FontCache/Font32Microsoft_JhengHei_UI.fnt;Gum/FontCache/Font32Microsoft_JhengHei_UI.fnt
+
+#begin ../Working/Gum/FontCache/Font32Microsoft_JhengHei_UI_0.png
+/copy:../Working/Gum/FontCache/Font32Microsoft_JhengHei_UI_0.png;Gum/FontCache/Font32Microsoft_JhengHei_UI_0.png
+
+#begin ../Working/Gum/FontCache/Font32MV_Boli.bmfc
+/copy:../Working/Gum/FontCache/Font32MV_Boli.bmfc;Gum/FontCache/Font32MV_Boli.bmfc
+
+#begin ../Working/Gum/FontCache/Font32MV_Boli.fnt
+/copy:../Working/Gum/FontCache/Font32MV_Boli.fnt;Gum/FontCache/Font32MV_Boli.fnt
+
+#begin ../Working/Gum/FontCache/Font32MV_Boli_0.png
+/copy:../Working/Gum/FontCache/Font32MV_Boli_0.png;Gum/FontCache/Font32MV_Boli_0.png
+
+#begin ../Working/Gum/FontCache/Font32Magneto.bmfc
+/copy:../Working/Gum/FontCache/Font32Magneto.bmfc;Gum/FontCache/Font32Magneto.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Magneto.fnt
+/copy:../Working/Gum/FontCache/Font32Magneto.fnt;Gum/FontCache/Font32Magneto.fnt
+
+#begin ../Working/Gum/FontCache/Font32Magneto_0.png
+/copy:../Working/Gum/FontCache/Font32Magneto_0.png;Gum/FontCache/Font32Magneto_0.png
+
+#begin ../Working/Gum/FontCache/Font32OCR_A_Extended.bmfc
+/copy:../Working/Gum/FontCache/Font32OCR_A_Extended.bmfc;Gum/FontCache/Font32OCR_A_Extended.bmfc
+
+#begin ../Working/Gum/FontCache/Font32OCR_A_Extended.fnt
+/copy:../Working/Gum/FontCache/Font32OCR_A_Extended.fnt;Gum/FontCache/Font32OCR_A_Extended.fnt
+
+#begin ../Working/Gum/FontCache/Font32OCR_A_Extended_0.png
+/copy:../Working/Gum/FontCache/Font32OCR_A_Extended_0.png;Gum/FontCache/Font32OCR_A_Extended_0.png
+
+#begin ../Working/Gum/FontCache/Font32Old_English_Text_MT.bmfc
+/copy:../Working/Gum/FontCache/Font32Old_English_Text_MT.bmfc;Gum/FontCache/Font32Old_English_Text_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font32Old_English_Text_MT.fnt
+/copy:../Working/Gum/FontCache/Font32Old_English_Text_MT.fnt;Gum/FontCache/Font32Old_English_Text_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font32Old_English_Text_MT_0.png
+/copy:../Working/Gum/FontCache/Font32Old_English_Text_MT_0.png;Gum/FontCache/Font32Old_English_Text_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font50Old_English_Text_MT.bmfc
+/copy:../Working/Gum/FontCache/Font50Old_English_Text_MT.bmfc;Gum/FontCache/Font50Old_English_Text_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font50Old_English_Text_MT.fnt
+/copy:../Working/Gum/FontCache/Font50Old_English_Text_MT.fnt;Gum/FontCache/Font50Old_English_Text_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font50Old_English_Text_MT_0.png
+/copy:../Working/Gum/FontCache/Font50Old_English_Text_MT_0.png;Gum/FontCache/Font50Old_English_Text_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font14OCR_A_Extended.bmfc
+/copy:../Working/Gum/FontCache/Font14OCR_A_Extended.bmfc;Gum/FontCache/Font14OCR_A_Extended.bmfc
+
+#begin ../Working/Gum/FontCache/Font14OCR_A_Extended.fnt
+/copy:../Working/Gum/FontCache/Font14OCR_A_Extended.fnt;Gum/FontCache/Font14OCR_A_Extended.fnt
+
+#begin ../Working/Gum/FontCache/Font14OCR_A_Extended_0.png
+/copy:../Working/Gum/FontCache/Font14OCR_A_Extended_0.png;Gum/FontCache/Font14OCR_A_Extended_0.png
+
+#begin ../Working/Gum/FontCache/Font14Old_English_Text_MT.bmfc
+/copy:../Working/Gum/FontCache/Font14Old_English_Text_MT.bmfc;Gum/FontCache/Font14Old_English_Text_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font14Old_English_Text_MT.fnt
+/copy:../Working/Gum/FontCache/Font14Old_English_Text_MT.fnt;Gum/FontCache/Font14Old_English_Text_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font14Old_English_Text_MT_0.png
+/copy:../Working/Gum/FontCache/Font14Old_English_Text_MT_0.png;Gum/FontCache/Font14Old_English_Text_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font14Onyx.bmfc
+/copy:../Working/Gum/FontCache/Font14Onyx.bmfc;Gum/FontCache/Font14Onyx.bmfc
+
+#begin ../Working/Gum/FontCache/Font14Onyx.fnt
+/copy:../Working/Gum/FontCache/Font14Onyx.fnt;Gum/FontCache/Font14Onyx.fnt
+
+#begin ../Working/Gum/FontCache/Font14Onyx_0.png
+/copy:../Working/Gum/FontCache/Font14Onyx_0.png;Gum/FontCache/Font14Onyx_0.png
+
+#begin ../Working/Gum/FontCache/Font60Old_English_Text_MT.bmfc
+/copy:../Working/Gum/FontCache/Font60Old_English_Text_MT.bmfc;Gum/FontCache/Font60Old_English_Text_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font60Old_English_Text_MT.fnt
+/copy:../Working/Gum/FontCache/Font60Old_English_Text_MT.fnt;Gum/FontCache/Font60Old_English_Text_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font60Old_English_Text_MT_0.png
+/copy:../Working/Gum/FontCache/Font60Old_English_Text_MT_0.png;Gum/FontCache/Font60Old_English_Text_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font80Old_English_Text_MT.bmfc
+/copy:../Working/Gum/FontCache/Font80Old_English_Text_MT.bmfc;Gum/FontCache/Font80Old_English_Text_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font80Old_English_Text_MT.fnt
+/copy:../Working/Gum/FontCache/Font80Old_English_Text_MT.fnt;Gum/FontCache/Font80Old_English_Text_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font80Old_English_Text_MT_0.png
+/copy:../Working/Gum/FontCache/Font80Old_English_Text_MT_0.png;Gum/FontCache/Font80Old_English_Text_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font100Old_English_Text_MT.bmfc
+/copy:../Working/Gum/FontCache/Font100Old_English_Text_MT.bmfc;Gum/FontCache/Font100Old_English_Text_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font100Old_English_Text_MT.fnt
+/copy:../Working/Gum/FontCache/Font100Old_English_Text_MT.fnt;Gum/FontCache/Font100Old_English_Text_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font100Old_English_Text_MT_0.png
+/copy:../Working/Gum/FontCache/Font100Old_English_Text_MT_0.png;Gum/FontCache/Font100Old_English_Text_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font200Old_English_Text_MT.bmfc
+/copy:../Working/Gum/FontCache/Font200Old_English_Text_MT.bmfc;Gum/FontCache/Font200Old_English_Text_MT.bmfc
+
+#begin ../Working/Gum/FontCache/Font200Old_English_Text_MT.fnt
+/copy:../Working/Gum/FontCache/Font200Old_English_Text_MT.fnt;Gum/FontCache/Font200Old_English_Text_MT.fnt
+
+#begin ../Working/Gum/FontCache/Font200Old_English_Text_MT_0.png
+/copy:../Working/Gum/FontCache/Font200Old_English_Text_MT_0.png;Gum/FontCache/Font200Old_English_Text_MT_0.png
+
+#begin ../Working/Gum/FontCache/Font200Old_English_Text_MT_1.png
+/copy:../Working/Gum/FontCache/Font200Old_English_Text_MT_1.png;Gum/FontCache/Font200Old_English_Text_MT_1.png
+
+#begin ../Working/Gum/FontCache/Font200Old_English_Text_MT_2.png
+/copy:../Working/Gum/FontCache/Font200Old_English_Text_MT_2.png;Gum/FontCache/Font200Old_English_Text_MT_2.png
+
+#begin ../Working/Gum/FontCache/Font50MS_Reference_Sans_Serif.bmfc
+/copy:../Working/Gum/FontCache/Font50MS_Reference_Sans_Serif.bmfc;Gum/FontCache/Font50MS_Reference_Sans_Serif.bmfc
+
+#begin ../Working/Gum/FontCache/Font50MS_Reference_Sans_Serif.fnt
+/copy:../Working/Gum/FontCache/Font50MS_Reference_Sans_Serif.fnt;Gum/FontCache/Font50MS_Reference_Sans_Serif.fnt
+
+#begin ../Working/Gum/FontCache/Font50MS_Reference_Sans_Serif_0.png
+/copy:../Working/Gum/FontCache/Font50MS_Reference_Sans_Serif_0.png;Gum/FontCache/Font50MS_Reference_Sans_Serif_0.png
+
+#begin ../Working/Gum/FontCache/Font50MS_UI_Gothic.bmfc
+/copy:../Working/Gum/FontCache/Font50MS_UI_Gothic.bmfc;Gum/FontCache/Font50MS_UI_Gothic.bmfc
+
+#begin ../Working/Gum/FontCache/Font50MS_UI_Gothic.fnt
+/copy:../Working/Gum/FontCache/Font50MS_UI_Gothic.fnt;Gum/FontCache/Font50MS_UI_Gothic.fnt
+
+#begin ../Working/Gum/FontCache/Font50MS_UI_Gothic_0.png
+/copy:../Working/Gum/FontCache/Font50MS_UI_Gothic_0.png;Gum/FontCache/Font50MS_UI_Gothic_0.png
+
+#begin ../Working/Gum/Nothing.cs
+/copy:../Working/Gum/Nothing.cs;Gum/Nothing.cs
+
+#begin ../Working/Gum/Relic.png
+/copy:../Working/Gum/Relic.png;Gum/Relic.png

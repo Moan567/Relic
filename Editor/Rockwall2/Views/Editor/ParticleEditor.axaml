@@ -1,0 +1,237 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Rockwall2.ViewModels.Editor"
+             xmlns:monoGame="clr-namespace:AvaloniaInside.MonoGame"
+             xmlns:ctrl="clr-namespace:Rockwall2.Controls"
+             xmlns:editor="clr-namespace:Rockwall2.Editor.Common"
+             xmlns:colorPicker="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.ColorPicker"
+             xmlns:local="clr-namespace:Rockwall2"
+             mc:Ignorable="d" d:DesignWidth="1440" d:DesignHeight="860"
+             x:Class="Rockwall2.ParticleEditor">
+
+	<UserControl.Background>
+		<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+			<GradientStop Offset="0" Color="#101010"/>
+			<GradientStop Offset="1" Color="#202020"/>
+		</LinearGradientBrush>
+	</UserControl.Background>
+
+	<Design.DataContext>
+		<vm:ParticleEditorViewModel/>
+	</Design.DataContext>
+
+	<UserControl.Styles>
+		<!-- Compact sizing, matched to ModelEditor.axaml so both editors share
+		     the same density. Scoped to this UserControl only. -->
+
+		<Style Selector="Label">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="10.5"/>
+		</Style>
+
+		<Style Selector="TextBlock">
+			<Setter Property="FontSize" Value="11"/>
+		</Style>
+
+		<Style Selector="Button">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="6,1"/>
+			<Setter Property="MinHeight" Value="20"/>
+			<Setter Property="Height" Value="20"/>
+		</Style>
+
+		<Style Selector="TextBox">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="4,1"/>
+			<Setter Property="MinHeight" Value="20"/>
+		</Style>
+
+		<Style Selector="ComboBox">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="4,1"/>
+			<Setter Property="MinHeight" Value="20"/>
+		</Style>
+
+		<Style Selector="ComboBoxItem">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="4,2"/>
+			<Setter Property="MinHeight" Value="18"/>
+		</Style>
+
+		<Style Selector="ListBoxItem">
+			<Setter Property="Padding" Value="4,1"/>
+			<Setter Property="MinHeight" Value="18"/>
+		</Style>
+
+		<Style Selector="CheckBox">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="MinHeight" Value="18"/>
+		</Style>
+
+		<Style Selector="TabItem">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="8,3"/>
+		</Style>
+
+		<Style Selector="TreeViewItem">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="MinHeight" Value="18"/>
+		</Style>
+
+		<Style Selector="GridSplitter">
+			<Setter Property="Background" Value="#303030"/>
+		</Style>
+
+		<Style Selector="Separator">
+			<Setter Property="Background" Value="#2A2A2A"/>
+			<Setter Property="Margin" Value="0,3"/>
+		</Style>
+	</UserControl.Styles>
+
+	<DockPanel>
+
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="260" MinWidth="160"/>
+				<ColumnDefinition Width="4"/>
+				<ColumnDefinition Width="*"   MinWidth="300"/>
+				<ColumnDefinition Width="4"/>
+				<ColumnDefinition Width="280" MinWidth="200"/>
+			</Grid.ColumnDefinitions>
+
+			<Grid Grid.Column="0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"    MinHeight="80"/>
+					<RowDefinition Height="4"/>
+					<RowDefinition Height="200"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+
+				<Grid Grid.Row="0">
+					<TreeView x:Name="systemViewer"
+							  Background="Transparent"
+							  Margin="0,0,0,34"/>
+					<StackPanel Orientation="Horizontal"
+								VerticalAlignment="Bottom"
+								HorizontalAlignment="Left"
+								Margin="0,0,0,8"
+								Spacing="4">
+						<Button Width="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="AddButton_Click">Add</Button>
+						<Button Width="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="DuplicateButton_Click">Duplicate</Button>
+						<Button Width="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="DeleteButton_Click">Delete</Button>
+					</StackPanel>
+				</Grid>
+
+				<GridSplitter Grid.Row="1"
+							  ResizeDirection="Rows"
+							  ResizeBehavior="PreviousAndNext"
+							  HorizontalAlignment="Stretch"/>
+
+				<ScrollViewer Grid.Row="2"
+						Background="#141414"
+						BorderBrush="#2A2A2A"
+						BorderThickness="0,1,0,1">
+					<Canvas x:Name="timelineCanvas"
+							SizeChanged="TimelineCanvas_SizeChanged"/>
+				</ScrollViewer>
+
+				<ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Disabled">
+					<Border BorderBrush="#303030" BorderThickness="1" Margin="0,4,0,0">
+						<StackPanel>
+							<TextBlock Text="Particle System"
+									   FontSize="10" FontWeight="SemiBold"
+									   Background="#252525" Padding="4,2"/>
+							<StackPanel Margin="3" Spacing="1">
+
+								<Grid ColumnDefinitions="*,*">
+									<Label Content="Lifetime:"/>
+									<TextBox Grid.Column="1" x:Name="lifetimeBox"
+											 TextChanged="LifetimeChanged"/>
+								</Grid>
+								<Grid ColumnDefinitions="*,*">
+									<Label Content="Bounce:"/>
+									<TextBox Grid.Column="1" x:Name="bounceBox"
+											 TextChanged="BounceChanged"/>
+								</Grid>
+								<Grid ColumnDefinitions="*,*">
+									<Label Content="Dampening:"/>
+									<TextBox Grid.Column="1" x:Name="dampenBox"
+											 TextChanged="DampenChanged"/>
+								</Grid>
+								<Grid ColumnDefinitions="*,*">
+									<Label Content="World collision:"/>
+									<CheckBox Grid.Column="1"
+											  HorizontalAlignment="Right"
+											  x:Name="collisionTick"
+											  Click="CollisionTick_Click"/>
+								</Grid>
+
+							</StackPanel>
+						</StackPanel>
+					</Border>
+				</ScrollViewer>
+
+			</Grid>
+
+			<DockPanel Grid.Column="2">
+				<Border DockPanel.Dock="Bottom"
+						Background="#141414"
+						BorderBrush="#2A2A2A"
+						BorderThickness="0,0,0,1"
+						Height="30">
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0" Spacing="4">
+						<Button x:Name="btnPlay"    Width="64" Click="OnPlayClick">Play</Button>
+						<Button x:Name="btnPause"   Width="64" Click="OnPauseClick">Pause</Button>
+						<Button x:Name="btnRestart" Width="76" Click="OnRestartClick">Restart</Button>
+						<TextBlock x:Name="lblPlayState"
+								   Foreground="#888888"
+								   FontSize="11"
+								   VerticalAlignment="Center"
+								   Margin="12,0,0,0"
+								   Text="Playing"/>
+					</StackPanel>
+				</Border>
+
+				<Border
+						BorderBrush="#303030"
+						BorderThickness="1">
+					<Panel>
+						<monoGame:MonoGameControl
+						  x:DataType="vm:ParticleEditorViewModel"
+						  Scene="{Binding Scene}"
+						  x:Name="gameControl"/>
+					</Panel>
+				</Border>
+			</DockPanel>
+
+			<ScrollViewer Grid.Column="4" HorizontalScrollBarVisibility="Disabled">
+				<StackPanel x:Name="subsystemPanel" IsEnabled="False" Margin="4,0" Spacing="0">
+
+					<Border BorderBrush="#303030" BorderThickness="1" Margin="0,4,0,0">
+						<StackPanel>
+							<TextBlock Text="Material"
+									   FontSize="10" FontWeight="SemiBold"
+									   Background="#252525" Padding="4,2"/>
+							<Grid ColumnDefinitions="70,*" Margin="3">
+								<Button Grid.Column="0" x:Name="subMaterial"
+										Click="SubMaterial_Click">Browse…</Button>
+								<TextBlock Grid.Column="1" x:Name="subMaterialName"
+										   VerticalAlignment="Center" Margin="6,0,0,0"
+										   FontSize="11" Foreground="#888888"
+										   TextTrimming="CharacterEllipsis" Text="(none)"/>
+							</Grid>
+						</StackPanel>
+					</Border>
+
+					<editor:ParticleFieldPanel x:Name="particleFieldPanel"/>
+
+					<Border Height="20"/>
+
+				</StackPanel>
+			</ScrollViewer>
+
+		</Grid>
+	</DockPanel>
+</UserControl>

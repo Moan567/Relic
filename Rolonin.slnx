@@ -5,7 +5,8 @@
     <Project Path="MonoGame.ImGuiNet-main/MonoGame.ImGuiNet/Monogame.ImGuiNet.csproj" />
   </Folder>
   <Folder Name="/Editor/">
-    <Project Path="Mapcompiler/Mapcompiler.csproj" />
+    <Project Path="Editor/Mapcompiler/Mapcompiler.csproj" />
+    <Project Path="Editor/Rockwall2/Rockwall2.csproj" />
   </Folder>
   <Folder Name="/Game/">
     <Project Path="Game/Game.csproj" />

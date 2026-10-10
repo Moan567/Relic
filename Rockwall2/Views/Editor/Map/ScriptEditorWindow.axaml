@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
+        x:Class="Rockwall2.ScriptEditorWindow"
+        x:CompileBindings="False"
+        Title="Script Editor"
+        Background="#0F0F0F"
+		Topmost="True"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Width="640" Height="460"
+        MinWidth="640" MinHeight="460"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0">
+
+	<Border BorderThickness="1" BorderBrush="#686868">
+		<DockPanel Margin="{Binding $parent[Window].OffScreenMargin}">
+			<controls:RWTitleBar x:Name="titleBar" DockPanel.Dock="Top"/>
+
+			<ae:TextEditor x:Name="scriptText"
+						   ShowLineNumbers="True"
+						   FontFamily="Consolas,monospace"
+						   FontSize="13"
+						   Background="#181818"
+						   Foreground="#DCDCDC"
+						   Margin="4"/>
+		</DockPanel>
+	</Border>
+</Window>

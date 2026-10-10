@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Rockwall2.BoneParentPicker"
+        Title="Choose Parent Bone"
+        Width="260" Height="120"
+        WindowStartupLocation="CenterOwner"
+        Background="#202020"
+        CanResize="False">
+	<StackPanel Margin="10" Spacing="8">
+		<TextBlock Text="Parent this eye to which bone?" Foreground="White" FontSize="11"/>
+		<ComboBox x:Name="boneCombo" HorizontalAlignment="Stretch"/>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="6">
+			<Button Content="Cancel" Width="60" Click="Cancel_Click"/>
+			<Button Content="OK" Width="60" Click="Ok_Click"/>
+		</StackPanel>
+	</StackPanel>
+</Window>

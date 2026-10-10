@@ -1,0 +1,103 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="640"
+		Width="600"
+		Height="640"
+        x:Class="Rockwall2.MapPrefs"
+        Icon="/Assets/rockwall2icon.ico"
+        Background="#202020"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0"
+        Title="Map Editor Preferences">
+
+
+	<Border BorderThickness="1" BorderBrush="#686868">
+		<DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+			<controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+								 PointerMoved="TitleBar_PointerMoved"
+								 PointerReleased="TitleBar_PointerReleased"
+								 VerticalAlignment="Top"/>
+			<StackPanel Margin="32" Spacing="8">
+				<Label>Workflow Preferences</Label>
+				<Separator/>
+				
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, holding shift will select brushes, otherwise select faces. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Flip Selection Tool Shift Behavior</Label>
+					<CheckBox x:Name="selectionFlip"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Flip Shift/Alt Drag Behavior</Label>
+					<CheckBox x:Name="scrollFlip"/>
+				</StackPanel>
+
+				<Separator/>
+				<Label>Hotbar Preferences</Label>
+				<Separator/>
+
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #1 Assignment</Label>
+					<ComboBox x:Name="key1">
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #2 Assignment</Label>
+					<ComboBox x:Name="key2">
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #3 Assignment</Label>
+					<ComboBox x:Name="key3">
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #4 Assignment</Label>
+					<ComboBox x:Name="key4">
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #5 Assignment</Label>
+					<ComboBox x:Name="key5">
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #6 Assignment</Label>
+					<ComboBox x:Name="key6">
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #7 Assignment</Label>
+					<ComboBox x:Name="key7">
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #8 Assignment</Label>
+					<ComboBox x:Name="key8">
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="32"
+							ToolTip.Tip="By default, shift + scroll will move a face out, and alt + scroll will extrude/inward cut. This will flip that behavior.">
+					<Label VerticalAlignment="Center">Key #9 Assignment</Label>
+					<ComboBox x:Name="key9">
+					</ComboBox>
+				</StackPanel>
+			</StackPanel>
+		</DockPanel>
+	</Border>
+	
+</Window>

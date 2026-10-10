@@ -1,0 +1,130 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants);rockwall;unified;Windows</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants);rockwall;unified;Windows</DefineConstants>
+  </PropertyGroup>
+  
+  <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+    <Message Text="Restoring dotnet tools" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
+  
+  <ItemGroup>
+    <Folder Include="Assets\Decor\" />
+    <Folder Include="Assets\Icons\" />
+    <Folder Include="Assets\Tools\" />
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="Scripts\export.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.12" />
+    <PackageReference Include="Avalonia.AvaloniaEdit" Version="11.4.1" />
+    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.3.12" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.12" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.12" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.12" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.12" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.3.12">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="AvaloniaEdit.TextMate" Version="11.4.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="DefaultUnDo" Version="2.1.0" />
+    <PackageReference Include="FontStashSharp.MonoGame" Version="1.5.4" />
+    <PackageReference Include="Lovebirb.MonoGame.SkinnedMeshImporter" Version="1.0.4" />
+    <PackageReference Include="MessageBox.Avalonia" Version="3.3.1.1" />
+    <PackageReference Include="MessagePack" Version="3.1.7" />
+    <PackageReference Include="MessagePack.Attributeless" Version="1.0.1" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.4.1" />
+    <PackageReference Include="MonoGame.Extended" Version="5.5.0" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4.1" />
+    <PackageReference Include="MonoGame.Library.OpenAL" Version="1.24.3.2" />
+    <PackageReference Include="NAudio" Version="2.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="sdl2.nuget" Version="2.32.8" />
+    <PackageReference Include="SharpHook" Version="7.1.1" />
+    <PackageReference Include="Silk.NET.OpenAL" Version="2.23.0" />
+    <PackageReference Include="Silk.NET.OpenAL.Soft.Native" Version="1.23.1" />
+    <PackageReference Include="Silk.NET.SDL" Version="2.23.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <PackageReference Include="Tmds.DBus.Protocol" Version="0.21.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\MapEditor\brushtool.png" />
+    <Resource Include="Assets\MapEditor\cursortool.png" />
+    <Resource Include="Assets\MapEditor\entitytool.png" />
+    <Resource Include="Assets\MapEditor\movetool.png" />
+    <Resource Include="Assets\MapEditor\rotatetool.png" />
+    <Resource Include="Assets\rockwall2icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Tools\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Tools\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+	  <Content Include="Assets\SFX\*.ogg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Remove="Assets\Fonts\**" />
+    <AvaloniaXaml Remove="Assets\Fonts\**" />
+    <AvaloniaXaml Remove="Models\**" />
+    <Compile Remove="Assets\Fonts\**" />
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Assets\Fonts\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Assets\Fonts\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Update="Assets\Decor\header.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\RWTitleBar.axaml.cs">
+      <DependentUpon>RWTitleBar.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Editor\Map\TextureSettingsWindow.axaml.cs">
+      <DependentUpon>TextureSettingsWindow.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSESUMMARY.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="THIRD_PARTY_NOTICES.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Import Project="..\..\Shared\RelicSharedTypes\RelicSharedTypes.projitems" Label="Shared" />
+
+  <Import Project="..\..\Shared\RelicModelTypes\RelicModelTypes.projitems" Label="Shared" />
+
+  <Import Project="..\..\Shared\RelicEditorUtils\RelicEditorUtils.projitems" Label="Shared" />
+</Project>

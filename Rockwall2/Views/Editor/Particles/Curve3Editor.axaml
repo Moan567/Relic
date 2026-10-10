@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Rockwall2.Curve3Editor">
+
+  <StackPanel>
+    <!-- Start -->
+    <Grid Margin="0,1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="38"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="34"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock Grid.Column="0" Text="Start" FontSize="11" Foreground="#FFAAAAAA" VerticalAlignment="Center"/>
+      <Slider Grid.Column="1" x:Name="startSlider" Minimum="0" Maximum="1"
+              SmallChange="0.01" LargeChange="0.1"
+              ValueChanged="Slider_Changed" VerticalAlignment="Center"/>
+      <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="11" Foreground="White"
+                 TextAlignment="Right"
+                 Text="{Binding #startSlider.Value, StringFormat=F2}"/>
+    </Grid>
+    <!-- Mid -->
+    <Grid Margin="0,1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="38"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="34"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock Grid.Column="0" Text="Mid" FontSize="11" Foreground="#FFAAAAAA" VerticalAlignment="Center"/>
+      <Slider Grid.Column="1" x:Name="midSlider" Minimum="0" Maximum="1"
+              SmallChange="0.01" LargeChange="0.1"
+              ValueChanged="Slider_Changed" VerticalAlignment="Center"/>
+      <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="11" Foreground="White"
+                 TextAlignment="Right"
+                 Text="{Binding #midSlider.Value, StringFormat=F2}"/>
+    </Grid>
+    <!-- End -->
+    <Grid Margin="0,1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="38"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="34"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock Grid.Column="0" Text="End" FontSize="11" Foreground="#FFAAAAAA" VerticalAlignment="Center"/>
+      <Slider Grid.Column="1" x:Name="endSlider" Minimum="0" Maximum="1"
+              SmallChange="0.01" LargeChange="0.1"
+              ValueChanged="Slider_Changed" VerticalAlignment="Center"/>
+      <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="11" Foreground="White"
+                 TextAlignment="Right"
+                 Text="{Binding #endSlider.Value, StringFormat=F2}"/>
+    </Grid>
+    <!-- Live curve preview -->
+    <Canvas x:Name="previewCanvas" Height="28" Margin="0,5,0,2"
+            Background="#FF111111">
+      <Polyline x:Name="curvePreview" Stroke="#FF4A9EDB" StrokeThickness="1.5"/>
+    </Canvas>
+  </StackPanel>
+</UserControl>

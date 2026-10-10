@@ -1,0 +1,406 @@
+﻿{
+  "hiddenInputs": [ "AddImpulse", "AddForce", "TakeDamage" ],
+  "reservedIdentifiers": {
+    "_self": {
+      "type": "Entity",
+      "doc": "The entity that owns this output/script."
+    },
+    "_activator": {
+      "type": "Entity",
+      "nullable": true,
+      "doc": "The entity that triggered this chain, if any."
+    },
+    "chain": {
+      "type": "ChainObject",
+      "doc": "String-keyed pass-variable accumulator for the currently-executing connection."
+    },
+    "globals": {
+      "type": "GlobalsDict",
+      "doc": "Per-session persistent key/value storage. Transfers across levels."
+    },
+    "mapglobals": {
+      "type": "GlobalsDict",
+      "doc": "Per-map-session key/value storage; resets on map load. Saves, but does not transfer across levels."
+    }
+  },
+  "types": {
+    "Entity": {
+      "members": [
+        {
+          "name": "position",
+          "kind": "field",
+          "valueType": "Vector3D",
+          "doc": "World-space position."
+        },
+        {
+          "name": "velocity",
+          "kind": "field",
+          "valueType": "Vector3D",
+          "doc": "Current velocity."
+        },
+        {
+          "name": "angles",
+          "kind": "field",
+          "valueType": "Vector3D",
+          "doc": "Euler rotation, degrees."
+        },
+        {
+          "name": "GetValue",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "fieldName",
+              "type": "string"
+            }
+          ],
+          "doc": "Reads a reflected C# field by name."
+        },
+        {
+          "name": "SetValue",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "fieldName",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "type": "any"
+            }
+          ],
+          "doc": "Writes a reflected C# field by name."
+        },
+        {
+          "name": "classname",
+          "kind": "field",
+          "valueType": "String",
+          "readOnly": true,
+          "doc": "The C# class name of this entity, e.g. 'FuncDoor'."
+        },
+        {
+          "name": "insidebrush",
+          "kind": "field",
+          "readOnly": true,
+          "doc": "Entities currently inside this trigger volume. Only valid on brush-based volumes (FuncTrigger and friends)."
+        },
+
+        {
+          "name": "applyimpulse",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "force",
+              "type": "Vector3D"
+            }
+          ],
+          "doc": "Applies an instantaneous impulse."
+        },
+        {
+          "name": "applyimpulseat",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "force",
+              "type": "Vector3D"
+            },
+            {
+              "name": "position",
+              "type": "Vector3D"
+            }
+          ],
+          "doc": "Applies an impulse at a world-space point, inducing torque."
+        },
+        {
+          "name": "applyforce",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "force",
+              "type": "Vector3D"
+            }
+          ],
+          "doc": "Applies a continuous force for this physics step."
+        },
+        {
+          "name": "applyforceat",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "force",
+              "type": "Vector3D"
+            },
+            {
+              "name": "position",
+              "type": "Vector3D"
+            }
+          ],
+          "doc": "Applies a continuous force at a world-space point, inducing torque."
+        },
+        {
+          "name": "addcondition",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "doc": "Applies a named status condition, e.g. 'burning'."
+        },
+        {
+          "name": "removecondition",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "doc": "Removes a named status condition if present."
+        },
+        {
+          "name": "moveto",
+          "kind": "method",
+          "parameters": [
+            {
+              "name": "target",
+              "type": "Vector3D | Entity"
+            }
+          ],
+          "doc": "Requests AI pathing toward a point or entity. Requires an AI-driven controller."
+        },
+        {
+          "name": "ispathcompleted",
+          "kind": "method",
+          "parameters": [],
+          "doc": "Whether the AI has reached its current move target. Requires an AI-driven controller."
+        }
+      ]
+    },
+    "ChainObject": {
+      "indexer": {
+        "keyType": "String",
+        "doc": "Reads/writes a pass-variable by key."
+      }
+    },
+    "GlobalsDict": {
+      "indexer": {
+        "keyType": "String",
+        "doc": "Reads/writes a global value by key."
+      }
+    },
+
+    "Vector3D": {
+      "members": [
+        {
+          "name": "x",
+          "kind": "field",
+          "valueType": "Number",
+          "doc": "X component."
+        },
+        {
+          "name": "y",
+          "kind": "field",
+          "valueType": "Number",
+          "doc": "Y component."
+        },
+        {
+          "name": "z",
+          "kind": "field",
+          "valueType": "Number",
+          "doc": "Z component."
+        }
+      ]
+    },
+    "Vector2D": {
+      "members": [
+        {
+          "name": "x",
+          "kind": "field",
+          "valueType": "Number",
+          "doc": "X component."
+        },
+        {
+          "name": "y",
+          "kind": "field",
+          "valueType": "Number",
+          "doc": "Y component."
+        }
+      ]
+    },
+    "TraceResult": {
+      "members": [
+        {
+          "name": "hit",
+          "kind": "field",
+          "valueType": "Bool",
+          "readOnly": true,
+          "doc": "Whether the trace hit anything."
+        },
+        {
+          "name": "point",
+          "kind": "field",
+          "valueType": "Vector3D",
+          "readOnly": true,
+          "doc": "World-space hit point. Meaningless if hit is false."
+        },
+        {
+          "name": "normal",
+          "kind": "field",
+          "valueType": "Vector3D",
+          "readOnly": true,
+          "doc": "Surface normal at the hit point."
+        },
+        {
+          "name": "entity",
+          "kind": "field",
+          "valueType": "Entity",
+          "readOnly": true,
+          "doc": "The entity that was hit, if any. Never set for bsptrace."
+        }
+      ]
+    }
+  },
+  "globalFunctions": [
+    {
+      "name": "stopchain",
+      "arity": 0,
+      "doc": "Halts remaining connections in this output; suppresses this connection's own refire."
+    },
+    {
+      "name": "spawnentity",
+      "parameters": [
+        {
+          "name": "classname",
+          "type": "String"
+        }
+      ],
+      "doc": "Spawns a new entity of the given classname."
+    },
+    {
+      "name": "phystrace",
+      "parameters": [
+        {
+          "name": "origin",
+          "type": "Vector3D"
+        },
+        {
+          "name": "direction",
+          "type": "Vector3D"
+        },
+        {
+          "name": "maxdistance",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "doc": "Raycasts the physics world (dynamic entities/props). Returns TraceResult."
+    },
+    {
+      "name": "bsptrace",
+      "parameters": [
+        {
+          "name": "origin",
+          "type": "Vector3D"
+        },
+        {
+          "name": "direction",
+          "type": "Vector3D"
+        },
+        {
+          "name": "maxdistance",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "doc": "Raycasts static world geometry only. Returns TraceResult."
+    },
+    {
+      "name": "print",
+      "variadic": true,
+      "variadicElementType": "any",
+      "doc": "Logs values to the console."
+    },
+    {
+      "name": "playsound",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "position",
+          "type": "Vector3D",
+          "optional": true
+        }
+      ],
+      "doc": "Plays a soundscript entry, optionally positioned in 3D."
+    },
+    {
+      "name": "playparticle",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "String"
+        },
+        {
+          "name": "position",
+          "type": "Vector3D"
+        }
+      ],
+      "doc": "Spawns a particle system at a position."
+    },
+    {
+      "name": "entitiesinradius",
+      "parameters": [
+        {
+          "name": "center",
+          "type": "Vector3D"
+        },
+        {
+          "name": "radius",
+          "type": "Number"
+        }
+      ],
+      "doc": "Returns all entities within radius of a point."
+    },
+    {
+      "name": "debugpoint",
+      "parameters": [
+        {
+          "name": "position",
+          "type": "Vector3D"
+        }
+      ],
+      "doc": "Draws a debug point this frame."
+    },
+    {
+      "name": "debugline",
+      "parameters": [
+        {
+          "name": "from",
+          "type": "Vector3D"
+        },
+        {
+          "name": "to",
+          "type": "Vector3D"
+        }
+      ],
+      "doc": "Draws a debug line this frame."
+    },
+    {
+      "name": "ispathwalkable",
+      "parameters": [
+        {
+          "name": "from",
+          "type": "Vector3D"
+        },
+        {
+          "name": "to",
+          "type": "Vector3D"
+        }
+      ],
+      "doc": "Whether a straight-line AI path between two points is walkable."
+    }
+  ]
+}

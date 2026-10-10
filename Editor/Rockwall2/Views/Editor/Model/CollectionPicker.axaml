@@ -1,0 +1,38 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        mc:Ignorable="d"
+        Width="420" Height="360"
+        x:Class="Rockwall2.CollectionPicker"
+        Title="Choose Collection to Import"
+        Icon="/Assets/rockwall2icon.ico"
+        Background="#202020"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0">
+	<Border BorderThickness="1" BorderBrush="#686868">
+		<DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+			<controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+								 PointerMoved="TitleBar_PointerMoved"
+								 PointerReleased="TitleBar_PointerReleased"
+								 VerticalAlignment="Top"/>
+			<StackPanel Margin="16">
+				<TextBlock Text="This file has multiple collections. Pick one to import (e.g. a specific LOD or a reference set), or import everything."
+						   Foreground="#AAA" TextWrapping="Wrap" Margin="0,0,0,10"/>
+				<ListBox x:Name="collectionList" Background="#1A1A1A" Foreground="White"
+						 BorderBrush="#444" BorderThickness="1" Height="220" Margin="0,0,0,8"/>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+					<Button x:Name="btnOK" Width="80" Margin="0,0,8,0"
+							IsDefault="True"
+							Click="Ok_Click">Import</Button>
+					<Button Width="80" IsCancel="True"
+							Click="Cancel_Click">Cancel</Button>
+				</StackPanel>
+			</StackPanel>
+		</DockPanel>
+	</Border>
+</Window>

@@ -1,0 +1,140 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Rockwall2.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+        WindowState="Maximized"
+        x:Class="Rockwall2.Views.MainWindow"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        Icon="/Assets/rockwall2icon.ico"
+        Background="#202020"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0"
+        Title="Rockwall 2.1">
+
+	<Border BorderThickness="1" BorderBrush="#686868">
+		<DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+			<controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+								 PointerMoved="TitleBar_PointerMoved"
+								 PointerReleased="TitleBar_PointerReleased"
+								 VerticalAlignment="Top"/>
+			<TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="tabControl">
+				<TabItem Header="Map Editor">
+
+					<Grid>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="12"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+
+						<Menu VerticalAlignment="Stretch" Margin="8" Grid.Row="0" FontSize="12">
+							<MenuItem Header="File">
+								<MenuItem Header="New Map" x:Name="MapFileNewItem" Click="MapFileNew"/>
+								<MenuItem Header="Open Map" x:Name="MapFileOpenItem" Click="MapFileOpen"/>
+								<MenuItem Header="Save Map" x:Name="MapFileSaveItem" Click="MapFileSave"/>
+								<MenuItem Header="Save Map As" x:Name="MapFileSaveAsItem" Click="MapFileSaveAs"/>
+							</MenuItem>
+							<MenuItem Header="Options">
+								<MenuItem Header="Fast Vis"
+										  ToolTip.Tip="Enabled by default. This skips the more fine PVS pass. Disabling this allows the fine pass to happen, leading to better culling at the cost of compile speed.">
+									<MenuItem Header="Enabled" Click="MapFVisEnable"></MenuItem>
+									<MenuItem Header="Disabled" Click="MapFVisDisable"></MenuItem>
+								</MenuItem>
+								<MenuItem Header="Luxels Per Unit"
+										  ToolTip.Tip="Amount of lightmap pixels per unit. Higher number is higher resolution.">
+									<MenuItem Header="4x4" Click="MapLPU4"/>
+									<MenuItem Header="8x8" Click="MapLPU8"/>
+									<MenuItem Header="16x16" Click="MapLPU16"/>
+									<MenuItem Header="32x32" Click="MapLPU32"/>
+								</MenuItem>
+								<MenuItem Header="Map Editor Preferences" Click="MapPrefsOpen">
+								</MenuItem>
+							</MenuItem>
+						</Menu>
+
+						<controls:MapEditor Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="mapEditor"/>
+
+					</Grid>
+				</TabItem>
+				<TabItem Header="Model Editor">
+
+					<Grid>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="12"/>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="24"/>
+						</Grid.RowDefinitions>
+
+						<Menu VerticalAlignment="Stretch" Margin="8" Grid.Row="0" FontSize="12">
+							<MenuItem Header="File">
+								<MenuItem Header="Open Model" x:Name="ModelFileOpenItem" Click="ModelFileOpen"/>
+								<MenuItem Header="Save Model" x:Name="ModelFileSaveItem" Click="ModelFileSave"/>
+								<Separator/>
+								<MenuItem Header="Import Select From Blender" Click="ModelBlender"/>
+								<Separator/>
+								<MenuItem Header="Reimport FBX Animations" Click="ModelFBXAnimations"/>
+								<MenuItem Header="Reimport FBX Model" Click="ModelFBXModel"/>
+							</MenuItem>
+							<MenuItem Header="Tools">
+								<MenuItem Header="Open Morph Animator" x:Name="ModelMorphAnimator" Click="ModelMorphAnimatorOpen"/>
+								<MenuItem Header="Open Choreo Director" x:Name="ModelChoreoDirector" Click="ModelChoreoDirectorOpen"/>
+							</MenuItem>
+						</Menu>
+						<Panel Grid.Row="1">
+							<controls:ModelEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="modelEditor"/>
+						</Panel>
+					</Grid>
+				</TabItem>
+				<TabItem Header="Particle Editor">
+
+					<Grid>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="12"/>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="24"/>
+						</Grid.RowDefinitions>
+
+						<Menu VerticalAlignment="Stretch" Margin="8" Grid.Row="0" FontSize="12">
+							<MenuItem Header="File">
+								<MenuItem Header="New Particle System" x:Name="PNew" Click="PartNew"/>
+								<MenuItem Header="Open Particle System" x:Name="POpen" Click="PartOpen"/>
+								<MenuItem Header="Save Particle System" x:Name="PSave" Click="PartSave"/>
+							</MenuItem>
+						</Menu>
+						<Panel Grid.Row="1">
+							<controls:ParticleEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="particleEditor"/>
+						</Panel>
+					</Grid>
+				</TabItem>
+				<!--
+        <TabItem Header="Material Editor">
+
+          <Grid>
+
+            <Grid.RowDefinitions>
+              <RowDefinition Height="12"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Menu VerticalAlignment="Stretch" Margin="8" Grid.Row="0" FontSize="12">
+              <MenuItem Header="File">
+              </MenuItem>
+            </Menu>
+            <Panel Grid.Row="1" Margin="10">
+              <controls:MaterialEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="materialEditor"/>
+            </Panel>
+          </Grid>
+        </TabItem>
+        -->
+			</TabControl>
+		</DockPanel>
+	</Border>
+
+</Window>

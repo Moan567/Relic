@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        mc:Ignorable="d"
+        Width="500" Height="300"
+        x:Class="Rockwall2.BlenderImport"
+        Title="Import from Blender"
+        Icon="/Assets/rockwall2icon.ico"
+        Background="#202020"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0">
+
+  <Border BorderThickness="1" BorderBrush="#686868">
+    <DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+      <controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+                           PointerMoved="TitleBar_PointerMoved"
+                           PointerReleased="TitleBar_PointerReleased"
+                           VerticalAlignment="Top"/>
+
+      <StackPanel Margin="16">
+
+        <Grid Margin="0,0,0,12">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+          </Grid.ColumnDefinitions>
+          <TextBox x:Name="blendPathBox" IsReadOnly="True"
+                   Background="#1A1A1A" Foreground="White"
+                   BorderBrush="#444" Padding="4,3"
+                   VerticalContentAlignment="Center"
+                   Text="(no file selected)"/>
+          <Button Grid.Column="1" Margin="8,0,0,0"
+                  Click="Browse_Click">Browse…</Button>
+        </Grid>
+
+        <TextBlock Text="Import mode:" Foreground="#AAA" Margin="0,0,0,6"/>
+        <StackPanel Margin="8,0,0,8">
+          <RadioButton x:Name="rdoFull"      Content="Full Import  (replace mesh + all animations)"
+                       Foreground="White" IsChecked="True" Margin="0,2"/>
+          <RadioButton x:Name="rdoMesh"      Content="Reimport Mesh  (keep sequences and bone settings)"
+                       Foreground="White" Margin="0,2"/>
+          <RadioButton x:Name="rdoAnims"     Content="Import Animations  (add / replace sequences)"
+                       Foreground="White" Margin="0,2"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+          <Button x:Name="btnOK" Width="80" Margin="0,0,8,0"
+                  IsDefault="True" IsEnabled="False"
+                  Click="Ok_Click">Import</Button>
+          <Button Width="80" IsCancel="True"
+                  Click="Cancel_Click">Cancel</Button>
+        </StackPanel>
+
+      </StackPanel>
+    </DockPanel>
+  </Border>
+
+</Window>

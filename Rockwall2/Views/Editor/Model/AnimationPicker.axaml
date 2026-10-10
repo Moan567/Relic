@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        mc:Ignorable="d"
+        Width="400"
+        Height="600"
+        x:Class="Rockwall2.AnimationPicker"
+        Title="AnimationPicker"
+        Icon="/Assets/rockwall2icon.ico"
+        Background="#202020"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0">
+
+  <Border BorderThickness="1" BorderBrush="#686868">
+    <DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+      <controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+                           PointerMoved="TitleBar_PointerMoved"
+                           PointerReleased="TitleBar_PointerReleased"
+                           VerticalAlignment="Top"/>
+      <DockPanel Margin="8">
+        <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Foreground="#AAA"
+                   FontSize="11" Margin="0,0,0,8">
+          Select animations to import. Animations that already exist in the
+          model will have their animation data replaced but keep their events
+          and bone mask. New animations will be added as new sequences.
+        </TextBlock>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,6">
+          <Button Width="60" Margin="0,0,4,0" Click="All_Click">All</Button>
+          <Button Width="60" Margin="0,0,4,0" Click="None_Click">None</Button>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Margin="0,8,0,0">
+          <Button Width="70" Margin="4,0,0,0" IsDefault="True"
+                  Click="Ok_Click">Import</Button>
+          <Button Width="70" Margin="4,0,0,0" IsCancel="True"
+                  Click="Cancel_Click">Cancel</Button>
+        </StackPanel>
+
+        <ScrollViewer>
+          <StackPanel x:Name="animList"/>
+        </ScrollViewer>
+      </DockPanel>
+    </DockPanel>
+  </Border>
+
+</Window>

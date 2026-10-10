@@ -1,0 +1,183 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        xmlns:vm="clr-namespace:Rockwall2.ViewModels.Editor;assembly=Rockwall2"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="460"
+        Width="800" Height="460"
+        x:Class="Rockwall2.EntityInspectorWindow"
+        x:CompileBindings="False"
+        Title="Entity Inspector"
+        Background="#0F0F0F"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        MinHeight="450"
+        MinWidth="800"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0">
+
+	<Border BorderThickness="1" BorderBrush="#686868">
+		<DockPanel VerticalAlignment="Stretch"
+				   Margin="{Binding $parent[Window].OffScreenMargin}">
+			<controls:RWTitleBar x:Name="titleBar" VerticalAlignment="Top"/>
+
+			<TabControl Background="#0F0F0F" DockPanel.Dock="Bottom">
+
+				<!-- Properties Tab -->
+				<TabItem Header="Properties">
+					<Grid Background="#0F0F0F">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="405"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+
+						<!-- Left column: classname + property list -->
+						<Grid Grid.Column="0">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+
+							<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="8,8,8,4">
+								<TextBlock FontSize="12" FontWeight="Light" VerticalAlignment="Center" Margin="0,0,8,0">Classname:</TextBlock>
+								<AutoCompleteBox x:Name="classnameBox"
+												 Width="180"
+												 FontSize="12"
+												 FilterMode="ContainsOrdinal"
+												 MinimumPrefixLength="0"/>
+							</StackPanel>
+
+							<ListBox x:Name="propertyList"
+									 Grid.Row="1"
+									 Margin="8,4,8,8">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock FontSize="12" FontWeight="Light" Text="{Binding name}"/>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</Grid>
+
+						<!-- Right column: value editor -->
+						<Grid Grid.Column="1" Margin="0,8,8,8">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+
+							<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+								<TextBlock FontSize="12" FontWeight="Light" VerticalAlignment="Center" Margin="0,0,8,0">Value:</TextBlock>
+								<ContentControl x:Name="propertyEditorHost"
+										 Width="200"
+										 IsEnabled="False"/>
+							</StackPanel>
+
+							<TextBlock x:Name="expectedPropType"
+									   Grid.Row="1"
+									   Margin="0,0,0,4"
+									   Foreground="Gray"
+									   FontSize="12" FontWeight="Light"
+									   Text="Expected Value Type:"/>
+
+							<Border Grid.Row="2" BorderThickness="1" BorderBrush="#444" Margin="0,4,0,4" Padding="6">
+								<StackPanel>
+									<TextBlock Foreground="Gray" FontSize="10" Margin="0,0,0,2">Help</TextBlock>
+									<TextBlock FontSize="12" FontWeight="Light" x:Name="hintText" TextWrapping="Wrap"/>
+								</StackPanel>
+							</Border>
+						</Grid>
+
+					</Grid>
+				</TabItem>
+
+				<!-- Outputs Tab -->
+				<TabItem Header="Outputs" x:Name="outputTab">
+					<Grid Background="#0F0F0F">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<!-- Output data grid -->
+						<DataGrid x:Name="outputVisualizer"
+								  Grid.Row="0"
+								  Background="#202020"
+								  AutoGenerateColumns="False"
+								  ColumnHeaderHeight="32"
+								  MinHeight="120"
+								  IsReadOnly="True"
+								  ItemsSource="{Binding OutputRows}">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="#"                Binding="{Binding index}" Width="32"/>
+								<DataGridTextColumn Header="From Output"      Binding="{Binding outputFrom}"/>
+								<DataGridTextColumn Header="Entity Target"    Binding="{Binding entityTarget}"/>
+								<DataGridTextColumn Header="Entity Input"     Binding="{Binding entityInputTarget}"/>
+								<DataGridTextColumn Header="Input Parameters" Binding="{Binding inputParameters}"/>
+								<DataGridTextColumn Header="Delay"            Binding="{Binding delay}"/>
+								<DataGridTextColumn Header="Refire"           Binding="{Binding refire}"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						
+						<Grid Grid.Row="1">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="200"/>
+							</Grid.ColumnDefinitions>
+							<!-- Output property editors -->
+							<StackPanel Margin="8,8,8,8" Spacing="4">
+								<Grid ColumnDefinitions="Auto,*">
+									<TextBlock FontSize="12" FontWeight="Light" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0">From My Output:</TextBlock>
+									<ComboBox HorizontalAlignment="Stretch" Grid.Column="1" x:Name="outputFrom"/>
+								</Grid>
+								<Grid ColumnDefinitions="Auto,*">
+									<TextBlock FontSize="12" FontWeight="Light" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0">To Entity:</TextBlock>
+									<ComboBox HorizontalAlignment="Stretch" Grid.Column="1" x:Name="entityTarget"/>
+								</Grid>
+								<Grid ColumnDefinitions="Auto,*">
+									<TextBlock FontSize="12" FontWeight="Light" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0">Input Target:</TextBlock>
+									<ComboBox HorizontalAlignment="Stretch" Grid.Column="1" x:Name="entityInput"/>
+								</Grid>
+								<Grid ColumnDefinitions="Auto,*">
+									<TextBlock FontSize="12" FontWeight="Light" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0">Input Parameter:</TextBlock>
+									<TextBox Grid.Column="1" x:Name="inputParameter"/>
+								</Grid>
+								<Grid ColumnDefinitions="Auto,*">
+									<TextBlock FontSize="12" FontWeight="Light" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0">Delay:</TextBlock>
+									<NumericUpDown Grid.Column="1" x:Name="inputDelay" FormatString="0.###" Minimum="0" Increment="0.1"/>
+								</Grid>
+								<Grid ColumnDefinitions="Auto,*">
+									<TextBlock FontSize="12" FontWeight="Light" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0">Refire:</TextBlock>
+									<NumericUpDown Grid.Column="1" x:Name="inputRefire" FormatString="0" Minimum="-1" Increment="1"/>
+								</Grid>
+							</StackPanel>
+
+							<StackPanel Grid.Column="1" Margin="8" Spacing="8" VerticalAlignment="Top">
+								<CheckBox x:Name="isScriptedToggle" Content="Is Scripted Output" FontSize="12"/>
+								<Button HorizontalAlignment="Stretch" x:Name="btnOpenScript" Content="Open Script"/>
+							</StackPanel>
+
+						</Grid>
+
+						<!-- Output action buttons -->
+						<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="4,4,4,4" Spacing="4">
+							<Button x:Name="btnAdd"    Width="128" Content="Add New"/>
+							<Button x:Name="btnCopy"   Width="128" Content="Copy"/>
+							<Button x:Name="btnPaste"  Width="128" Content="Paste"/>
+							<Button x:Name="btnDelete" Width="128" Content="Delete"/>
+							<Button x:Name="btnMoveUp"   Width="90"  Content="Move Up"/>
+							<Button x:Name="btnMoveDown" Width="90"  Content="Move Down"/>
+						</StackPanel>
+
+					</Grid>
+				</TabItem>
+
+			</TabControl>
+
+		</DockPanel>
+	</Border>
+</Window>

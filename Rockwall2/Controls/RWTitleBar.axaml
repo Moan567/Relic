@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:Rockwall2"
+             x:Class="Rockwall2.RWTitleBar"
+             x:DataType="local:RWTitleBar"
+             x:Name="ThisControl"
+             d:DesignWidth="512"
+             DockPanel.Dock="Top">
+
+  <Panel Height="28">
+
+    <Border BorderThickness="0,0,0,1" BorderBrush="#303030">
+      <Panel>
+        <Panel.Background>
+          <ImageBrush Source="/Assets/Decor/header.png" TileMode="Tile" Stretch="Fill">
+          </ImageBrush>
+        </Panel.Background>
+      </Panel>
+    </Border>
+
+    <DockPanel Name="TitleBar">
+      <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
+        <Image Source="/Assets/rockwall2icon.png" Width="16" Height="16" Margin="8,0,4,0"/>
+        <TextBlock FontWeight="Light" FontSize="12" Text="{Binding $parent[Window].Title}" Foreground="White" VerticalAlignment="Center"/>
+      </StackPanel>
+      
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right" Spacing="-1">
+        <Button Name="MinimizeButton" Classes="titleBarButton" Width="46" Height="32" Background="Transparent">
+          <Path Fill="#FFFFFF" Width="10" Height="1" Stretch="Uniform"
+                Data="M2048 1229v-205h-2048v205h2048z"/>
+        </Button>
+        <Button Name="MaximizeButton" Classes="titleBarButton" Width="46" Height="32" Background="Transparent">
+          <Path Fill="#FFFFFF" Width="10" Height="10" Stretch="Uniform"
+                Data="M2048 2048v-2048h-2048v2048h2048zM1843 1843h-1638v-1638h1638v1638z"/>
+        </Button>
+        <Button Name="CloseButton" Classes="titleBarButton closeButton" Width="46" Height="32" Background="Transparent">
+          <Path Fill="#FFFFFF" Width="10" Height="10" Stretch="Uniform"
+                Data="M1169 1024l879-879l-145-145l-879 879l-879-879l-145 145l879 879l-879 879l145 145l879-879l879 879l145-145z"/>
+        </Button>
+      </StackPanel>
+    </DockPanel>
+
+  </Panel>
+</UserControl>

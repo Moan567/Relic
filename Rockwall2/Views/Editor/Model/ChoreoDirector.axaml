@@ -1,0 +1,120 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="500"
+        x:Class="Rockwall2.ChoreoDirector"
+        Background="#202020">
+
+	<Grid RowDefinitions="28,*">
+
+		<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Background="#252525">
+			<Menu Grid.Column="0" VerticalAlignment="Stretch">
+				<MenuItem Header="File">
+					<MenuItem Header="New" Click="NewChoreo"/>
+					<MenuItem Header="Open" Click="OpenChoreo"/>
+					<MenuItem Header="Save" Click="SaveChoreo"/>
+				</MenuItem>
+			</Menu>
+			<TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+					   FontSize="10" Foreground="#888"
+					   Text="CHOREO DIRECTOR"/>
+			<Button Grid.Column="2" Content="Close" FontSize="11" Margin="4,3" Padding="10,2" Click="BtnClose_Click"/>
+		</Grid>
+
+		<Grid Grid.Row="1" ColumnDefinitions="*,260">
+
+			<Grid RowDefinitions="Auto,14,*,32">
+
+				<WrapPanel Height="38" Orientation="Horizontal" VerticalAlignment="Center">
+					<TextBlock Text="Start:" VerticalAlignment="Center" FontSize="11" Foreground="#888" Margin="4,0,2,0"/>
+					<TextBox x:Name="boxFrameStart" Width="48" FontSize="11" Text="0" TextChanged="BoxFrameStart_TextChanged"/>
+					<TextBlock Text="End:" VerticalAlignment="Center" FontSize="11" Foreground="#888" Margin="8,0,2,0"/>
+					<TextBox x:Name="boxFrameEnd" Width="48" FontSize="11" Text="300" TextChanged="BoxFrameEnd_TextChanged"/>
+					<TextBlock x:Name="lblSeqFrame" Width="80" Text="0 / 300" VerticalAlignment="Center"
+							   FontSize="11" Foreground="#888" Margin="12,0,0,0"/>
+				</WrapPanel>
+
+				<Canvas x:Name="viewSequenceRuler" Grid.Row="1" Background="#111111"/>
+
+				<ScrollViewer Grid.Row="2" x:Name="timelineScroll" HorizontalScrollBarVisibility="Disabled">
+					<Panel>
+						<Canvas x:Name="viewSequenceTimeline" Background="#1E1E1E"/>
+						<Canvas x:Name="viewTimelinePlayhead" IsHitTestVisible="False"/>
+					</Panel>
+				</ScrollViewer>
+
+				<WrapPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+					<Button Content="▶" Width="32" FontSize="13" Click="BtnPlay_Click"/>
+					<Button Content="■" Width="32" FontSize="13" Click="BtnStop_Click"/>
+					<TextBlock Text="Plays audio reference only. Morph animations and actor movements require in-game testing."
+							   FontSize="9" Foreground="#555" VerticalAlignment="Center" Margin="8,0"
+							   TextWrapping="Wrap"/>
+				</WrapPanel>
+
+			</Grid>
+
+			<Grid Grid.Column="1" RowDefinitions="*,Auto">
+				<Border BorderBrush="#303030" BorderThickness="1,0,0,0">
+					<ScrollViewer>
+						<StackPanel Margin="8" Spacing="6">
+
+							<TextBlock x:Name="lblNoSelection" Text="Select a track or event."
+									   Foreground="#555" FontStyle="Italic" FontSize="11"/>
+
+							<StackPanel x:Name="panelTrackProps" IsVisible="False" Spacing="4">
+								<TextBlock Text="TRACK" FontSize="9" FontWeight="SemiBold" Foreground="#666" LetterSpacing="1"/>
+								<TextBox x:Name="txtActorName" FontSize="11" TextChanged="ActorName_TextChanged"/>
+								<Button Content="Delete Track" FontSize="11" Click="DeleteTrack_Click"/>
+							</StackPanel>
+
+							<Separator x:Name="sepProps" IsVisible="False" Margin="0,2"/>
+
+							<StackPanel x:Name="panelEventProps" IsVisible="False" Spacing="4">
+								<TextBlock Text="EVENT" FontSize="9" FontWeight="SemiBold" Foreground="#666" LetterSpacing="1"/>
+
+								<Grid ColumnDefinitions="72,*">
+									<Label Content="Type:" VerticalAlignment="Center" FontSize="11"/>
+									<ComboBox Grid.Column="1" x:Name="cmbEventType" FontSize="11"
+											  SelectionChanged="EventType_SelectionChanged">
+										<ComboBoxItem>LookAt</ComboBoxItem>
+										<ComboBoxItem>PlayMorph</ComboBoxItem>
+										<ComboBoxItem>PlayGesture</ComboBoxItem>
+										<ComboBoxItem>EntityIO</ComboBoxItem>
+									</ComboBox>
+								</Grid>
+
+								<Grid ColumnDefinitions="72,*">
+									<Label x:Name="lblTarget" Content="Target:" VerticalAlignment="Center" FontSize="11"/>
+									<TextBox Grid.Column="1" x:Name="txtTarget" FontSize="11" TextChanged="Target_TextChanged"/>
+								</Grid>
+
+								<Grid x:Name="rowData1" ColumnDefinitions="72,*">
+									<Label x:Name="lblData1" Content="Input:" VerticalAlignment="Center" FontSize="11"/>
+									<TextBox Grid.Column="1" x:Name="txtData1" FontSize="11" TextChanged="Data1_TextChanged"/>
+								</Grid>
+
+								<Grid x:Name="rowData2" ColumnDefinitions="72,*">
+									<Label x:Name="lblData2" Content="Parameter:" VerticalAlignment="Center" FontSize="11"/>
+									<TextBox Grid.Column="1" x:Name="txtData2" FontSize="11" TextChanged="Data2_TextChanged"/>
+								</Grid>
+
+								<Grid ColumnDefinitions="72,*">
+									<Label Content="Time (s):" VerticalAlignment="Center" FontSize="11"/>
+									<TextBox Grid.Column="1" x:Name="txtEvtTime" FontSize="11" TextChanged="EvtTime_TextChanged"/>
+								</Grid>
+
+								<Button Content="Delete Event" FontSize="11" Click="DeleteEvent_Click"/>
+							</StackPanel>
+
+						</StackPanel>
+					</ScrollViewer>
+				</Border>
+
+				<Button Grid.Row="1" Content="+ Add Track" FontSize="11" Margin="8,4" Click="AddTrack_Click"/>
+			</Grid>
+
+		</Grid>
+	</Grid>
+</UserControl>

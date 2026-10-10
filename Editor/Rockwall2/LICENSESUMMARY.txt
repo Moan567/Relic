@@ -1,0 +1,403 @@
+MIT License
+  ALLOWS:  Use, copy, modify, merge, publish, distribute, sublicense, sell
+  REQUIRES: Include original copyright notice and license text in copies
+  PROHIBITS: Holding authors liable for damages
+  USED BY: Avalonia, AvaloniaInside.MonoGame, CommunityToolkit.Mvvm,
+           DefaultUnDo, Lovebirb.MonoGame.SkinnedMeshImporter,
+           MessageBox.Avalonia, MessagePack, MessagePack.Attributeless,
+           MonoGame.Extended, Newtonsoft.Json, SharpHook
+
+Microsoft Public License (Ms-PL)
+  ALLOWS:  Use, copy, modify, distribute (source and compiled); royalty-free
+  REQUIRES: Retain all copyright/patent/trademark notices; include Ms-PL
+            with any source distribution
+  PROHIBITS: Using contributor names/logos/trademarks; distributing compiled
+             code under a conflicting license
+  USED BY: MonoGame.Content.Builder.Task, MonoGame.Framework.Content.Pipeline,
+           MonoGame.Framework.DesktopGL
+
+zlib/libpng License
+  ALLOWS:  Use in commercial applications; alter and redistribute freely
+  REQUIRES: Do not misrepresent origin; mark altered versions as changed;
+            retain this notice in distributions
+  PROHIBITS: Claiming you wrote the original software
+  USED BY: FontStashSharp.MonoGame
+
+--------------------------------------------------------------------------------
+DETAILED LIBRARY ENTRIES
+--------------------------------------------------------------------------------
+
+1. AVALONIA
+   Packages:  Avalonia, Avalonia.Desktop, Avalonia.Themes.Fluent,
+              Avalonia.Fonts.Inter, Avalonia.Diagnostics
+   Version:   11.3.12
+   License:   MIT License
+   Copyright: AvaloniaUI OÜ, All Rights Reserved
+   Homepage:  https://avaloniaui.net
+
+   What it is:
+     Avalonia is a cross-platform UI framework for .NET, comparable to WPF
+     but running on Windows, macOS, and Linux. It uses XAML for layout and
+     supports a wide range of controls, theming, and data binding.
+
+     The packages used are:
+       Avalonia              - Core framework
+       Avalonia.Desktop      - Desktop platform support
+       Avalonia.Themes.Fluent- Microsoft Fluent Design theme
+       Avalonia.Fonts.Inter  - Bundled Inter font family
+       Avalonia.Diagnostics  - Developer tools (Debug build only)
+
+   What you CAN do:
+     - Use in commercial and non-commercial projects freely
+     - Modify, distribute, and sublicense
+
+   What you MUST do:
+     - Include the MIT copyright notice and license text in distributions
+
+   What you CANNOT do:
+     - Hold AvaloniaUI OÜ liable for any damages
+
+   Note: Avalonia Diagnostics is set to Debug-only in this project via
+   IncludeAssets/PrivateAssets conditions in the .csproj and will NOT
+   be included in Release builds. No additional licensing concern there.
+
+   Note on Avalonia Accelerate: Avalonia's core framework is and will remain
+   MIT licensed. "Accelerate" is optional premium tooling (visual designer,
+   advanced controls) and is NOT used in this project.
+
+   Warranty:
+     Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+2. AVALONIASIDE.MONOGAME
+   Package:   AvaloniaInside.MonoGame
+   Version:   1.0.2
+   License:   MIT License
+   Copyright: AvaloniaInside contributors
+   Homepage:  https://github.com/AvaloniaInside/AvaloniaInside.MonoGame
+
+   What it is:
+     Provides a MonoGameControl for Avalonia that lets you embed a MonoGame
+     Game instance directly into an Avalonia XAML view. Used to host the
+     3D/game viewport inside the editor UI.
+
+   What you CAN / MUST do / CANNOT do:
+     See MIT License description above. Standard MIT terms apply.
+
+   Warranty:
+     Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+3. COMMUNITYTOOLKIT.MVVM
+   Package:   CommunityToolkit.Mvvm
+   Version:   8.4.2
+   License:   MIT License
+   Copyright: .NET Foundation and Contributors
+   Homepage:  https://github.com/CommunityToolkit/dotnet
+
+   What it is:
+     The official Microsoft MVVM Toolkit, part of the .NET Community Toolkit.
+     It provides ObservableObject, RelayCommand, WeakReferenceMessenger, IoC
+     helpers, and source generators for reducing MVVM boilerplate. It is
+     maintained by Microsoft and used in the Microsoft Store app.
+
+   What you CAN / MUST do / CANNOT do:
+     See MIT License description above. Standard MIT terms apply.
+
+   Warranty:
+     Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+4. DEFAULTUNDO
+   Package:   DefaultUnDo
+   Version:   2.1.0
+   License:   MIT License
+   Copyright: Paillat Laszlo (Doraku)
+   Homepage:  https://github.com/Doraku/DefaultUnDo
+
+   What it is:
+     A lightweight undo/redo library built on the Command pattern. Provides
+     UnDoManager with Do/Undo/Redo support and collection extension methods
+     to make integrating undo history into editors easy.
+
+   What you CAN / MUST do / CANNOT do:
+     See MIT License description above. Standard MIT terms apply.
+
+   Warranty:
+     Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+5. FONTSTASHSHARP.MONOGAME
+   Package:   FontStashSharp.MonoGame
+   Version:   1.5.4
+   License:   zlib/libpng License
+   Copyright: Original FontStash authors; FontStashSharp contributors
+   Homepage:  https://github.com/rds1983/FontStashSharp
+
+   What it is:
+     A font rendering library for .NET that supports TrueType fonts and
+     texture atlas generation. The MonoGame variant integrates directly with
+     MonoGame's SpriteBatch and content pipeline.
+
+   What you CAN do:
+     - Use freely in commercial applications
+     - Alter and redistribute freely
+
+   What you MUST do:
+     - Not misrepresent the origin of the software
+     - Clearly mark altered versions as having been changed
+     - Retain the license notice in source distributions
+
+   What you CANNOT do:
+     - Claim that you wrote the original software
+
+   Warranty:
+     Provided "as-is," with no liability for damages from use.
+
+--------------------------------------------------------------------------------
+
+6. LOVEBIRB.MONOGAME.SKINNEDMESHIMPORTER
+   Package:   Lovebirb.MonoGame.SkinnedMeshImporter
+   Version:   1.0.4
+   License:   MIT License
+   Copyright: 2021 Lovebirb
+   Homepage:  https://github.com/cpt-max/MonoGame-Shader-Samples
+
+   What it is:
+     A MonoGame content pipeline extension for importing skinned (rigged and
+     animated) 3D meshes, enabling skeletal animation support in MonoGame
+     projects.
+
+   What you CAN / MUST do / CANNOT do:
+     See MIT License description above. Standard MIT terms apply.
+
+   Warranty:
+     Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+7. MESSAGEBOX.AVALONIA
+   Package:   MessageBox.Avalonia
+   Version:   3.3.1.1
+   License:   MIT License
+   Copyright: AvaloniaCommunity contributors
+   Homepage:  https://github.com/AvaloniaCommunity/MessageBox.Avalonia
+
+   What it is:
+     A community-built message box dialog library for Avalonia, since Avalonia
+     does not include a native MessageBox. Supports standard, custom, and
+     hyperlink-style dialogs across all Avalonia platforms.
+
+   What you CAN / MUST do / CANNOT do:
+     See MIT License description above. Standard MIT terms apply.
+
+   Warranty:
+     Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+8. MESSAGEPACK
+   Package:   MessagePack
+   Version:   3.1.4
+   License:   MIT License
+   Copyright: 2017 Yoshifumi Kawai and contributors
+   Homepage:  https://github.com/MessagePack-CSharp/MessagePack-CSharp
+
+   What it is:
+     An extremely fast binary serialization library for C#. Used for compact
+     and efficient serialization of data structures, such as map files or
+     networked data. Significantly faster and smaller than JSON.
+
+   What you CAN / MUST do / CANNOT do:
+     See MIT License description above. Standard MIT terms apply.
+
+   Warranty:
+     Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+9. MESSAGEPACK.ATTRIBUTELESS
+   Package:   MessagePack.Attributeless
+   Version:   1.0.1
+   License:   MIT License
+   Copyright: MessagePack.Attributeless contributors
+   Homepage:  https://github.com/y2k/MessagePack.Attributeless
+
+   What it is:
+     An extension for MessagePack that allows serialization of types without
+     needing to annotate every class and property with MessagePack attributes.
+     Useful for serializing third-party or plain data types.
+
+   What you CAN / MUST do / CANNOT do:
+     See MIT License description above. Standard MIT terms apply.
+
+   Warranty:
+     Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+10. MONOGAME.CONTENT.BUILDER.TASK
+    Package:   MonoGame.Content.Builder.Task
+    Version:   3.8.4.1
+    License:   Microsoft Public License (Ms-PL)
+    Copyright: 2009-2026 MonoGame Foundation, Inc
+    Homepage:  https://www.monogame.net
+
+    What it is:
+      An MSBuild task that invokes the MonoGame Content Builder (MGCB) during
+      the build process to compile game assets such as textures, models,
+      sounds, and shaders into MonoGame's binary .xnb format.
+
+    What you CAN do:
+      - Use in commercial and non-commercial projects royalty-free
+      - Modify and distribute
+
+    What you MUST do:
+      - Retain all copyright and attribution notices
+      - Include a copy of the Ms-PL with any source distribution
+
+    What you CANNOT do:
+      - Use MonoGame Foundation names or trademarks
+      - Distribute compiled output under a license conflicting with Ms-PL
+
+    Warranty:
+      Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+11. MONOGAME.EXTENDED
+    Package:   MonoGame.Extended
+    Version:   5.5.0
+    License:   MIT License
+    Copyright: craftworkgames and contributors
+    Homepage:  https://github.com/craftworkgames/MonoGame.Extended
+
+    What it is:
+      A suite of utility libraries that extend MonoGame with common game
+      development needs including camera systems, collision detection, Tiled
+      map support, sprite animations, entity-component systems, and more.
+
+    What you CAN / MUST do / CANNOT do:
+      See MIT License description above. Standard MIT terms apply.
+
+    Warranty:
+      Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+12. MONOGAME.FRAMEWORK.CONTENT.PIPELINE
+    Package:   MonoGame.Framework.Content.Pipeline
+    Version:   3.8.4.1
+    License:   Microsoft Public License (Ms-PL)
+    Copyright: 2009-2026 MonoGame Foundation, Inc
+    Homepage:  https://www.monogame.net
+
+    What it is:
+      The MonoGame Content Pipeline framework. Provides the importers,
+      processors, and writers that convert raw asset files (PNG, FBX, WAV,
+      etc.) into compiled .xnb files usable at runtime by MonoGame.
+
+    What you CAN / MUST do / CANNOT do:
+      See Ms-PL description in entry 10 above. Same terms apply.
+
+    Warranty:
+      Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+13. MONOGAME.FRAMEWORK.DESKTOPGL
+    Package:   MonoGame.Framework.DesktopGL
+    Version:   3.8.4.1
+    License:   Microsoft Public License (Ms-PL)
+    Copyright: 2009-2026 MonoGame Foundation, Inc
+    Homepage:  https://www.monogame.net
+
+    What it is:
+      The core MonoGame runtime for desktop platforms using OpenGL. Provides
+      the Game, GraphicsDevice, SpriteBatch, content loading, and all other
+      fundamental MonoGame APIs for building and running desktop games.
+
+    What you CAN / MUST do / CANNOT do:
+      See Ms-PL description in entry 10 above. Same terms apply.
+
+    Warranty:
+      Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+14. NEWTONSOFT.JSON
+    Package:   Newtonsoft.Json
+    Version:   13.0.4
+    License:   MIT License
+    Copyright: 2007 James Newton-King
+    Homepage:  https://www.newtonsoft.com/json
+
+    What it is:
+      The most widely-used JSON serialization and deserialization library for
+      .NET. Used to read and write JSON data such as project files, settings,
+      and configuration.
+
+    What you CAN / MUST do / CANNOT do:
+      See MIT License description above. Standard MIT terms apply.
+
+    Warranty:
+      Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+
+15. SHARPHOOK
+    Package:   SharpHook
+    Version:   7.1.1
+    License:   MIT License
+    Copyright: Anatoliy Pylypchuk (TolikPylypchuk) and contributors
+    Homepage:  https://github.com/TolikPylypchuk/SharpHook
+
+    What it is:
+      A cross-platform global keyboard and mouse hook library for .NET. It
+      wraps libuiohook and provides both low-level native access and
+      high-level event-driven interfaces for capturing system-wide input
+      events regardless of which window is focused. Also supports input
+      simulation and text entry simulation.
+
+    What you CAN / MUST do / CANNOT do:
+      See MIT License description above. Standard MIT terms apply.
+
+    Note: SharpHook depends on libuiohook, a native C library. libuiohook is
+    licensed under the LGPL v3. Because SharpHook uses it via dynamic linking
+    (P/Invoke), this does NOT affect your project's license. You are simply
+    a user of the binary, not a distributor of modified libuiohook source.
+    The libuiohook binaries are bundled inside the SharpHook NuGet package.
+
+    Warranty:
+      Provided "as-is," without warranty of any kind.
+
+--------------------------------------------------------------------------------
+GENERAL NOTES
+--------------------------------------------------------------------------------
+
+1. All MIT: The vast majority of this project's dependencies use the MIT
+   License.
+
+2. MonoGame (Ms-PL): The three MonoGame packages use the Ms-PL, which is
+   also permissive and commercial-friendly.
+
+3. FontStashSharp (zlib): The zlib license is one of the simplest and most
+   permissive licenses that exists.
+
+4. Avalonia Diagnostics note: This package is correctly excluded from
+   Release builds in your .csproj.
+
+5. SharpHook / libuiohook note: libuiohook (LGPL v3) is dynamically linked
+   by SharpHook.
+
+6. "As-is" warranty: Every library in this project is provided without any
+   express or implied warranty. Authors are not liable for any damages
+   arising from use of their software.
+
+7. Trademarks: No license here grants permission to use the names, logos,
+   or trademarks of the original authors or organizations to endorse or
+   promote your product.

@@ -1,0 +1,823 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:colorPicker="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.ColorPicker"
+			 xmlns:vm="clr-namespace:Rockwall2.ViewModels.Editor"
+             xmlns:monoGame="clr-namespace:AvaloniaInside.MonoGame"
+             xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+             mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="900"
+             x:Class="Rockwall2.ModelEditor">
+
+	<UserControl.Background>
+		<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+			<GradientStop Offset="0" Color="#101010"/>
+			<GradientStop Offset="1" Color="#202020"/>
+		</LinearGradientBrush>
+	</UserControl.Background>
+
+	<Design.DataContext>
+		<vm:ModelEditorViewModel/>
+	</Design.DataContext>
+
+	<UserControl.Styles>
+		<Style Selector="Label">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="10.5"/>
+		</Style>
+
+		<Style Selector="TextBlock">
+			<Setter Property="FontSize" Value="11"/>
+		</Style>
+
+		<Style Selector="Button">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="6,1"/>
+			<Setter Property="MinHeight" Value="20"/>
+			<Setter Property="Height" Value="20"/>
+		</Style>
+
+		<Style Selector="TextBox">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="4,1"/>
+			<Setter Property="MinHeight" Value="20"/>
+		</Style>
+
+		<Style Selector="ComboBox">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="4,1"/>
+			<Setter Property="MinHeight" Value="20"/>
+		</Style>
+
+		<Style Selector="ComboBoxItem">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="4,2"/>
+			<Setter Property="MinHeight" Value="18"/>
+		</Style>
+
+		<Style Selector="ListBoxItem">
+			<Setter Property="Padding" Value="4,1"/>
+			<Setter Property="MinHeight" Value="18"/>
+		</Style>
+
+		<Style Selector="CheckBox">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="MinHeight" Value="18"/>
+		</Style>
+
+		<Style Selector="TabItem">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Padding" Value="8,3"/>
+		</Style>
+
+		<Style Selector="TreeViewItem">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="MinHeight" Value="18"/>
+		</Style>
+
+		<Style Selector="GridSplitter">
+			<Setter Property="Background" Value="#303030"/>
+		</Style>
+	</UserControl.Styles>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" MinHeight="200"/>
+			<RowDefinition Height="3"/>
+			<RowDefinition Height="260" MinHeight="160"/>
+		</Grid.RowDefinitions>
+
+		<!-- ============================ Top region ============================ -->
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="190" MinWidth="140"/>
+				<ColumnDefinition Width="3"/>
+				<ColumnDefinition Width="*" MinWidth="200"/>
+				<ColumnDefinition Width="3"/>
+				<ColumnDefinition Width="210" MinWidth="160"/>
+			</Grid.ColumnDefinitions>
+
+			<Border x:Name="boneTreeBorder" Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#303030">
+				<Grid RowDefinitions="*,3,*">
+
+					<Grid Grid.Row="0" RowDefinitions="Auto,*">
+						<Border Grid.Row="0" Background="#252525" BorderBrush="#303030" BorderThickness="0,0,0,1">
+							<StackPanel Orientation="Horizontal" Margin="4,2" Spacing="4">
+								<Image x:Name="boneSectionIcon" Width="12" Height="12"/>
+								<TextBlock Text="Bones" FontSize="10" FontWeight="SemiBold" VerticalAlignment="Center"/>
+							</StackPanel>
+						</Border>
+						<TreeView x:Name="boneViewer" Grid.Row="1" Background="Transparent"/>
+					</Grid>
+
+					<GridSplitter Grid.Row="1" Height="3" HorizontalAlignment="Stretch" ResizeDirection="Rows"/>
+
+					<Grid Grid.Row="2" RowDefinitions="Auto,*">
+						<Border Grid.Row="0" Background="#252525" BorderBrush="#303030" BorderThickness="0,0,0,1">
+							<Grid ColumnDefinitions="Auto,*,60,Auto">
+								<Image Grid.Column="0" x:Name="eyeSectionIcon" Width="12" Height="12" Margin="4,0"/>
+								<TextBlock Grid.Column="1" Text="Eyes" FontSize="10" FontWeight="SemiBold" Padding="4,2" VerticalAlignment="Center"/>
+								<Button Grid.Column="3" x:Name="btnAddEye" Width="20" Height="20" Margin="2" Click="AddEye_Click">
+									<Image x:Name="addEyeIcon" Width="12" Height="12"/>
+								</Button>
+								<ToggleButton Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" FontSize="10" x:Name="btnFaceCam" Width="60" Height="20" Margin="2" Click="FaceMe_Click" IsChecked="true">
+									Face me!
+								</ToggleButton>
+							</Grid>
+						</Border>
+						<TreeView x:Name="eyeViewer" Grid.Row="1" Background="Transparent"/>
+					</Grid>
+
+				</Grid>
+			</Border>
+
+			<GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+			<Panel Grid.Column="2">
+				<monoGame:MonoGameControl
+				  x:DataType="vm:ModelEditorViewModel"
+				  Scene="{Binding Scene}"
+				  x:Name="gameControl"/>
+				<controls:ChoreoDirector x:Name="choreoDirector" IsVisible="False"/>
+			</Panel>
+
+			<GridSplitter Grid.Column="3" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+			<Border x:Name="rightPanelBorder" Grid.Column="4" BorderThickness="1,0,0,0" BorderBrush="#303030">
+				<ScrollViewer HorizontalScrollBarVisibility="Disabled">
+					<StackPanel Margin="3">
+
+						<Border x:Name="bonePanelBorder" BorderBrush="#303030" BorderThickness="1" Margin="0,3,0,0">							
+							<StackPanel>
+								<TextBlock Text="Bone Settings" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+								<StackPanel x:Name="bonePanel" IsEnabled="False" Margin="3" Spacing="1">
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Physics Parent:"/>
+										<ComboBox Grid.Column="1" x:Name="bonePhysicsParent"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Bounds Center:"/>
+										<TextBox Grid.Column="1" x:Name="boneBoundsCenter" TextChanged="BoneBoundsCenter_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Bounds Size:"/>
+										<TextBox Grid.Column="1" x:Name="boneBoundsSize" TextChanged="BoneBoundsSize_TextChanged"/>
+									</Grid>
+
+									<Separator/>
+									<Label FontWeight="SemiBold" Content="Joint Constraints" Padding="2,0" FontSize="10"/>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Normal Cone (rad):"/>
+										<TextBox Grid.Column="1" x:Name="boneJointNormal" TextChanged="BoneJointNormal_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Plane Cone (rad):"/>
+										<TextBox Grid.Column="1" x:Name="boneJointPlane" TextChanged="BoneJointPlane_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Twist Min (rad):"/>
+										<TextBox Grid.Column="1" x:Name="boneJointTwistMin" TextChanged="BoneJointTwistMin_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Twist Max (rad):"/>
+										<TextBox Grid.Column="1" x:Name="boneJointTwistMax" TextChanged="BoneJointTwistMax_TextChanged"/>
+									</Grid>
+
+									<Separator/>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="3">
+										<Button x:Name="btnCopyJoint"  Content="Copy Joint"  Width="72" Click="BtnCopyJoint_Click"/>
+										<Button x:Name="btnPasteJoint" Content="Paste Joint" Width="72" Click="BtnPasteJoint_Click" IsEnabled="False"/>
+									</StackPanel>
+									<Button x:Name="btnMirrorJoint" Content="Mirror to Symmetric Bone" Width="144" HorizontalAlignment="Center" Click="BtnMirrorJoint_Click"/>
+									<TextBlock x:Name="lblMirrorStatus" FontSize="9.5" Foreground="#888888" HorizontalAlignment="Center"/>
+
+								</StackPanel>
+							</StackPanel>
+						</Border>
+
+						<Border x:Name="eyePanelBorder" BorderBrush="#303030" BorderThickness="1" Margin="0,3,0,0" IsVisible="False">
+							<StackPanel>
+								<TextBlock Text="Eye Settings" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+								<StackPanel x:Name="eyePanel" Margin="3" Spacing="1">
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Name:"/>
+										<TextBox Grid.Column="1" x:Name="eyeName" TextChanged="EyeName_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Head Bone:"/>
+										<ComboBox Grid.Column="1" x:Name="eyeHeadBone" SelectionChanged="EyeHeadBone_SelectionChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Radius:"/>
+										<TextBox Grid.Column="1" x:Name="eyeRadius" TextChanged="EyeRadius_TextChanged"/>
+									</Grid>
+
+									<Separator/>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="3">
+										<Button x:Name="btnEyeSetup" Content="Setup" Width="70" Click="BtnEyeSetup_Click"/>
+										<Button x:Name="btnEyeDelete" Classes="danger" Content="Delete" Width="70" Click="BtnEyeDelete_Click"/>
+									</StackPanel>
+									<TextBlock x:Name="lblEyeSetupHint" FontSize="9.5" Foreground="#888888" HorizontalAlignment="Center"/>
+
+								</StackPanel>
+							</StackPanel>
+						</Border>
+						<Border x:Name="eyeTexturePanelBorder" BorderBrush="#303030" BorderThickness="1" Margin="0,3,0,0">
+							<StackPanel>
+								<TextBlock Text="Eye Texture" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+								<StackPanel x:Name="eyeTexturePanel" Margin="3" Spacing="2">
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Seed:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexSeed" TextChanged="EyeTexSeed_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Sclera Color:"/>
+										<colorPicker:ColorPicker Grid.Column="1" x:Name="eyeTexScleraColor" ColorChanged="EyeTexScleraColor_ColorChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Vessel Color:"/>
+										<colorPicker:ColorPicker Grid.Column="1" x:Name="eyeTexVesselColor" ColorChanged="EyeTexVesselColor_ColorChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Iris Color:"/>
+										<colorPicker:ColorPicker Grid.Column="1" x:Name="eyeTexIrisColor" ColorChanged="EyeTexIrisColor_ColorChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Iris Rim Color:"/>
+										<colorPicker:ColorPicker Grid.Column="1" x:Name="eyeTexIrisRimColor" ColorChanged="EyeTexIrisRimColor_ColorChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Iris Size:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexIrisSize" TextChanged="EyeTexIrisSize_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Pupil Color:"/>
+										<colorPicker:ColorPicker Grid.Column="1" x:Name="eyeTexPupilColor" ColorChanged="EyeTexPupilColor_ColorChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Pupil Base Size:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexPupilBaseSize" TextChanged="EyeTexPupilBaseSize_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Pupil Feather:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexPupilFeather" TextChanged="EyeTexPupilFeather_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Fiber Density:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexFiberDensity" TextChanged="EyeTexFiberDensity_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Vein Density:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexVeinDensity" TextChanged="EyeTexVeinDensity_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Vein Distortion:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexVeinDistortion" TextChanged="EyeTexVeinDistortion_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Iris Fleck Color:"/>
+										<colorPicker:ColorPicker Grid.Column="1" x:Name="eyeTexIrisFleckColor" ColorChanged="EyeTexIrisFleckColor_ColorChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Iris Fleck Amount:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexIrisFleckAmount" TextChanged="EyeTexIrisFleckAmount_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Normal Strength:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexNormalStrength" TextChanged="EyeTexNormalStrength_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Cornea Bulge:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexCorneaBulge" TextChanged="EyeTexCorneaBulge_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Sclera Specular:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexScleraSpecular" TextChanged="EyeTexScleraSpecular_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Iris Specular:"/>
+										<TextBox Grid.Column="1" x:Name="eyeTexIrisSpecular" TextChanged="EyeTexIrisSpecular_TextChanged"/>
+									</Grid>
+
+									<Separator/>
+									<Button x:Name="btnRegenerateEyeTexture" Content="Regenerate" HorizontalAlignment="Center" Width="100" Click="BtnRegenerateEyeTexture_Click"/>
+
+								</StackPanel>
+							</StackPanel>
+						</Border>
+						
+						<Border BorderBrush="#303030" BorderThickness="1" Margin="0,3,0,0">
+							<StackPanel>
+								<TextBlock Text="Bone Attachments" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+								<StackPanel x:Name="attachmentAddPanel" IsEnabled="False" Margin="3">
+									<Grid RowDefinitions="*,24" MinHeight="96">
+										<TreeView x:Name="attachmentList"/>
+										<StackPanel Grid.Row="1" Orientation="Horizontal">
+											<Button Width="40" Click="AddAttachment_Click">Add</Button>
+											<Button Width="40" HorizontalAlignment="Right" Click="DeleteAttachment_Click">Delete</Button>
+										</StackPanel>
+									</Grid>
+								</StackPanel>
+							</StackPanel>
+						</Border>
+
+						<Border BorderBrush="#303030" BorderThickness="1" Margin="0,3,0,0">
+							<StackPanel>
+								<TextBlock Text="Attachment Settings" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+								<StackPanel x:Name="attachmentEditPanel" IsEnabled="False" Margin="3" Spacing="1">
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Name:"/>
+										<TextBox Grid.Column="1" x:Name="attachmentName" TextChanged="AttachmentName_TextChanged"/>
+									</Grid>
+
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Parent Bone:"/>
+										<ComboBox Grid.Column="1" x:Name="attachmentParent"/>
+									</Grid>
+
+									<Separator/>
+									<Label FontWeight="SemiBold" Content="Position" Padding="2,0" FontSize="10"/>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="X:"/>
+										<TextBox Grid.Column="1" x:Name="attachPosX" TextChanged="AttachPos_TextChanged"/>
+									</Grid>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Y:"/>
+										<TextBox Grid.Column="1" x:Name="attachPosY" TextChanged="AttachPos_TextChanged"/>
+									</Grid>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Z:"/>
+										<TextBox Grid.Column="1" x:Name="attachPosZ" TextChanged="AttachPos_TextChanged"/>
+									</Grid>
+
+									<Separator/>
+									<Label FontWeight="SemiBold" Content="Rotation (degrees)" Padding="2,0" FontSize="10"/>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Pitch:"/>
+										<TextBox Grid.Column="1" x:Name="attachRotX" TextChanged="AttachRot_TextChanged"/>
+									</Grid>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Yaw:"/>
+										<TextBox Grid.Column="1" x:Name="attachRotY" TextChanged="AttachRot_TextChanged"/>
+									</Grid>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Roll:"/>
+										<TextBox Grid.Column="1" x:Name="attachRotZ" TextChanged="AttachRot_TextChanged"/>
+									</Grid>
+
+									<Separator/>
+									<Label FontWeight="SemiBold" Content="Preview Model" Padding="2,0" FontSize="10"/>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="3">
+										<Button Width="90" Click="BtnLoadPreview_Click">Load Preview</Button>
+										<Button Width="90" Click="BtnClearPreview_Click">Clear Preview</Button>
+									</StackPanel>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Preview Attach:"/>
+										<ComboBox Grid.Column="1" x:Name="previewAttachmentPicker" SelectionChanged="PreviewAttachmentPicker_SelectionChanged"/>
+									</Grid>
+
+								</StackPanel>
+							</StackPanel>
+						</Border>
+
+
+
+						<Border BorderBrush="#303030" BorderThickness="1" Margin="0,3,0,0">
+							<StackPanel>
+								<TextBlock Text="IK Chains" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+								<StackPanel x:Name="ikChainListPanel" Margin="3">
+									<Grid RowDefinitions="*,24" MinHeight="80">
+										<ListBox x:Name="ikChainList" SelectionChanged="IkChainList_SelectionChanged"/>
+										<StackPanel Grid.Row="1" Orientation="Horizontal">
+											<Button Width="40" Click="AddIkChain_Click">Add</Button>
+											<Button Width="40" HorizontalAlignment="Right" Click="DeleteIkChain_Click">Delete</Button>
+										</StackPanel>
+									</Grid>
+								</StackPanel>
+								<StackPanel x:Name="ikChainEditPanel" IsEnabled="False" Margin="3">
+									<Grid ColumnDefinitions="*,*" Margin="0,4,0,0">
+										<Label Content="Name:"/>
+										<TextBox Grid.Column="1" x:Name="ikChainName" TextChanged="IkChainName_TextChanged"/>
+									</Grid>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="End Bone:"/>
+										<Button Grid.Column="1" x:Name="ikChainEndBoneBtn" Content="(none)" Click="IkChainEndBone_Click"/>
+									</Grid>
+									<Grid ColumnDefinitions="*,*">
+										<Label Content="Role:"/>
+										<ComboBox Grid.Column="1" x:Name="ikChainRoleBox" SelectionChanged="IkChainRole_SelectionChanged">
+											<ComboBoxItem>Generic</ComboBoxItem>
+											<ComboBoxItem>Foot</ComboBoxItem>
+										</ComboBox>
+									</Grid>
+									<Separator Margin="0,4,0,0"/>
+									<Label FontWeight="SemiBold" Content="Effector Offset (local)" Padding="2,0" FontSize="10"/>
+									<Grid ColumnDefinitions="30,*,30,*,30,*">
+										<Label Content="X:"/>
+										<TextBox Grid.Column="1" x:Name="ikChainOffsetX" TextChanged="IkChainOffset_TextChanged"/>
+										<Label Grid.Column="2" Content="Y:"/>
+										<TextBox Grid.Column="3" x:Name="ikChainOffsetY" TextChanged="IkChainOffset_TextChanged"/>
+										<Label Grid.Column="4" Content="Z:"/>
+										<TextBox Grid.Column="5" x:Name="ikChainOffsetZ" TextChanged="IkChainOffset_TextChanged"/>
+									</Grid>
+									<Separator Margin="0,4,0,0"/>
+									<Label FontWeight="SemiBold" Content="Local Orientation Offset (degrees, foot only)" Padding="2,0" FontSize="10"/>
+									<Grid ColumnDefinitions="30,*,30,*,30,*">
+										<Label Content="Pitch:"/>
+										<TextBox Grid.Column="1" x:Name="ikChainOrientPitch" TextChanged="IkChainOrientation_TextChanged"/>
+										<Label Grid.Column="2" Content="Yaw:"/>
+										<TextBox Grid.Column="3" x:Name="ikChainOrientYaw" TextChanged="IkChainOrientation_TextChanged"/>
+										<Label Grid.Column="4" Content="Roll:"/>
+										<TextBox Grid.Column="5" x:Name="ikChainOrientRoll" TextChanged="IkChainOrientation_TextChanged"/>
+									</Grid>
+								</StackPanel>
+							</StackPanel>
+						</Border>
+
+					</StackPanel>
+				</ScrollViewer>
+			</Border>
+		</Grid>
+
+		<GridSplitter Grid.Row="1" Height="3" HorizontalAlignment="Stretch" ResizeDirection="Rows"/>
+
+		<Border x:Name="bottomTabsBorder" Grid.Row="2" BorderThickness="0,1,0,0" BorderBrush="#303030">
+			<TabControl x:Name="viewTabs" SelectionChanged="ViewTabs_SelectionChanged">
+
+				<!-- Bodygroups -->
+				<TabItem Header="Bodygroups">
+					<Grid Background="#202020" ColumnDefinitions="*,3,*,3,*">
+
+						<ListBox Grid.Column="0"
+								 x:Name="viewBodygroupBox"
+								 SelectionChanged="BodygroupList_SelectionChanged"
+								 Background="#111"
+								 Margin="4">
+							<ListBox.ItemTemplate>
+								<DataTemplate x:DataType="vm:BodygroupViewModel">
+									<TextBlock Text="{Binding name}"/>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+
+						<GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+						<ScrollViewer Grid.Column="2" Margin="4">
+							<StackPanel Orientation="Vertical" Spacing="6">
+								<StackPanel Orientation="Horizontal" Spacing="3">
+									<Label Content="Bodygroup Name:"/>
+									<TextBox Width="160" x:Name="bodygroupName" TextChanged="Bodygroup_TextChanged"/>
+								</StackPanel>
+								<StackPanel Orientation="Horizontal" Spacing="3">
+									<Label Content="Bodygroup Material:"/>
+									<Button Width="140" Content="Browse..." Click="Browse_Click"/>
+								</StackPanel>
+								<StackPanel Orientation="Horizontal" Spacing="3">
+									<Label Content="Is Eye:"/>
+									<CheckBox x:Name="eyetoggle" Width="140" Click="IsEye_Click"/>
+								</StackPanel>
+
+								<Separator Margin="0,8,0,4"/>
+								<TextBlock Text="LOD Levels (model-wide)" FontSize="10" FontWeight="SemiBold"/>
+								<Grid ColumnDefinitions="*,50" MinHeight="60" MaxHeight="90">
+									<ListBox Grid.Column="0" x:Name="lodLevelsBox" SelectionChanged="LodLevelsBox_SelectionChanged"/>
+									<StackPanel Grid.Column="1" Spacing="2">
+										<Button Width="46" Click="AddLodLevel_Click">Add</Button>
+										<Button Width="46" Classes="danger" Click="RemoveLodLevel_Click">Del</Button>
+									</StackPanel>
+								</Grid>
+								<StackPanel Orientation="Horizontal" Spacing="3">
+									<Label Content="Distance:"/>
+									<TextBox Width="80" x:Name="lodLevelDistanceBox" IsEnabled="False" TextChanged="LodLevelDistance_TextChanged"/>
+								</StackPanel>
+
+								<Separator Margin="0,8,0,4"/>
+								<TextBlock Text="This Bodygroup's LOD Overrides" FontSize="10" FontWeight="SemiBold"/>
+								<StackPanel x:Name="bodygroupLodStack" Spacing="2"/>
+
+							</StackPanel>
+						</ScrollViewer>
+
+						<GridSplitter Grid.Column="3" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+						<ScrollViewer Grid.Column="4" Margin="4" Background="#111">
+							<StackPanel x:Name="morphStack"/>
+						</ScrollViewer>
+
+					</Grid>
+				</TabItem>
+
+				<!-- Animations -->
+				<TabItem Header="Animations">
+					<Grid Background="#202020" ColumnDefinitions="170,3,*,3,190">
+
+						<DockPanel Grid.Column="0">
+							<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
+								<Button Width="54" Classes="danger" Click="BtnDeleteAnimation_Click">Delete</Button>
+							</StackPanel>
+							<ListBox x:Name="viewAnimationBox"
+									 SelectionChanged="AnimationList_SelectionChanged"
+									 Background="Black">
+								<ListBox.ItemTemplate>
+									<DataTemplate x:DataType="vm:AnimDefViewModel">
+										<TextBlock Text="{Binding name}"/>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</DockPanel>
+
+						<GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+						<Grid Grid.Column="2" RowDefinitions="Auto,Auto,10,*">
+
+							<WrapPanel x:Name="animPropsHost" Margin="3,2" Orientation="Horizontal"/>
+
+							<WrapPanel Grid.Row="1" Margin="3,2" Orientation="Horizontal">
+								<Button Classes="transport" Width="54" Click="BtnAnimPlay_Click">Play</Button>
+								<Button Classes="transport" Width="54" Click="BtnAnimPause_Click">Pause</Button>
+								<Button Classes="transport" Width="54" Click="BtnAnimStop_Click">Stop</Button>
+								<TextBlock x:Name="lblAnimFrame" Width="50" Text="0 / 0" VerticalAlignment="Center" Margin="6,0,0,0"/>
+								<Button Width="96" Margin="8,0,2,0" Click="BtnAddEvent_Click" x:Name="btnAddEvent" IsEnabled="False">+ Add Event</Button>
+								<Button Width="96" Margin="2,0" Click="BtnEditBoneMask_Click" x:Name="btnEditBoneMask" IsEnabled="False">Edit Bone Mask</Button>
+								<TextBlock Text="Root Motion:" VerticalAlignment="Center" Margin="8,0,3,0"/>
+								<WrapPanel x:Name="animRootMotionHost" Orientation="Horizontal"/>
+							</WrapPanel>
+
+							<Canvas x:Name="viewAnimationRuler"
+									Grid.Row="2"
+									Background="#111111"/>
+
+							<Canvas x:Name="viewAnimationTimeline"
+									Grid.Row="3"
+									Background="#1E1E1E"/>
+						</Grid>
+
+						<GridSplitter Grid.Column="3" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+						<TabControl Grid.Column="4">
+							<TabItem Header="Event">
+								<ScrollViewer>
+									<StackPanel x:Name="eventPropertiesPanel" IsEnabled="False" Spacing="1" Margin="3">
+										<StackPanel x:Name="eventPropsHost"/>
+										<StackPanel x:Name="evtAttachFields">
+											<Grid ColumnDefinitions="60,*" Margin="0,1">
+												<Label Content="Attach To:"/>
+												<ComboBox Grid.Column="1" x:Name="evtAttachment" IsEditable="True"
+														  SelectionChanged="EvtAttachment_SelectionChanged"
+														  LostFocus="EvtAttachment_LostFocus"/>
+											</Grid>
+										</StackPanel>
+										<Separator/>
+										<Button x:Name="btnDeleteEvent" Classes="danger" HorizontalAlignment="Right"
+												Width="66" Click="BtnDeleteEvent_Click">Delete Event</Button>
+									</StackPanel>
+								</ScrollViewer>
+							</TabItem>
+							<TabItem Header="IK Event">
+								<ScrollViewer>
+									<StackPanel Margin="3" Spacing="2">
+										<Grid RowDefinitions="*,24" MinHeight="60">
+											<ListBox x:Name="ikEventList" SelectionChanged="IkEventList_SelectionChanged"/>
+											<StackPanel Grid.Row="1" Orientation="Horizontal">
+												<Button Width="40" Click="AddIkEvent_Click">Add</Button>
+												<Button Width="40" HorizontalAlignment="Right" Classes="danger" Click="DeleteIkEvent_Click">Del</Button>
+											</StackPanel>
+										</Grid>
+										<Grid ColumnDefinitions="70,*">
+											<Label Content="Chain:"/>
+											<ComboBox Grid.Column="1" x:Name="ikEventChainBox" SelectionChanged="IkEventChain_SelectionChanged"/>
+										</Grid>
+										<StackPanel x:Name="ikEventPropsHost"/>
+										<Grid ColumnDefinitions="70,*">
+											<Label Content="Target Ref:"/>
+											<ComboBox Grid.Column="1" x:Name="ikEventTargetRef" IsEditable="True"
+													  SelectionChanged="IkEventTargetRef_SelectionChanged"
+													  LostFocus="IkEventTargetRef_LostFocus"/>
+										</Grid>
+									</StackPanel>
+								</ScrollViewer>
+							</TabItem>
+						</TabControl>
+					</Grid>
+				</TabItem>
+				<!-- Sequences (blend trees) -->
+				<TabItem Header="Sequences">
+					<Grid Background="#202020" ColumnDefinitions="170,3,*">
+
+						<DockPanel Grid.Column="0" Margin="6">
+							<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,3" Spacing="3">
+								<Button Width="54" Click="BtnNewSequence_Click">New</Button>
+								<Button Width="54" Classes="danger" Click="BtnDeleteSequence2_Click">Delete</Button>
+							</StackPanel>
+							<ListBox x:Name="viewBlendSequenceBox" SelectionChanged="BlendSequenceList_SelectionChanged">
+								<ListBox.ItemTemplate>
+									<DataTemplate x:DataType="vm:SequenceViewModel">
+										<TextBlock Text="{Binding name}" />
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</DockPanel>
+
+						<GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+						<Grid Grid.Column="2" Margin="6" RowDefinitions="Auto,*">
+
+							<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,4" Spacing="6">
+								<TextBox x:Name="blendSequenceNameBox" Width="120" TextChanged="BlendSequenceName_TextChanged"/>
+								<ComboBox x:Name="blendRootTypeBox" Width="80" SelectionChanged="BlendRootType_SelectionChanged">
+									<ComboBoxItem>Clip</ComboBoxItem>
+									<ComboBoxItem>Blend1D</ComboBoxItem>
+									<ComboBoxItem>Blend2D</ComboBoxItem>
+								</ComboBox>
+							</StackPanel>
+
+							<!-- Clip -->
+							<StackPanel Grid.Row="1" x:Name="blendClipPanel" IsVisible="False">
+								<Label Content="Animation:"/>
+								<ComboBox x:Name="blendClipAnimBox" Width="180" HorizontalAlignment="Left" SelectionChanged="BlendClipAnim_SelectionChanged"/>
+							</StackPanel>
+
+							<!-- Blend1D: param setup | sliders | editor (list + selected entry) -->
+							<Grid Grid.Row="1" x:Name="blend1DPanel" IsVisible="False" ColumnDefinitions="150,3,140,3,*">
+
+								<StackPanel Grid.Column="0">
+									<Label Content="Param Name:"/>
+									<TextBox x:Name="blend1DParamBox" TextChanged="Blend1DParam_TextChanged"/>
+									<StackPanel Orientation="Horizontal" Margin="0,6,0,0" Spacing="3">
+										<Button Width="54" Click="BtnAddBlend1DEntry_Click">Add</Button>
+										<Button Width="54" Classes="danger" Click="BtnRemoveBlend1DEntry_Click">Remove</Button>
+									</StackPanel>
+								</StackPanel>
+
+								<GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+								<Border Grid.Column="2" BorderBrush="#303030" BorderThickness="1" VerticalAlignment="Top">
+									<StackPanel>
+										<TextBlock Text="Live Preview" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+										<StackPanel x:Name="blend1DPreviewParamHost" Margin="4"/>
+									</StackPanel>
+								</Border>
+
+								<GridSplitter Grid.Column="3" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+								<Grid Grid.Column="4" ColumnDefinitions="*,3,190">
+									<ListBox Grid.Column="0" x:Name="blend1DEntryBox" MinHeight="80" SelectionChanged="Blend1DEntryList_SelectionChanged">
+										<ListBox.ItemTemplate>
+											<DataTemplate x:DataType="vm:BlendEntryViewModel">
+												<TextBlock Text="{Binding Label}" FontFamily="Consolas,monospace"/>
+											</DataTemplate>
+										</ListBox.ItemTemplate>
+									</ListBox>
+
+									<GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+									<ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Disabled">
+										<Border BorderBrush="#303030" BorderThickness="1">
+											<StackPanel>
+												<TextBlock Text="Selected Entry" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+												<StackPanel Margin="3" Spacing="1">
+													<Label Content="Value:"/>
+													<TextBox x:Name="blend1DEntryValueBox" IsEnabled="False" TextChanged="Blend1DEntryValue_TextChanged" LostFocus="Blend1DEntryValue_LostFocus"/>
+													<Label Content="Animation:" Margin="0,4,0,0"/>
+													<ComboBox x:Name="blend1DEntryAnimBox" IsEnabled="False" SelectionChanged="Blend1DEntryAnim_SelectionChanged"/>
+												</StackPanel>
+											</StackPanel>
+										</Border>
+									</ScrollViewer>
+								</Grid>
+							</Grid>
+
+							<!-- Blend2D: param setup | sliders | canvas -->
+							<Grid x:Name="blend2DPanel" Grid.Row="1" IsVisible="False" ColumnDefinitions="190,3,140,3,*">
+
+								<ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled">
+									<StackPanel Spacing="4">
+
+										<Border BorderBrush="#303030" BorderThickness="1">
+											<StackPanel>
+												<TextBlock Text="Parameters" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+												<StackPanel Margin="3" Spacing="1">
+													<Grid ColumnDefinitions="50,*">
+														<Label Content="X:"/>
+														<TextBox Grid.Column="1" x:Name="blend2DParamXBox" TextChanged="Blend2DParamX_TextChanged"/>
+													</Grid>
+													<Grid ColumnDefinitions="50,*">
+														<Label Content="Y:"/>
+														<TextBox Grid.Column="1" x:Name="blend2DParamYBox" TextChanged="Blend2DParamY_TextChanged"/>
+													</Grid>
+												</StackPanel>
+											</StackPanel>
+										</Border>
+
+										<Border BorderBrush="#303030" BorderThickness="1">
+											<StackPanel>
+												<TextBlock Text="Range" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+												<StackPanel Margin="3" Spacing="1">
+													<Label Content="X range:"/>
+													<StackPanel Orientation="Horizontal" Spacing="3">
+														<TextBox Width="62" x:Name="blend2DMinXBox" TextChanged="Blend2DRange_TextChanged"/>
+														<Label Content="to"/>
+														<TextBox Width="62" x:Name="blend2DMaxXBox" TextChanged="Blend2DRange_TextChanged"/>
+													</StackPanel>
+													<Label Content="Y range:" Margin="0,3,0,0"/>
+													<StackPanel Orientation="Horizontal" Spacing="3">
+														<TextBox Width="62" x:Name="blend2DMinYBox" TextChanged="Blend2DRange_TextChanged"/>
+														<Label Content="to"/>
+														<TextBox Width="62" x:Name="blend2DMaxYBox" TextChanged="Blend2DRange_TextChanged"/>
+													</StackPanel>
+													<CheckBox x:Name="blend2DSnapCheck" Content="Snap to grid" Margin="0,4,0,0" IsCheckedChanged="Blend2DSnap_CheckedChanged"/>
+												</StackPanel>
+											</StackPanel>
+										</Border>
+
+										<Border BorderBrush="#303030" BorderThickness="1">
+											<StackPanel>
+												<TextBlock Text="Selected Point" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+												<StackPanel Margin="3" Spacing="1">
+													<Button HorizontalAlignment="Stretch" Classes="danger" Click="BtnRemoveBlend2DEntry_Click">Remove Point</Button>
+													<Grid ColumnDefinitions="50,*" Margin="0,4,0,0">
+														<Label Content="X:"/>
+														<TextBox Grid.Column="1" x:Name="blend2DEntryXBox" IsEnabled="False" TextChanged="Blend2DEntryX_TextChanged" LostFocus="Blend2DEntryCoord_LostFocus"/>
+													</Grid>
+													<Grid ColumnDefinitions="50,*">
+														<Label Content="Y:"/>
+														<TextBox Grid.Column="1" x:Name="blend2DEntryYBox" IsEnabled="False" TextChanged="Blend2DEntryY_TextChanged" LostFocus="Blend2DEntryCoord_LostFocus"/>
+													</Grid>
+													<Label Content="Animation:" Margin="0,3,0,0"/>
+													<ComboBox HorizontalAlignment="Stretch" x:Name="blend2DEntryAnimBox" IsEnabled="False" SelectionChanged="Blend2DEntryAnim_SelectionChanged"/>
+												</StackPanel>
+											</StackPanel>
+										</Border>
+
+									</StackPanel>
+								</ScrollViewer>
+
+								<GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+								<Border Grid.Column="2" BorderBrush="#303030" BorderThickness="1" VerticalAlignment="Top">
+									<StackPanel>
+										<TextBlock Text="Live Preview" FontSize="10" FontWeight="SemiBold" Background="#252525" Padding="4,2"/>
+										<StackPanel x:Name="blend2DPreviewParamHost" Margin="4"/>
+									</StackPanel>
+								</Border>
+
+								<GridSplitter Grid.Column="3" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+								<Canvas x:Name="blend2DView" Grid.Column="4" Background="Transparent" MinWidth="180" MinHeight="180"/>
+							</Grid>
+
+						</Grid>
+
+					</Grid>
+				</TabItem>
+
+				<!-- Layer Preview -->
+				<TabItem Header="Layer Preview">
+					<Grid Background="#202020" RowDefinitions="Auto,*">
+
+						<WrapPanel Margin="4,3">
+							<Button Classes="transport" x:Name="btnPreviewPlay" Click="BtnPreviewPlay_Click">Play</Button>
+							<Button Classes="transport" x:Name="btnPreviewStop" Click="BtnPreviewStop_Click">Stop</Button>
+							<Button Width="70" Margin="8,0,2,0" Click="BtnAddPreviewLayer_Click">+ Add Layer</Button>
+							<Button Width="70" Margin="2,0" Click="BtnClearPreviewLayers_Click">Clear All</Button>
+						</WrapPanel>
+
+						<ScrollViewer Grid.Row="1">
+							<StackPanel x:Name="previewLayerStack" Margin="3"/>
+						</ScrollViewer>
+					</Grid>
+				</TabItem>
+
+			</TabControl>
+		</Border>
+	</Grid>
+</UserControl>

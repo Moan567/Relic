@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net8.0</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.0.2</Version>
+
+        <!-- Package Metadata -->
+        <PackageId>AvaloniaInside.MonoGame</PackageId>
+        <Title>AvaloniaInside.MonoGame</Title>
+        <Authors>AvaloniaInside</Authors>
+        <Company>AvaloniaInside</Company>
+        <Description>Integration of MonoGame for Avalonia - enables embedding MonoGame content in Avalonia applications</Description>
+        <Copyright>Copyright (c) 2025 AvaloniaInside</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/AvaloniaInside/AvaloniaInside.MonoGame/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/AvaloniaInside/AvaloniaInside.MonoGame/</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>monogame;avalonia;avaloniaui;game;gameengine;xna;gamedev</PackageTags>
+        <PackageReleaseNotes>MonoGame integration control for Avalonia UI</PackageReleaseNotes>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Avalonia" Version="11.3.9" />
+      <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4.1" />
+    </ItemGroup>
+
+</Project>

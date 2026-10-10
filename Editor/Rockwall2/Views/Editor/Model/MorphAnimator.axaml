@@ -1,0 +1,101 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        mc:Ignorable="d"
+        Width="900"
+        Height="300"
+        x:Class="Rockwall2.MorphAnimator"
+        Title="Morph Animator"
+        Icon="/Assets/rockwall2icon.ico"
+        Topmost="True"
+        Background="#202020"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0">
+
+  <Border BorderThickness="1" BorderBrush="#686868">
+    <DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+      <controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+                           PointerMoved="TitleBar_PointerMoved"
+                           PointerReleased="TitleBar_PointerReleased"
+                           VerticalAlignment="Top"/>
+      <Grid RowDefinitions="32,*">
+
+        <Menu>
+          <MenuItem Header="File">
+            <MenuItem Header="Open" Click="OpenMorph"/>
+            <MenuItem Header="Save" Click="SaveMorph"/>
+          </MenuItem>
+          <MenuItem Header="Tools">
+            <MenuItem Header="Auto-Extract Morphs from Audio" Click="ExtractMorph"/>
+          </MenuItem>
+        </Menu>
+
+        <Grid Margin="8" ColumnDefinitions="*,256" Grid.Row="1">
+          <Grid RowDefinitions="*,32">
+
+            <Grid RowDefinitions="Auto,14,48,*" Grid.Row="0">
+
+              <WrapPanel Height="38" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Start:" VerticalAlignment="Center" FontSize="11"
+                           Foreground="#888" Margin="4,0,2,0"/>
+                <TextBox x:Name="boxFrameStart" Width="48" FontSize="11" Text="0"
+                         TextChanged="BoxFrameStart_TextChanged"/>
+                <TextBlock Text="End:" VerticalAlignment="Center" FontSize="11"
+                           Foreground="#888" Margin="8,0,2,0"/>
+                <TextBox x:Name="boxFrameEnd" Width="48" FontSize="11" Text="300"
+                         TextChanged="BoxFrameEnd_TextChanged"/>
+                <TextBlock x:Name="lblSeqFrame" Width="80" Text="0 / 300"
+                           VerticalAlignment="Center" FontSize="11"
+                           Foreground="#888" Margin="12,0,0,0"/>
+                <Button x:Name="btnBrowseAudio" Content="Audio..." Width="70"
+                        FontSize="11" Margin="12,0,0,0" Click="BtnBrowseAudio_Click"/>
+                <TextBlock x:Name="lblAudioPath" VerticalAlignment="Center" FontSize="10"
+                           Foreground="#666" Margin="6,0,0,0" Text="No audio loaded"/>
+              </WrapPanel>
+
+              <Canvas x:Name="viewSequenceRuler" Grid.Row="1" Background="#111111"/>
+
+              <Panel Grid.Row="2">
+                <Canvas x:Name="viewWaveform" Background="#1C1C1C"/>
+                <Canvas x:Name="viewWaveformPlayhead" IsHitTestVisible="False"/>
+              </Panel>
+
+              <ScrollViewer Grid.Row="3" x:Name="timelineScroll" HorizontalScrollBarVisibility="Disabled">
+                <Panel>
+                  <Canvas x:Name="viewSequenceTimeline" Background="#1E1E1E"/>
+                  <Canvas x:Name="viewTimelinePlayhead" IsHitTestVisible="False"/>
+                </Panel>
+              </ScrollViewer>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+              <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Content="▶" Width="32" FontSize="13" Click="BtnPlay_Click"/>
+                <Button Content="■" Width="32" FontSize="13" Click="BtnStop_Click"/>
+                <Separator/>
+                <Button Width="32" FontSize="13" Click="KeyframeAdd">
+                  <Image Source="/Assets/Icons/addkey.png"/>
+                </Button>
+                <Button Width="32" FontSize="13" Click="KeyframeRemove">
+                  <Image Source="/Assets/Icons/remkey.png"/>
+                </Button>
+              </WrapPanel>
+            </Grid>
+
+          </Grid>
+          <Grid Grid.Column="1">
+            <ScrollViewer Margin="5,0,0,0" Background="#111">
+              <StackPanel x:Name="morphStack"/>
+            </ScrollViewer>
+          </Grid>
+        </Grid>
+      </Grid>
+    </DockPanel>
+  </Border>
+</Window>

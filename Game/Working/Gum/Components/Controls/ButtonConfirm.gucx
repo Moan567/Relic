@@ -84,7 +84,7 @@
     <Variable>
       <Type>ColorCategory</Type>
       <Name>FocusedIndicator.ColorCategoryState</Name>
-      <Value xsi:type="xsd:string">Warning</Value>
+      <Value xsi:type="xsd:string">PrimaryLight</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

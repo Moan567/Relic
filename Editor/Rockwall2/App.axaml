@@ -1,0 +1,296 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Rockwall2.App"
+             xmlns:local="using:Rockwall2"
+             RequestedThemeVariant="Dark">
+
+	<Application.DataTemplates>
+		<local:ViewLocator/>
+	</Application.DataTemplates>
+
+	<Application.Resources>
+		<CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
+		<CornerRadius x:Key="OverlayCornerRadius">0</CornerRadius>
+	</Application.Resources>
+
+	<Application.Styles>
+		<Style Selector="Button">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#404040"/>
+						<GradientStop Offset="1" Color="#202020"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="BorderBrush" Value="#101010"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Foreground" Value="#cccccc"/>
+		</Style>
+
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#101010"/>
+						<GradientStop Offset="1" Color="#202020"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="Button:pressed /template/ ContentPresenter">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#3A3A3A"/>
+						<GradientStop Offset="1" Color="#A0A0A0"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="Button:disabled">
+			<Setter Property="Foreground" Value="#555555"/>
+		</Style>
+		<Style Selector="Button:disabled /template/ ContentPresenter">
+			<Setter Property="Background" Value="#181818"/>
+		</Style>
+
+		<Style Selector="ToggleButton.icon-toggle">
+			<Setter Property="Width" Value="48"/>
+			<Setter Property="Height" Value="48"/>
+			<Setter Property="Padding" Value="4"/>
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#404040"/>
+						<GradientStop Offset="1" Color="#202020"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="ToggleButton.icon-toggle:pointerover /template/ ContentPresenter">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#101010"/>
+						<GradientStop Offset="1" Color="#202020"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="ToggleButton.icon-toggle:pressed /template/ ContentPresenter">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#3A3A3A"/>
+						<GradientStop Offset="1" Color="#A0A0A0"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="ToggleButton.icon-toggle:checked /template/ ContentPresenter">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#606060"/>
+						<GradientStop Offset="1" Color="#383838"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="ToggleButton.icon-toggle:checked:pointerover /template/ ContentPresenter">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#707070"/>
+						<GradientStop Offset="1" Color="#484848"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="ToggleButton.icon-toggle:disabled /template/ ContentPresenter">
+			<Setter Property="Background" Value="#181818"/>
+		</Style>
+
+		<Style Selector="Separator">
+			<Setter Property="Background" Value="#333333"/>
+			<Setter Property="Margin" Value="0,2"/>
+		</Style>
+
+		<Style Selector="CheckBox">
+			<Setter Property="Foreground" Value="#cccccc"/>
+		</Style>
+		<Style Selector="CheckBox /template/ Border#PART_Border">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+		</Style>
+		<Style Selector="CheckBox /template/ Border#NormalRectangle">
+			<Setter Property="Background" Value="#141414"/>
+			<Setter Property="BorderBrush" Value="#050505"/>
+		</Style>
+		<Style Selector="CheckBox:pointerover /template/ Border#NormalRectangle">
+			<Setter Property="BorderBrush" Value="#505050"/>
+		</Style>
+		<Style Selector="CheckBox:checked /template/ Border#NormalRectangle">
+			<Setter Property="Background" Value="#606060"/>
+			<Setter Property="BorderBrush" Value="#050505"/>
+		</Style>
+		<Style Selector="CheckBox /template/ Path#CheckGlyph">
+			<Setter Property="Fill" Value="#101010"/>
+		</Style>
+
+		<Style Selector="TextBox">
+			<Setter Property="Background" Value="#141414"/>
+			<Setter Property="BorderBrush" Value="#050505"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Foreground" Value="#cccccc"/>
+			<Setter Property="CaretBrush" Value="#cccccc"/>
+			<Setter Property="SelectionBrush" Value="#404040"/>
+		</Style>
+		<Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+			<Setter Property="Background" Value="#181818"/>
+			<Setter Property="BorderBrush" Value="#333333"/>
+		</Style>
+		<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+			<Setter Property="Background" Value="#181818"/>
+			<Setter Property="BorderBrush" Value="#808080"/>
+		</Style>
+
+		<Style Selector="ComboBox">
+			<Setter Property="Background" Value="#202020"/>
+			<Setter Property="BorderBrush" Value="#050505"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Foreground" Value="#cccccc"/>
+		</Style>
+
+		<Style Selector="ScrollBar /template/ Thumb">
+			<Setter Property="Background" Value="#404040"/>
+		</Style>
+		<Style Selector="ScrollBar /template/ Thumb:pointerover">
+			<Setter Property="Background" Value="#606060"/>
+		</Style>
+
+		<Style Selector="ToolTip">
+			<Setter Property="Background" Value="#202020"/>
+			<Setter Property="BorderBrush" Value="#050505"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Foreground" Value="#cccccc"/>
+			<Setter Property="Padding" Value="6,3"/>
+		</Style>
+
+		<Style Selector="ContextMenu">
+			<Setter Property="Background" Value="#202020"/>
+			<Setter Property="BorderBrush" Value="#050505"/>
+		</Style>
+		<Style Selector="Menu">
+			<Setter Property="TextElement.FontWeight" Value="Light"/>
+		</Style>
+		<Style Selector="MenuItem">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#cccccc"/>
+		</Style>
+		<Style Selector="MenuItem:pointerover /template/ Border#PART_LayoutRoot">
+			<Setter Property="Background" Value="#404040"/>
+		</Style>
+
+		<Style Selector="ListBoxItem">
+			<Setter Property="Padding" Value="4"/>
+		</Style>
+
+		<Style Selector="TabControl">
+			<Setter Property="Background" Value="#181818"/>
+			<Setter Property="Padding" Value="0"/>
+		</Style>
+
+		<Style Selector="TabItem">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#404040"/>
+						<GradientStop Offset="1" Color="#202020"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Foreground" Value="#AAAAAA"/>
+			<Setter Property="BorderBrush" Value="#505050"/>
+			<Setter Property="BorderThickness" Value="1,1,1,0"/>
+			<Setter Property="Padding" Value="12,6"/>
+			<Setter Property="FontSize" Value="12"/>
+			<Setter Property="MinHeight" Value="0"/>
+			<Setter Property="Margin" Value="2,8,2,0"/>
+			<Setter Property="Transitions">
+				<Setter.Value>
+					<Transitions>
+						<ThicknessTransition Property="Margin" Duration="0:0:0.05" Easing="CubicEaseOut"/>
+					</Transitions>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="TabItem:pointerover /template/ Border">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#505050"/>
+						<GradientStop Offset="1" Color="#303030"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="TabItem:selected /template/ Border">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#606060"/>
+						<GradientStop Offset="1" Color="#383838"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
+			<Setter Property="IsVisible" Value="False"/>
+		</Style>
+		<Style Selector="TabItem:selected">
+			<Setter Property="Margin" Value="2,2,2,0"/>
+		</Style>
+
+		<Style Selector="Border.toolbox-group">
+			<Setter Property="Background" Value="#1c1c1c"/>
+			<Setter Property="BorderBrush" Value="#050505"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+		<Style Selector="Border.toolbox-group-header">
+			<Setter Property="Height" Value="18"/>
+			<Setter Property="BorderBrush" Value="#050505"/>
+			<Setter Property="BorderThickness" Value="0,0,0,1"/>
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+						<GradientStop Offset="0" Color="#505050"/>
+						<GradientStop Offset="1" Color="#2a2a2a"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style Selector="TextBlock.toolbox-group-header-text">
+			<Setter Property="FontSize" Value="9"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="Foreground" Value="#cccccc"/>
+			<Setter Property="LetterSpacing" Value="1"/>
+			<Setter Property="Padding" Value="4,2,0,0"/>
+		</Style>
+
+		<FluentTheme />
+		<StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
+		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+	</Application.Styles>
+</Application>

@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+		mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="400"
+        x:Class="Rockwall2.BuilderConfigWindow"
+        Icon="/Assets/rockwall2icon.ico"
+        Background="#202020"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0"
+        Title="BuilderConfigWindow">
+
+	<Border BorderThickness="1" BorderBrush="#686868">
+		<DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+			<controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+								 PointerMoved="TitleBar_PointerMoved"
+								 PointerReleased="TitleBar_PointerReleased"
+								 VerticalAlignment="Top"/>
+			<Grid x:Name="mainArea">
+				
+			</Grid>
+		</DockPanel>
+	</Border>
+</Window>

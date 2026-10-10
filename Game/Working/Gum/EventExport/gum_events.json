@@ -1,12 +1,26 @@
 {
   "UserEvents": {
-    "c4c629e594f7e698d6697ecf31cd74ceb146fc2eedabaa6171f1547a1e13d908": [
+    "33f3f000baebdd4cbc118b5674f73eebbfa608f71b1cceb7289bd69a6ecda02a": [
+      {
+        "NewName": "Menu.Image",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2026-10-10T04:07:06.9000064Z"
+      },
       {
         "NewName": null,
-        "OldName": "PlayerHUD",
+        "OldName": "Menu.Sprite Image in Menu",
         "ElementType": "Screens",
-        "EventType": 1,
-        "TimestampUtc": "2026-10-02T01:56:29.4180718Z"
+        "EventType": 6,
+        "TimestampUtc": "2026-10-10T04:12:20.7629394Z"
+      },
+      {
+        "NewName": "Menu.Relic_logo",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2026-10-10T04:12:38.2931687Z"
       }
     ]
   }

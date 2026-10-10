@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rockwall2;assembly=Rockwall2"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
+        x:Class="Rockwall2.MorphNameAssigner"
+        Title="Phoneme Map"
+        Icon="/Assets/rockwall2icon.ico"
+        Topmost="True"
+        Background="#202020"
+        Width="480" SizeToContent="Height"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Padding="0,0,0,0"
+        Margin="0,0,0,0">
+  <Border BorderThickness="1" BorderBrush="#686868">
+    <DockPanel VerticalAlignment="Stretch" Margin="{Binding $parent[Window].OffScreenMargin}">
+      <controls:RWTitleBar PointerPressed="TitleBar_PointerPressed"
+                           PointerMoved="TitleBar_PointerMoved"
+                           PointerReleased="TitleBar_PointerReleased"
+                           VerticalAlignment="Top"/>
+      <Grid RowDefinitions="*,32">
+        <WrapPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0">
+          <Button Content="Accept" Width="70" FontSize="11" Click="BtnAccept_Click"/>
+          <Button Content="Cancel" Width="70" FontSize="11" Margin="4,0,0,0" Click="BtnCancel_Click"/>
+          <TextBlock x:Name="lblStatus" VerticalAlignment="Center"
+                     FontSize="10" Foreground="#666" Margin="8,0,0,0"/>
+        </WrapPanel>
+        <ScrollViewer Grid.Row="0">
+          <StackPanel x:Name="phonemeStack" Margin="8,4,8,8" Spacing="3"/>
+        </ScrollViewer>
+      </Grid>
+    </DockPanel>
+  </Border>
+</Window>
