@@ -53,3 +53,13 @@ Software, subject to the following conditions:
 8. Limitation of Liability
    IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM,
    DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+
+   "Powered by Relic Engine"
+
+This requirement does not replace the splash screen
+requirement.
+
+9. Reserved Rights
+
+Any rights not expressly granted by this License are
+reserved by the copyright holder.
