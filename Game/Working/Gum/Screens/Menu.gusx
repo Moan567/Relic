@@ -97,7 +97,7 @@
     <Variable>
       <Type>float</Type>
       <Name>GameNameLabel.X</Name>
-      <Value xsi:type="xsd:float">1</Value>
+      <Value xsi:type="xsd:float">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -115,7 +115,7 @@
     <Variable>
       <Type>float</Type>
       <Name>GameNameLabel.Y</Name>
-      <Value xsi:type="xsd:float">-130</Value>
+      <Value xsi:type="xsd:float">-131</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -200,13 +200,19 @@
     <Variable>
       <Type>int</Type>
       <Name>MenuBackground.Alpha</Name>
-      <Value xsi:type="xsd:int">71</Value>
+      <Value xsi:type="xsd:int">8</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>MenuBackground.Blue</Name>
       <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>ColorCategory</Type>
+      <Name>MenuBackground.ColorCategoryState</Name>
+      <Value xsi:type="xsd:string">Black</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -259,7 +265,7 @@
     <Variable>
       <Type>float</Type>
       <Name>MenuBackground.Y</Name>
-      <Value xsi:type="xsd:float">0</Value>
+      <Value xsi:type="xsd:float">-3</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

@@ -1,0 +1,55 @@
+===================================================================
+RELIC ENGINE LICENSE 1.0
+===================================================================
+
+Copyright (c) 2026 Neo
+
+Permission is hereby granted to any person obtaining a copy of the
+Relic Engine source code and associated files ("Software") to use,
+modify, compile, distribute, and create derivative works from the
+Software, subject to the following conditions:
+
+1. Source Code Distribution
+   Any modified version of the Software must include this license
+   and clearly indicate that changes were made.
+
+2. Executable Distribution
+   Software created using Relic Engine may be distributed in source
+   or binary form.
+
+3. Branding Requirement
+   All executable applications created using Relic Engine must
+   display the official Relic Engine splash screen during startup.
+
+   The splash screen may not be removed, hidden, replaced,
+   modified, or obscured without written permission from the
+   copyright holder.
+
+4. Trademarks
+   The names "Relic Engine", "WinX Engine", "KREAN Engine",
+   "KEA Engine", associated logos, branding, and artwork remain
+   the exclusive property of the copyright holder.
+
+   This license does not grant ownership of any trademarks,
+   logos, or branding assets.
+
+5. Commercial Exemption
+   The copyright holder may grant written permission to remove
+   or modify the splash screen requirement on a case-by-case basis.
+
+6. Third-Party Software
+   Relic Engine may include third-party components licensed under
+   separate terms.
+
+   Copyright for third-party software remains with its respective
+   copyright holders and users must comply with those licenses.
+
+7. Warranty Disclaimer
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   NONINFRINGEMENT.
+
+8. Limitation of Liability
+   IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM,
+   DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
