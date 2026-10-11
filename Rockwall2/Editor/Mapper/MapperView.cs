@@ -22,6 +22,7 @@ using Rockwall2.Views;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -1780,15 +1781,40 @@ public class MapperView : IEditorScene
     public void LoadAllExternalGameData()
     {
         string edsFile = GlobalEditorData.EDSFile;
-        if (string.IsNullOrWhiteSpace(edsFile) || !File.Exists(edsFile))
+        string gamePath = ConfigManager.currentConfig.GamePath;
+
+        if ((string.IsNullOrWhiteSpace(edsFile) || !File.Exists(edsFile))
+            && !string.IsNullOrWhiteSpace(gamePath) && File.Exists(gamePath))
+        {
+            edsFile = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(gamePath))!, "Data", EntityDataIndex.FileName);
+        }
+
+        if (!File.Exists(edsFile) && !string.IsNullOrWhiteSpace(gamePath) && File.Exists(gamePath))
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = Path.GetFullPath(gamePath),
+                WorkingDirectory = Path.GetDirectoryName(Path.GetFullPath(gamePath))!,
+                UseShellExecute = false
+            };
+            startInfo.ArgumentList.Add("-compile");
+            startInfo.ArgumentList.Add("-batch");
+
+            using var process = Process.Start(startInfo);
+            process?.WaitForExit();
+        }
+
+        if (!File.Exists(edsFile))
         {
             throw new FileNotFoundException(
                 $"Game data index not found: {edsFile}\n\n" +
-                "The editor reads entity data that the game generates on startup " +
-                "(-compile). Build and run the game once (or run Game.exe -compile -batch) " +
-                "so it writes Data\\def.eds, then reopen the editor. " +
-                "You can also point 'Game Data' at an existing def.eds in the config editor.");
+                "Set 'Game Executable Path' to the built game executable in the editor config. " +
+                "The editor will generate Data\\def.eds automatically. " +
+                "If this keeps happening, build the Game project and check that it can write to its output folder.");
         }
+
+        GlobalEditorData.EDSFile = edsFile;
+        ConfigManager.currentConfig.GameEDF = edsFile;
 
         var index = EntityDataIndex.Read(edsFile);
 
