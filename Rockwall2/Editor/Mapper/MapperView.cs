@@ -1779,13 +1779,26 @@ public class MapperView : IEditorScene
 
     public void LoadAllExternalGameData()
     {
-        var index = EntityDataIndex.Read(GlobalEditorData.EDSFile);
+        string edsFile = GlobalEditorData.EDSFile;
+        if (string.IsNullOrWhiteSpace(edsFile) || !File.Exists(edsFile))
+        {
+            throw new FileNotFoundException(
+                $"Game data index not found: {edsFile}\n\n" +
+                "The editor reads entity data that the game generates on startup " +
+                "(-compile). Build and run the game once (or run Game.exe -compile -batch) " +
+                "so it writes Data\\def.eds, then reopen the editor. " +
+                "You can also point 'Game Data' at an existing def.eds in the config editor.");
+        }
+
+        var index = EntityDataIndex.Read(edsFile);
 
         MaterialLoader.MountMaterials(index.MaterialsPath);
 
         GlobalEditorData.RegisteredClassnames = JsonConvert.DeserializeObject<string[]>(File.ReadAllText(index.ClassnamesPath)).Order().ToArray();
 
         GlobalEditorData.ContentPath = index.ContentPath;
+        GlobalEditorData.MountedContentPath = index.ContentPath;
+        GlobalEditorData.MountedMaterialsPath = index.MaterialsPath;
         host.Content.RootDirectory = GlobalEditorData.ContentPath;
 
         GlobalEditorData.RegisteredEntityMeta = JsonConvert.DeserializeObject<Dictionary<string, EntityClassMetadata>>(File.ReadAllText(index.MetadataPath));
@@ -1794,11 +1807,11 @@ public class MapperView : IEditorScene
         {
             GlobalMapData.MaterialNameToIndex[GlobalMapData.LoadedMaterials[i].Name] = i;
             if (!string.IsNullOrEmpty(GlobalMapData.LoadedMaterials[i].TextureName))
-                GlobalMapData.LoadedMaterials[i].Texture = host.Content.Load<Texture2D>($"{GlobalMapData.LoadedMaterials[i].TextureName}");
+                GlobalMapData.LoadedMaterials[i].Texture = ContentAssetStore.LoadMaterialTexture(GlobalMapData.LoadedMaterials[i].TextureName);
             if (!string.IsNullOrEmpty(GlobalMapData.LoadedMaterials[i].NormalName))
-                GlobalMapData.LoadedMaterials[i].Normal = host.Content.Load<Texture2D>($"{GlobalMapData.LoadedMaterials[i].NormalName}");
+                GlobalMapData.LoadedMaterials[i].Normal = ContentAssetStore.LoadMaterialTexture(GlobalMapData.LoadedMaterials[i].NormalName);
             if (!string.IsNullOrEmpty(GlobalMapData.LoadedMaterials[i].SpecularName))
-                GlobalMapData.LoadedMaterials[i].Specular = host.Content.Load<Texture2D>($"{GlobalMapData.LoadedMaterials[i].SpecularName}");
+                GlobalMapData.LoadedMaterials[i].Specular = ContentAssetStore.LoadMaterialTexture(GlobalMapData.LoadedMaterials[i].SpecularName);
         }
         //RokMessages.Append("{ Rockwall : Internal System }" + $" Loaded Materials OK!");
     }

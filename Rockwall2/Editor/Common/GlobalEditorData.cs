@@ -13,6 +13,11 @@ namespace Rockwall2.Editor.Common;
 public static class GlobalEditorData
 {
     public static string EDSFile = "", WorkingDirectory = "", ContentPath = "", CompileProgramPath = "";
+
+    // Roots the *engine* reads from (def.eds -> ../Content, ../Content/Materials). These live
+    // in the build output and are distinct from WorkingDirectory, which holds the versioned
+    // source assets the editor authors against.
+    public static string MountedContentPath = "", MountedMaterialsPath = "";
     public static string[] RegisteredClassnames;
     public static Dictionary<string, EntityClassMetadata> RegisteredEntityMeta = new Dictionary<string, EntityClassMetadata>();
     public static EditorOverrides EditorOverrides;

@@ -2,11 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
              x:Class="Rockwall2.MaterialEditor">
-  <Border Margin="10"
-          BorderBrush="#303030"
-          BorderThickness="1">
-    
-  </Border>
+  <!-- The editor is built in code-behind: the entity inspector sets the precedent for
+       assembling these panels imperatively, and it keeps the compiled-binding strictness
+       of this project out of the way. -->
+  <Border x:Name="root" Background="#202020"/>
 </UserControl>

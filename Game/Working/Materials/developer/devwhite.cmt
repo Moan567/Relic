@@ -1,9 +1,8 @@
 {
-  "name": "Dev White",
+  "name": "Dev_White",
   "texture": "Textures/dev/devwhite",
   "specular": "Textures/base/basicSpecular",
   "normal": "Textures/dev/devnormal",
   "surfaceType": "concrete",
-  "reflectivity": 0.7,
-  "transparent": false
+  "reflectivity": 0.0
 }

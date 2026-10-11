@@ -523,10 +523,23 @@ public static class MapTools
 
         LeakPoints = null;
 
+        // Mapcompiler lives in Editor\Mapcompiler\bin, which is wiped by a clean, so a stale
+        // config path surfaces as a bare Win32 "system cannot find the file specified".
+        string compileTool = ConfigManager.currentConfig.CompileTool;
+        if (string.IsNullOrWhiteSpace(compileTool) || !File.Exists(compileTool))
+        {
+            Program.ShowMessageBox(Silk.NET.SDL.MessageBoxFlags.Warning, "Map compiler not found",
+                $"Mapcompiler.exe was not found at:\n{compileTool}\n\n" +
+                "Build Editor\\Mapcompiler\\Mapcompiler.csproj, then set the correct path " +
+                "under 'Compiler' in the config editor.");
+
+            return;
+        }
+
         ProcessStartInfo startInfo = new ProcessStartInfo();
         startInfo.CreateNoWindow = false;
         startInfo.UseShellExecute = false;
-        startInfo.FileName = ConfigManager.currentConfig.CompileTool;
+        startInfo.FileName = compileTool;
         startInfo.WindowStyle = ProcessWindowStyle.Normal;
         startInfo.Arguments = $"-\"{Path.GetFullPath(ActivePath)}\" -\"{Path.GetFullPath(ConfigManager.currentConfig.GameEDF)}\" -\"{Path.GetFullPath(GlobalEditorData.WorkingDirectory)}\"";
         startInfo.EnvironmentVariables.Add("lightmapUnitSize", $"{LightmapRes}");

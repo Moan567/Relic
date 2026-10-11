@@ -216,3 +216,9 @@
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:Shaders/EyeGeneration.fx
+
+#begin Shaders/MaterialPreview.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/MaterialPreview.fx

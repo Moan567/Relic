@@ -1,9 +1,8 @@
 {
-  "name": "Dev Red",
+  "name": "Dev_Red",
   "texture": "Textures/dev/devred",
   "specular": "Textures/base/basicSpecular",
   "normal": "Textures/dev/devnormal",
   "surfaceType": "concrete",
-  "reflectivity": 1.0,
-  "transparent": false
+  "reflectivity": 0.0
 }

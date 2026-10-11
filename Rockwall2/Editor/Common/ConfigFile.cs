@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using Rockwall;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace Rockwall2.Editor.Common;
@@ -33,13 +35,29 @@ public static class ConfigManager
 
     public static void LoadAllConfigs()
     {
+        configFiles = Array.Empty<string>();
         if (!Directory.Exists(confSavePath))
         {
             Directory.CreateDirectory(confSavePath);
             return;
         }
 
-        configFiles = Directory.GetFiles(confSavePath);
+        var validConfigs = new List<string>();
+        foreach (var path in Directory.EnumerateFiles(confSavePath))
+        {
+            try
+            {
+                var config = JsonConvert.DeserializeObject<ConfigFile>(File.ReadAllText(path));
+                if (!string.IsNullOrWhiteSpace(config.GameName))
+                    validConfigs.Add(path);
+            }
+            catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException)
+            {
+                Debug.WriteLine($"Skipping invalid editor config '{path}': {ex.Message}");
+            }
+        }
+
+        configFiles = validConfigs.ToArray();
     }
     public static void LoadConfig(string path)
     {

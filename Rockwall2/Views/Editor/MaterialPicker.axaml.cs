@@ -37,19 +37,6 @@ public partial class MaterialPicker : Window
         if (Design.IsDesignMode) return;
 
         textureList.ItemsSource = filteredItems;
-        foreach (var img in GlobalEditorData.TexturesAsImages)
-        {
-            allItems.Add(img);
-        }
-
-        cachedDistinctPaths ??= allItems
-            .Select(i => i.RelativePath)
-            .Where(p => !string.IsNullOrEmpty(p))
-            .Distinct()
-            .OrderBy(p => p)
-            .ToList();
-
-        pathFilterBox.ItemsSource = cachedDistinctPaths;
 
         state ??= new MaterialPickerState();
 
@@ -84,6 +71,10 @@ public partial class MaterialPicker : Window
     {
         instance ??= new MaterialPicker();
 
+        // Materials can be added or edited at runtime by the material editor, so re-read the
+        // thumbnail table every time instead of trusting whatever was there when we opened once.
+        instance.RefreshItems();
+
         instance.pendingResult = new TaskCompletionSource<int>();
         instance.Result = -1;
         if (instance.selectedItem != null)
@@ -102,6 +93,27 @@ public partial class MaterialPicker : Window
         }
 
         return instance.pendingResult.Task;
+    }
+
+    /// <summary>Rebuilds the item list from the current texture table.</summary>
+    private void RefreshItems()
+    {
+        allItems.Clear();
+
+        if (GlobalEditorData.TexturesAsImages != null)
+            foreach (var img in GlobalEditorData.TexturesAsImages)
+                allItems.Add(img);
+
+        cachedDistinctPaths = allItems
+            .Select(i => i.RelativePath)
+            .Where(p => !string.IsNullOrEmpty(p))
+            .Distinct()
+            .OrderBy(p => p)
+            .ToList();
+
+        pathFilterBox.ItemsSource = cachedDistinctPaths;
+
+        ApplyFilters();
     }
 
     private void ApplyFilters()

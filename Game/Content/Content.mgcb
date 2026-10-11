@@ -1830,3 +1830,9 @@
 
 #begin ../Working/Maps/empty.cmap
 /copy:../Working/Maps/empty.cmap;Maps/empty.cmap
+
+#begin ../Working/Materials/developer/Dev_Blue_Copy_Copy.cmt
+/copy:../Working/Materials/developer/Dev_Blue_Copy_Copy.cmt;Materials/developer/Dev_Blue_Copy_Copy.cmt
+
+#begin ../Working/Gum/Screens/Menu.codsj
+/copy:../Working/Gum/Screens/Menu.codsj;Gum/Screens/Menu.codsj

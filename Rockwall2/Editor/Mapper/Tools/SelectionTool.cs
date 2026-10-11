@@ -208,16 +208,21 @@ namespace Rockwall2.Tools
             HandleMergeFaces();
             HandleCopyPaste();
 
-            if (MouseManager.IsReleased(MouseButton.Right) && !MouseManager.WasDragging(MouseButton.Right) && !waitDDown && Toolbelt.SelectedObjects.Count > 0)
+            if (MouseManager.IsReleased(MouseButton.Right) && !MouseManager.WasDragging(MouseButton.Right) && !waitDDown
+                && (Toolbelt.SelectedObjects.Count > 0 || Toolbelt.HighlightedObject != null))
             {
                 waitDDown = true;
+                var selectedObjects = Toolbelt.SelectedObjects.ToArray();
                 Dispatcher.UIThread.Post(() =>
                 {
                     var menu = new Avalonia.Controls.ContextMenu();
                     menu.MaxHeight = 300;
 
-                    if (Toolbelt.SelectedObjects[0] is EntityMoveable ent ||
-                       (Toolbelt.SelectedObjects[0] is BrushMoveable brush && MapTools.Brushes[brush.brush].IsEntity))
+                    if (selectedObjects.FirstOrDefault() is EntityMoveable ||
+                       (selectedObjects.FirstOrDefault() is BrushMoveable brush
+                        && brush.brush >= 0
+                        && brush.brush < MapTools.Brushes.Length
+                        && MapTools.Brushes[brush.brush].IsEntity))
                     {
                         Avalonia.Controls.MenuItem item = new();
 
@@ -240,6 +245,29 @@ namespace Rockwall2.Tools
                         };
 
                         menu.Items.Add(item);
+                    }
+
+                    // Right-click a face (or a selected brush) -> jump straight to the material
+                    // picker. Hovering already resolves HighlightedObject, so this works without
+                    // selecting first; the selection wins when there is one.
+                    if (FaceTextureOperations.ResolveSelectionFaces().Count > 0
+                        || FaceTextureOperations.ResolveHoverFaces().Count > 0)
+                    {
+                        Avalonia.Controls.MenuItem textureItem = new()
+                        {
+                            Header = "Change Texture..."
+                        };
+
+                        textureItem.Click += async (a, b) =>
+                        {
+                            // Dismiss the menu first; the picker is a separate window and would
+                            // otherwise open underneath it.
+                            menu.Close();
+                            await FaceTextureOperations.ChangeTextureOfSelectionAsync();
+                        };
+
+                        menu.Items.Add(textureItem);
+                        menu.Items.Add(new Avalonia.Controls.Separator());
                     }
 
                     var hitpt = ray.Position + ray.Direction * minDist;
