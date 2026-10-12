@@ -25,18 +25,25 @@ public partial class App : Application
         {
             DisableAvaloniaDataAnnotationValidation();
 
-            var setup = new StartWindow();
-            desktop.MainWindow = setup;
-            setup.Show();
-
-            var tcs = new TaskCompletionSource<bool>();
-            setup.Closed += (_, _) => tcs.TrySetResult(setup.Result == true);
-            var success = await tcs.Task;
-
-            if (!success)
+            if (ConfigManager.TryCreatePackagedConfig(out ConfigFile packagedConfig))
             {
-                desktop.Shutdown();
-                return;
+                ConfigManager.currentConfig = packagedConfig;
+            }
+            else
+            {
+                var setup = new StartWindow();
+                desktop.MainWindow = setup;
+                setup.Show();
+
+                var tcs = new TaskCompletionSource<bool>();
+                setup.Closed += (_, _) => tcs.TrySetResult(setup.Result == true);
+                var success = await tcs.Task;
+
+                if (!success)
+                {
+                    desktop.Shutdown();
+                    return;
+                }
             }
 
             var main = new MainWindow();

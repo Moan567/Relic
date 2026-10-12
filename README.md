@@ -53,4 +53,20 @@ compiler.
 Please read the engine licence before modifying or redistributing anything
 built with it.
 
+## Windows editor download
+
+To create a self-contained Windows x64 package, run this from the repository
+root in PowerShell with the .NET 8 SDK installed:
+
+```powershell
+.\tools\package-rockwall.ps1
+```
+
+The package is written to `dist/Rockwall-win-x64`. Distribute that whole folder
+as a zip. On a Windows x64 PC, launch `Rockwall2.exe` from the extracted folder;
+the package includes the game, editor assets, map compiler, and generated entity
+data, and the editor opens without a per-user setup profile.
+Pushing a version tag such as `v1.0.0` runs the Windows release workflow and
+attaches this ZIP to the GitHub release.
+
 Have a nice day! :D

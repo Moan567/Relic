@@ -31,6 +31,33 @@ public static class ConfigManager
     public static ConfigFile currentConfig;
     public static string[] configFiles;
 
+    public static bool TryCreatePackagedConfig(out ConfigFile config)
+    {
+        string root = AppContext.BaseDirectory;
+        string gamePath = Path.Combine(root, "Game", "Game.exe");
+        string gameData = Path.Combine(root, "Game", "Data", "def.eds");
+        string compilerPath = Path.Combine(root, "Mapcompiler", "Mapcompiler.exe");
+        string workingPath = Path.Combine(root, "Game", "Working");
+
+        if (!File.Exists(gamePath) || !File.Exists(compilerPath)
+            || !Directory.Exists(workingPath)
+            || !Directory.Exists(Path.Combine(root, "Game", "Content")))
+        {
+            config = default;
+            return false;
+        }
+
+        config = new ConfigFile
+        {
+            GameName = "Relic Game",
+            GamePath = gamePath,
+            GameEDF = gameData,
+            CompileTool = compilerPath,
+            EditorAssetsPath = workingPath
+        };
+        return true;
+    }
+
     public static string confSavePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Rockwall/Configs";
 
     public static void LoadAllConfigs()
